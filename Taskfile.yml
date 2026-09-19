@@ -157,3 +157,14 @@ tasks:
     cmds:
       - uv run python colab_runner.py build --action train-full
 
+  codegraph:
+    desc: Show CodeGraph index status
+    cmds:
+      - codegraph status
+
+  codegraph-sync:
+    desc: Synchronize CodeGraph index with codebase changes
+    cmds:
+      - codegraph sync
+
+

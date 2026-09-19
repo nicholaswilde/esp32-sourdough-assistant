@@ -171,6 +171,9 @@ When searching for patterns or text in the codebase via the shell, always use `r
 - Run host-native tests: `pio test -e native` (or `task test`)
 - Run on-device tests: `task test-device`
 - Record benchmarks: `task benchmark`
+- Check codegraph status: `task codegraph`
+- Sync codegraph index: `task codegraph-sync`
+
 
 ## RTK Command Guidelines
 - **Git Operations**: Prefix `git` commands with `rtk` (e.g., `rtk git status`, `rtk git diff`, `rtk git log`, `rtk git commit`, `rtk git push`).
