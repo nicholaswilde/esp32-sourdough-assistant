@@ -1,6 +1,6 @@
 # :bread: ESP32-S3 Sourdough Baker Assistant :robot:
 [![task](https://img.shields.io/badge/Task-Enabled-brightgreen?style=for-the-badge&logo=task&logoColor=white)](https://taskfile.dev/#/)
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-nicholascwilde%2Fesp32--s3--sourdough-ffd21e&style=for-the-badge)](https://huggingface.co/nicholascwilde/esp32-s3-sourdough)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-nicholascwilde%2Fesp32--s3--sourdough-ffd21e?style=for-the-badge&logo=huggingface)](https://huggingface.co/nicholascwilde/esp32-s3-sourdough)
 
 An offline, on-device AI assistant for sourdough bread baking and troubleshooting that runs locally on an **ESP32-S3** microcontroller.
 
