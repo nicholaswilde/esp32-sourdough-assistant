@@ -1,0 +1,48 @@
+# PlatformIO & Embedded Builds
+.pio/
+compile_commands.json
+.clangd/
+
+# Secrets & Local Configuration
+secrets.h
+src/secrets.h
+.env
+.env.*
+!.env.example
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+build/
+*.egg-info/
+
+# Datasets and Tokenizer outputs (regenerated via task generate / task prepare)
+data/
+
+# Model Checkpoints & Binaries (hosted on Hugging Face / compiled via task quantize)
+*.pt
+*.pth
+*.bin
+
+# Temporary Archives & Logs
+*.tar.gz
+*.tar
+*.zip
+*.log
+.codegraph/
+
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

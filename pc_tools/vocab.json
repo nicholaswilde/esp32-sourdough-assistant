@@ -1,0 +1,8801 @@
+{
+  "version": "sourdough-v1",
+  "total": 2197,
+  "tokens": [
+    {
+      "token": "<pad>",
+      "tier": "punctuation"
+    },
+    {
+      "token": "<bos>",
+      "tier": "punctuation"
+    },
+    {
+      "token": "<eos>",
+      "tier": "punctuation"
+    },
+    {
+      "token": "<unk>",
+      "tier": "punctuation"
+    },
+    {
+      "token": ",",
+      "tier": "punctuation"
+    },
+    {
+      "token": ".",
+      "tier": "punctuation"
+    },
+    {
+      "token": ":",
+      "tier": "punctuation"
+    },
+    {
+      "token": ";",
+      "tier": "punctuation"
+    },
+    {
+      "token": "?",
+      "tier": "punctuation"
+    },
+    {
+      "token": "%",
+      "tier": "punctuation"
+    },
+    {
+      "token": "0",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "00",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "1",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "10",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "100",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "1000g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "100g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "10g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "11",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "12",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "120",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "120g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "125g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "13",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "14",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "140",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "15",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "15g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "16",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "160",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "160g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "165",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "175",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "17g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "18",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "190",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "192",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "1mm",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "2",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "20",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "200",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "200g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "205",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "208",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "20g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "21",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "210",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "230",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "234",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "236g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "24",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "240g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "245",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "24g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "25",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "250g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "26",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "27",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "28",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "29",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "2g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "3",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "30",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "30g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "32",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "325",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "334g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "33g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "35",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "350",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "350g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "36",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "360g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "375",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "375g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "38",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "3g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "4",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "40",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "400",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "40g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "45",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "450",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "464g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "475",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "48",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "48g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "495g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "5",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "50",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "500g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "50g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "550g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "5g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "5x4",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "6",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "60",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "65",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "67g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "68",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "7",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "70",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "700",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "71",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "72",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "720g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "74",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "740g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "75",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "75g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "76",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "78",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "8",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "80",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "82",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "85",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "87",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "8x",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "9",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "90",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "900",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "900g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "92",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "93",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "93g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "94",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "950g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "96",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "970g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "98",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "99",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "9x5",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "a",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "about",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "above",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "absorb",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "absorbing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "absorbs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "absorption",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "abundant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accelerate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accelerates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accelerating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accepted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accommodate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "account",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accumulated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accumulates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accuracy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "accurately",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acetic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acetone",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acidic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acidifies",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acidity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "acids",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "across",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "activate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "activated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "activates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "activating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "active",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "activity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "add",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "added",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "adding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "adhesives",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "adjust",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "administration",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "advice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aerate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aerated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aerates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aeration",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "after",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "against",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aggressive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "agitation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ai",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aim",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "air",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "airflow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "airtight",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "airy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alcohol",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aliquot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "all",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "allow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "allowing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "allows",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "almost",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "along",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alongside",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "also",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alternate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alternatively",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aluminum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alveolation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "alveoli",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "always",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "am",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "amber",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ambient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ammonia",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "amounts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ample",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "amylase",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "an",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ancient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "and",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "angle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "answer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "any",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "anywhere",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "apart",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "appears",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "approximately",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "are",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "area",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aroma",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aromas",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "around",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "art",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "artisan",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "as",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ash",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ask",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "assist",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "assistance",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "assistant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "at",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "attractive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "autolyse",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "autolysis",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "available",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "avoid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "away",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "back",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bacteria",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bacterial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bad",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bag",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bags",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bake",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "baked",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "baker",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "baker's",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bakers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bakery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bakes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "baking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "balance",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "balances",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ball",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "balls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "band",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "banneton",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bannetons",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bare",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "barley",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "barrier",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "base",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "baseline",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bases",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "basket",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "batard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "batards",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "batch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "batches",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "batter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "be",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beautiful",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "because",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "become",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "becomes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "before",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beginners",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "behaves",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "below",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bench",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beneath",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beneficial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beside",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "best",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "better",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "between",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "beyond",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "black",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blade",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bland",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blast",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bleach",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bleached",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blend",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blending",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blister",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blistered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blisters",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "block",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blonde",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bloom",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blooms",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "blow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "board",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "boiled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "boiling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bonding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bonds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "boosting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "boosts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "both",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bottled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bottom",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "boule",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bound",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bowl",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bowls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "box",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "braided",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bran",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bread",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "breads",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "break",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "breakdown",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "breaks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brewing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brioche",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brisk",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brittle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brown",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "browning",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "brush",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bubble",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bubbles",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bubbling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bubbly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "buffer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "build",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "building",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "builds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bulb",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bulk",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bump",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "buoyant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "burning",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "burns",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "business",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "but",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "butter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "buttery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "by",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "bypass",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "byproduct",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "byproducts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "c",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cake",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cakes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "calculate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "calculated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "can",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cane",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cannot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cap",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "capacity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "caramelization",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "caramelizing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "carbon",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "care",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "carve",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cast",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cause",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "caused",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "causes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "causing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cavernous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cavities",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "celiac",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "center",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "centerline",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ceramic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "certified",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chains",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "challenger",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chamber",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cheese",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cheesy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chemicals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chew",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chill",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chilled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chilly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chimneys",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chloramine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "chlorine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "choking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cinnamon",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "circular",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "circulates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "classic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "clay",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "clean",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cleanly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "climates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cloche",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "clock",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "close",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "closed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "closes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cloth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "coarse",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "coat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "coding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cohesion",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "coil",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cold",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "collapses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "collapsing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "colony",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "color",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "colored",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "combination",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "combine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "combo",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "comes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "commands",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "commercial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "commonly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "compete",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "complete",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "completely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "completing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "complex",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "compound",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "compresses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "computer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "concerns",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "condenses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "condensing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "conditions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "conducted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "conductivity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "conducts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "confident",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consider",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consistency",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consistent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consistently",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "constant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consult",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consume",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "consumed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contact",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "container",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "containers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contains",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contaminated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contamination",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "content",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "continue",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "continues",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "continuous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "continuously",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contrast",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contributes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "contributing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "controls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "convection",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "conventional",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "convert",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cookers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cookie",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cookies",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cooking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cool",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cooled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cooler",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cooling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cools",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "core",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "corners",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cornicione",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cornmeal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "counter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "countertop",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cover",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "covered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "covering",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cozy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crackers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cream",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "create",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "creates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "creating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "creation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crevices",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crisp",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crisps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "criss",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cross",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crown",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crowns",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crumb",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crumble",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crumbly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crumbs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crunch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crunchy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crushing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crust",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "crusts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cube",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cubes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cues",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "culinary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cultures",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cup",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cupboard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cupped",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cupping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "curl",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "currents",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "curve",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "custardy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cut",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cuts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cutting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cylinder",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "cylindrical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "daily",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "damp",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dampen",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dark",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "day",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "days",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "daytime",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ddt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "decimals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "decorative",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dedicated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deep",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deeper",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deeply",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deflate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deflating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "deflect",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degassing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degradation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degraded",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degrades",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degree",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "degrees",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dehydrated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "delay",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "delays",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "delicate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "delivered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "delivering",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dense",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dental",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "depending",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "depth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "designs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "desired",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "despite",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "destroy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "destroys",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "detach",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "detergents",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "develop",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "developed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "developing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "development",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "develops",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "device",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "diagnose",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "diagnosis",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "diastatic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "did",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dies",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dietary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "different",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "diffuse",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "digested",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "digital",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dimple",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dimpling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dioxide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "diploid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "direct",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "directions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "directly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "discard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "discoloration",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "discuss",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "disease",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dismantle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "displays",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dissipate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dissolve",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dissolved",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dissolves",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distilled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distinct",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distribute",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distributed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distributes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "distribution",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "divide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dividing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "do",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "doctor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "documentation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "does",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "domain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dome",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "domed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "domes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dominance",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "don't",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "door",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "double",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "doubled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "doubles",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "doubling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dough",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dough's",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "doughs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "down",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "downward",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "draft",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "drafts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dramatic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dramatically",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "drastically",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dried",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dries",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "drop",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dropping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "drops",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dry",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "drying",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "due",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dull",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dumps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "during",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "durum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dust",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dusted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dusting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "dutch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "e",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ear",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "early",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ears",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "easier",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "easily",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "easy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "edge",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "edges",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "edible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "effectively",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "effortless",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "egg",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "eggs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "einkorn",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "elastic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "elasticity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "elements",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "elevated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "eliminate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "eliminates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "emmer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "emotional",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "empty",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enclosed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "encouraging",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "end",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ended",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ends",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "energy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "engineering",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enough",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enrich",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enriched",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ensure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ensures",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ensuring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "entire",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "entirely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "envelope",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "environment",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "environments",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enzymatic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enzyme",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "enzymes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "equal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "equals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "equipment",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "errors",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "escapes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "escaping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "esp32",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "especially",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "essential",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "establish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "evaporate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "evaporates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "evaporating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "even",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "evenly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "every",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exact",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "example",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exceed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exceeding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exceeds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exceptionally",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "excess",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "excessive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exclusively",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exhausted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exhausts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expand",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expanded",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expanding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expands",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expansion",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expect",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "experience",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "experiences",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expertise",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "explosive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "exposure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "express",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "expresses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extend",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extended",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extending",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extensibility",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extensible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "extra",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "f",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "face",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "factor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "failing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fails",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "falls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "family",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fan",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fans",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "farro",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "faster",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fats",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "favor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "favors",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fdt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "features",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "feed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "feeding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "feedings",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "feeds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "feels",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ferment",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fermentable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fermentation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fermented",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fermenting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fermentolyse",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ferments",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "few",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "filled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fillings",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "film",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "filter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "filtered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "final",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "find",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "finger",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fingers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fingertips",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "finish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "finishes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "firm",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "firmly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "firms",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "first",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fixed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flakes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flaky",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flaps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flattening",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flatter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flavor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flavorless",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flavors",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flexible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "float",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "floss",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flour",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "floured",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flourish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flours",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fluffed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fluffy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "flying",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "focaccia",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "focus",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "focuses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fold",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "folding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "folds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "followed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "food",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "foodborne",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fool's",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "for",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "forced",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "form",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "formation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "formed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "forming",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "forms",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "formula",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "formulate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "formulation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "forth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "foul",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fracture",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fragile",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "free",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "freeze",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "french",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fresh",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "freshly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "friction",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fridge",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "friends",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "from",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fructose",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fruit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fruits",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fruity",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "frustration",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fuel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fueling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fully",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fuse",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "fuzzy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "g",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gaps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "garlic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gas",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gases",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gelatin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gelatinization",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gelatinize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gelatinized",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gelatinizes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "general",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "generate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "generates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "generous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "generously",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gentle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gentler",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gently",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "germ",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "get",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "giant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "give",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "giving",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "glass",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "glaze",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gliadin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "glide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "glossy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gluten",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "glutenin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "golden",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "governs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grab",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grade",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grains",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gram",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grams",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "granules",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "greased",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "greater",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "green",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "grey",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "growth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "guarantee",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "guarantees",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "guessing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gumminess",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gummy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "gums",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "half",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "halts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hand",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "handle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "handled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "handling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hands",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "happen",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "happens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hardens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "harmful",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "harming",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "harmless",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "has",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hasten",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "have",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hazard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hazardous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hazelnut",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "health",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "healthcare",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "healthy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "heat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "heating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "heavily",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "heavy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "help",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "helps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "herbs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "high",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "higher",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "highly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hinder",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hold",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "holding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "holds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "holes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hollow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hollows",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "honey",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "honeycomb",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hooch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hour",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hours",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "household",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "however",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hue",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "huge",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hundreds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hungry",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "husk",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hydrate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hydrates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hydration",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hydrations",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "hyphae",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "i",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "icing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ideal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "identical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "if",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "illuminated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "immediate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "immediately",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "immense",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "imparting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "impede",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "impervious",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "impossible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "imprints",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "improperly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "in",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inadequate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "includes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inclusions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "incorporate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "incorporates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "incorporating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "increase",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "increased",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "increasing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indefinitely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indentation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indicate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indicates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indicating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "indicator",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "individuals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "industrial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ingredient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ingredients",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inhibit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inhibits",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "initial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "initially",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inoculation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inquiries",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ins",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "insert",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inside",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "insipid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "instant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "instantly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "instead",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "insufficient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "intense",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "intensifies",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "interior",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "internal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "into",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "invert",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "inverted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "invisible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "iron",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "irregular",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "is",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "isolated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "it",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "italian",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "its",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "jailbreak",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "jar",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "jiggles",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "jiggly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "juice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "just",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kahm",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kamut",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "keep",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "keeping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "keeps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "khorasan",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kickstart",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kickstarting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kill",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "killing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kills",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kitchens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "knead",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "kneading",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "knife",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "known",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lacing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lack",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lacks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lactic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lactobacilli",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lame",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "laminate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "laminated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lamination",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "large",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "larger",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "last",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lasts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lateral",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lava",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "layer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "layers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "least",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leathery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leave",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leavening",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leaves",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leaving",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "left",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "less",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "let",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lets",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "letter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "letting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "leuconostoc",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "levain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "level",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "levels",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "licensed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lids",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lievito",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lift",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lifting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "light",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lightly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lightness",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "like",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "limit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "limited",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "line",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "linen",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "liner",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "links",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "liquid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "little",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "living",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "load",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loading",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loaf",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loaves",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "locks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loft",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "log",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "long",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "longer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "look",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loosely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lose",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "loses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "low",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lower",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lowering",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lowers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lowest",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "lukewarm",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "made",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "madre",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maillard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "main",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maintain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maintained",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maintaining",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maintains",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maintenance",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "make",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "makes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "making",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "malt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "malted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maltose",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "manageable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mandatory",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mark",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "marshmallowy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mass",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "massive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "master",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "match",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "matrix",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "matte",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mature",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maximize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maximizing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "maximum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "may",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "means",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "measure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "measures",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "measuring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mechanical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "medical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "medically",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "medication",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "medio",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "melted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "membrane",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "merge",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mess",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "metal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "micro",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "microbes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "microcontroller",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "microflora",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "micronutrients",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "microwave",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "middle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "migrate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "milder",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mildness",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "milk",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mimics",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mineral",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minerals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "miniature",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minimally",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minimize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minimizing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minimum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minute",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "minutes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mist",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "misted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mix",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mixed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mixers",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mixes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mixing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mode",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "moderate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "moist",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "moisten",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "moisture",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mold",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "moldy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "momentum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "months",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "more",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "morning",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "motion",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "motions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "motor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "move",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "much",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mucilage",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "muffins",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "mug",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "multiple",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "multiply",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "municipal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "must",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "my",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "narrow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "natural",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "naturally",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "near",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "necessary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "need",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "needed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "needing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nestled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "network",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "networks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "neutral",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "never",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "next",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "night",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "no",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "non",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "normal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "not",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "notch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "noticeably",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nourish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "number",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nutrient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nutrients",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nutritious",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nuts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "nutty",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "occurs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "odor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "odors",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "of",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "off",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "offer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "offline",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "offset",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "often",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oil",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oiled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "old",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "olive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "on",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "once",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "one",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "only",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "onto",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "open",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "opposing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "optimal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "or",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "orange",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "organic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "organizes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "other",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "out",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "outer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "outside",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "outward",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "outwards",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oval",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oven",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ovens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "over",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "overnight",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "override",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "overrides",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oversized",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "own",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "oxygen",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pace",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pack",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "packed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "packing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "paint",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pair",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pale",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pan",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pancakes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "panettone",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pans",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "paper",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "parchment",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "part",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "partial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "particles",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "parts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pasta",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "paste",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pastries",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pathogens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pattern",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "patterns",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "peak",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "peaking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "peaks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "penetrate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "penetrates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pentosans",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "per",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "percentage",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "percentages",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "perfectly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "perform",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "permanently",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "personal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "personas",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "personnel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ph",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "phase",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "philosophical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "physically",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "physician",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "piece",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pierce",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pillowy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pinch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pineapple",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pink",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pinwheels",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pizza",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "place",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "placed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "placing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "plastic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pleasantly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "please",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "plenty",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pockets",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pointed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "poisoning",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "poisonous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "popping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "popular",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "populates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "portion",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "portions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pour",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "powder",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "powdery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "power",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pre",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "precisely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "predictable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prefermented",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preheat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preheated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preliminary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "premature",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prematurely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preparation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preparing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "present",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preserve",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preserving",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "press",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pressing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pressure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prevent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "preventing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prevents",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "primary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "primitive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prior",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "probe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proceeds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "produce",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "produced",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "produces",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "producing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "production",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "professional",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "professionals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "programmed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "programming",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prolong",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prolonged",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prominent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "promotes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "promoting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prompt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "prone",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pronounced",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proof",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proofed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proofing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proofs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proper",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "properly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "protease",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proteases",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "protein",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proteins",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proteolysis",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "proteolytic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "provide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "provides",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "puddle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "puddling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "puffy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pull",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pulling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pullman",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "purpose",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "push",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "pushing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "putrid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "qualified",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "quality",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "questions",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "quick",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "quickly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rack",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "radiant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "radiate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rapid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rapidly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rather",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ratio",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ratios",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rattan",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "razor",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "re",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reach",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reaches",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reaction",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reacts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "read",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "readily",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "readings",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reads",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ready",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "recipe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "recipes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "recoil",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "recommendations",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "recreate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rectangle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rectangular",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "redistributes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reduce",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reducing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "refractory",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "refresh",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "refrigerate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "refrigerated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "refrigerator",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "regular",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "regulates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "regulation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rejected",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "related",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "relative",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "relax",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "relaxed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "relaxes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "release",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "releases",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reliable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reliably",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remain",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remainder",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remained",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remaining",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remains",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remilled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "remove",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "repeat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "replacing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "represents",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reproduction",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "require",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "required",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "requires",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "residual",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "resilient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "resistance",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "resists",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rest",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "restart",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "resting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "restore",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "restoring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "restricted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "restricts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "result",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "results",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "resume",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "retard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "retarded",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "retarding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "retards",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "retrogradation",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "reusable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "revitalizes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "revives",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rich",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "richer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "right",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rim",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rimacinata",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rimmed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rings",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ripping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rise",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rises",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rising",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "risking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "risks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roasted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roaster",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roasting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rock",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rocks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "role",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roleplay",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roll",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rolled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rolling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rolls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "room",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rooms",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rosemary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rotate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "roughly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "round",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rounded",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rounding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rounds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rubber",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rubbery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "run",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "running",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "runs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rustic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "rye",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "s3",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "safe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "safely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "safety",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "salt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sample",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "samples",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sandwich",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sanitize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sanitized",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "save",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "saves",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "saw",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scale",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scaling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scalloped",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scatter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scattered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "schedule",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "schedules",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scooping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scorch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scorched",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scorching",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "score",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scored",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scores",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scoring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scrape",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "scraper",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sea",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sealed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sealing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seam",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seams",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "second",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "secondary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "secret",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "see",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seedling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "seeds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "semola",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "semolina",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "separate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "separating",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "serious",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "serrated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "set",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sets",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "setting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "severe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "severely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sewage",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shaken",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shaking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shallow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shallowly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shape",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shaped",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shaping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sharp",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sharply",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shear",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shears",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sheet",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sheets",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shield",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shine",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shiny",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shock",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shoe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shoes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "short",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shorten",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shortening",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "should",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shower",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shows",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "shred",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "side",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sided",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sides",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sidewalls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sideways",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sign",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "significantly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "silicone",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "silky",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "simple",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "simulate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "since",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "single",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sitting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "skillet",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "skim",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "skin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "skins",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "skip",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slack",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slackens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slacks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slap",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slash",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sliced",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slices",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slicing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slides",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slightly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slip",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slippery",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slower",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slowly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "slows",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sluggish",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "small",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smell",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smells",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smelly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smooth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smoother",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "smoothly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "so",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soak",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soda",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soft",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soften",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "softened",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "softens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "softness",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "software",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "solely",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "solid",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "solids",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "some",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soon",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sounds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soup",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "soupy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sour",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sources",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sourdough",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sourness",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "space",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spaced",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "specialize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "specialized",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "speeds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spelt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sphere",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spiral",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spirals",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "splash",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spoiled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sponge",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spores",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spot",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sprays",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spread",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spreading",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spreads",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "springback",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "springs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sprinkle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "spritzing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "square",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stability",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stage",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stagnant",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stainless",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stale",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stand",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "standard",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starches",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "start",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starter's",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starters",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "starts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "static",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stay",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stays",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "steaks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "steam",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "steel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "steels",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stick",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sticking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sticky",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stiff",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stiffens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "still",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stir",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stirred",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stitch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stitching",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stone",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stoneground",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stones",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stop",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stopping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stops",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "storage",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "store",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "straight",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strands",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strength",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strengthens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stretch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stretched",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stretching",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strictly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "stringy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strokes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strong",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "strongly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "structural",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "structure",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "structured",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "structures",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "style",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sub",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "substances",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "substantial",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "subtle",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "subtract",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "such",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "suck",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sudden",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sufficient",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sufficiently",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sugar",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sugars",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sum",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "summer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "supple",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "supplemental",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "support",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "supportive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "suppress",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "suppresses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "suppressing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "surface",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "surfaces",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "surrounded",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "surrounding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sweet",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "sweeter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "swift",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "switching",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "system",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "t65",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "t80",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "table",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "take",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "taken",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "taking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tall",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tang",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tangy",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tap",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tapping",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "target",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "taste",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tastes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "taut",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tearing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tears",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "technical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "technique",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "teeth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "telltale",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "temp",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "temperature",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "temperatures",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "temporary",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "temps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tender",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tenderize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tenderizes",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tenderness",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tensile",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tension",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "test",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "texture",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "than",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "that",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thaw",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "the",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "their",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "them",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "then",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "there",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thermal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "these",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "they",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thick",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thinly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thinner",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "third",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thirds",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "this",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thorough",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thoroughly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "three",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thrive",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "through",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "throughout",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "throwing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "thumbs",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tight",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tighten",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tightens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tightly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "time",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "times",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tiny",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tip",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tipo",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "to",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "together",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tolerates",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "too",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tool",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "toothsome",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "top",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "topics",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "toss",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "total",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tough",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "toward",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "towards",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "towel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "towels",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "toxic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "track",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "transfer",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "transferring",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "translucent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "trap",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "trapped",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "traps",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tray",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "treatment",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tremendous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "trigger",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "triggered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "triples",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tripling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "troubleshooting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "true",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "try",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tuck",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tucking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tunnel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "tunneling",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "turkey",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "turn",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "turned",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "turning",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "turns",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "twice",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "two",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "typically",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ultra",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "un",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unbleached",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "uncontrollably",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "uncovered",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "under",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "underbaking",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "undercooked",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "underlying",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "underneath",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "undeveloped",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "undisturbed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "uneven",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unevenly",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unfed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unfermented",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unflavored",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unglazed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unheated",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "uniform",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "universal",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unless",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unlike",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unmistakable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unpredictably",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unreliable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unsafe",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unsalted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unshapeable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unsweetened",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "until",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "unwanted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "up",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "upside",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "upward",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "upwards",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "use",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "used",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "uses",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "using",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "usual",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "usually",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vaporize",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "varies",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vaulted",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "ventilate",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "venting",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vertical",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "very",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vessel",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "via",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "viability",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "viable",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vigorous",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vigorously",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vinegar",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "violent",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "violently",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "virgin",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "virtually",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "visible",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "visual",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "volcanic",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "volume",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "vomit",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "waffles",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wait",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wake",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "walled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "walls",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "warm",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "warmth",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "was",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "washed",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "waste",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "watch",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "water",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weak",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weaken",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weakening",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weakens",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "webbing",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "week",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weeks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weigh",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weight",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "weights",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "well",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wet",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wheat",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wheaty",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "when",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "whenever",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "where",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "which",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "while",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "whisk",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "white",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "whole",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wicks",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wide",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wild",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "will",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wings",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "winter",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wire",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "with",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "within",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "without",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wobble",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wooden",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "work",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "workflow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "works",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wrap",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wrinkled",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "wrist",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "x",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "years",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yeast",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yeasts",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yellow",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yielding",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yields",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "yogurt",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "you",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "young",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "your",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "zero",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "zipper",
+      "tier": "answers_existing"
+    },
+    {
+      "token": "aerobic",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "anaerobic",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "baguette",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "baguettes",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "belly",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "biga",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "blistering",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "boules",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "bromated",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "brotform",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "celsius",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "challah",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "cheddar",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "ciabatta",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "couche",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "degas",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "dimpled",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "doughy",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "endosperm",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "fahrenheit",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "graham",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "jalapeno",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "kilograms",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "lactobacillus",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "laminating",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "milling",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "neapolitan",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "olives",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "pliable",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "poolish",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "poppy",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "preferment",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "preshape",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "preshaped",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "preshaping",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "proofer",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "pumpernickel",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "sanfranciscensis",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "sesame",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "shatter",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "slashing",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "stickiness",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "stitched",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "sunflower",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "tacky",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "tenacity",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "thyme",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "tightening",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "tins",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "tunnels",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "viscosity",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "viscous",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "walnuts",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "wholemeal",
+      "tier": "domain_lexicon"
+    },
+    {
+      "token": "again",
+      "tier": "function"
+    },
+    {
+      "token": "aren't",
+      "tier": "function"
+    },
+    {
+      "token": "been",
+      "tier": "function"
+    },
+    {
+      "token": "being",
+      "tier": "function"
+    },
+    {
+      "token": "can't",
+      "tier": "function"
+    },
+    {
+      "token": "could",
+      "tier": "function"
+    },
+    {
+      "token": "couldn't",
+      "tier": "function"
+    },
+    {
+      "token": "didn't",
+      "tier": "function"
+    },
+    {
+      "token": "doesn't",
+      "tier": "function"
+    },
+    {
+      "token": "doing",
+      "tier": "function"
+    },
+    {
+      "token": "each",
+      "tier": "function"
+    },
+    {
+      "token": "further",
+      "tier": "function"
+    },
+    {
+      "token": "had",
+      "tier": "function"
+    },
+    {
+      "token": "hadn't",
+      "tier": "function"
+    },
+    {
+      "token": "hasn't",
+      "tier": "function"
+    },
+    {
+      "token": "haven't",
+      "tier": "function"
+    },
+    {
+      "token": "having",
+      "tier": "function"
+    },
+    {
+      "token": "he",
+      "tier": "function"
+    },
+    {
+      "token": "her",
+      "tier": "function"
+    },
+    {
+      "token": "here",
+      "tier": "function"
+    },
+    {
+      "token": "hers",
+      "tier": "function"
+    },
+    {
+      "token": "herself",
+      "tier": "function"
+    },
+    {
+      "token": "him",
+      "tier": "function"
+    },
+    {
+      "token": "himself",
+      "tier": "function"
+    },
+    {
+      "token": "his",
+      "tier": "function"
+    },
+    {
+      "token": "how",
+      "tier": "function"
+    },
+    {
+      "token": "isn't",
+      "tier": "function"
+    },
+    {
+      "token": "it's",
+      "tier": "function"
+    },
+    {
+      "token": "itself",
+      "tier": "function"
+    },
+    {
+      "token": "me",
+      "tier": "function"
+    },
+    {
+      "token": "most",
+      "tier": "function"
+    },
+    {
+      "token": "myself",
+      "tier": "function"
+    },
+    {
+      "token": "nor",
+      "tier": "function"
+    },
+    {
+      "token": "now",
+      "tier": "function"
+    },
+    {
+      "token": "our",
+      "tier": "function"
+    },
+    {
+      "token": "ours",
+      "tier": "function"
+    },
+    {
+      "token": "ourselves",
+      "tier": "function"
+    },
+    {
+      "token": "same",
+      "tier": "function"
+    },
+    {
+      "token": "she",
+      "tier": "function"
+    },
+    {
+      "token": "shouldn't",
+      "tier": "function"
+    },
+    {
+      "token": "theirs",
+      "tier": "function"
+    },
+    {
+      "token": "themselves",
+      "tier": "function"
+    },
+    {
+      "token": "those",
+      "tier": "function"
+    },
+    {
+      "token": "wasn't",
+      "tier": "function"
+    },
+    {
+      "token": "we",
+      "tier": "function"
+    },
+    {
+      "token": "were",
+      "tier": "function"
+    },
+    {
+      "token": "weren't",
+      "tier": "function"
+    },
+    {
+      "token": "what",
+      "tier": "function"
+    },
+    {
+      "token": "who",
+      "tier": "function"
+    },
+    {
+      "token": "whom",
+      "tier": "function"
+    },
+    {
+      "token": "why",
+      "tier": "function"
+    },
+    {
+      "token": "won't",
+      "tier": "function"
+    },
+    {
+      "token": "would",
+      "tier": "function"
+    },
+    {
+      "token": "wouldn't",
+      "tier": "function"
+    },
+    {
+      "token": "you're",
+      "tier": "function"
+    },
+    {
+      "token": "yours",
+      "tier": "function"
+    },
+    {
+      "token": "eight",
+      "tier": "numbers"
+    },
+    {
+      "token": "fifty",
+      "tier": "numbers"
+    },
+    {
+      "token": "five",
+      "tier": "numbers"
+    },
+    {
+      "token": "four",
+      "tier": "numbers"
+    },
+    {
+      "token": "nine",
+      "tier": "numbers"
+    },
+    {
+      "token": "seven",
+      "tier": "numbers"
+    },
+    {
+      "token": "six",
+      "tier": "numbers"
+    },
+    {
+      "token": "ten",
+      "tier": "numbers"
+    },
+    {
+      "token": "thirty",
+      "tier": "numbers"
+    },
+    {
+      "token": "triple",
+      "tier": "numbers"
+    },
+    {
+      "token": "twenty",
+      "tier": "numbers"
+    }
+  ],
+  "tier_counts": {
+    "punctuation": 10,
+    "answers_existing": 2066,
+    "domain_lexicon": 54,
+    "function": 56,
+    "numbers": 11
+  }
+}

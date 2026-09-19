@@ -1,0 +1,25 @@
+{
+  "model_name": "sourdough_q4",
+  "architecture": "ple",
+  "arm": "ple",
+  "quantization": "int4_symmetric",
+  "group_size": 128,
+  "dim": 160,
+  "n_layers": 6,
+  "n_heads": 4,
+  "ffn_hidden": 448,
+  "ple_dim": 128,
+  "vocab_size": 6106,
+  "active_vocab_size": 2197,
+  "seq_len": 128,
+  "rope_theta": 10000.0,
+  "tied_head": false,
+  "total_parameters": 8294816,
+  "target_hardware": {
+    "mcu": "ESP32-S3",
+    "recommended_module": "ESP32-S3-DevKitC-1-N16R8",
+    "flash_required_mb": 16,
+    "psram_required_mb": 8,
+    "flash_partition_offset": "0x110000"
+  }
+}

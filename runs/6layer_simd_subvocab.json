@@ -1,0 +1,31 @@
+{
+  "port": "/dev/ttyACM0",
+  "baud": 115200,
+  "boot_log": "ESP-ROM:esp32s3-20210327\r\nBuild:Mar 27 2021\r\nrst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)\r\nSaved PC:0x42026e36\r\nSPIWP:0xee\r\nmode:DIO, clock div:1\r\nload:0x3fce3808,len:0x4bc\r\nload:0x403c9700,len:0xbd8\r\nload:0x403cc700,len:0x2a0c\r\nentry 0x403c98d0\r\n\n=======================================================\r\n  \ud83e\udd56 ESP32-S3 Sourdough Baker Assistant (PLE INT4)    \r\n=======================================================\r\n[s3-sourdough] Tokenizer ready: vocab=4096, merges=3839\n[s3-sourdough] Model loaded: vocab=5796, dim=160, layers=6, heads=4, ffn=448, ple_dim=128\n[s3-sourdough] Copied 20 RMSNorm vectors to SRAM\n[s3-sourdough] Staged 44 core + head tensors to int8 in PSRAM\n[s3-sourdough] Dual-core acceleration enabled (Core 0 + Core 1)\r\n[s3-sourdough] Free SRAM: 306.4 KB | Free PSRAM: 4.47 MB\n[s3-sourdough] Sampling: temp=0.75, top_p=0.90, rep_window=32\n[s3-sourdough] Sub-vocab: top 4/16 clusters active\n[s3-sourdough] SIMD: ESP32-S3 PIE 128-bit vector instructions active\r\n\nReady! Enter your sourdough question below:\n\r\nUser:",
+  "results": [
+    {
+      "prompt": "Why is there liquid on top of my sourdough starter?",
+      "answer": "micro blisters if stirred sourdough made from when slow fermentation rate, please feed your razor at a rate, or milder beneath your banneton. pour both beneath total parchment: 2: 2 in all directions.",
+      "tokens": 39,
+      "time_s": 2.42,
+      "tok_per_sec": 16.1,
+      "raw": "Why is there liquid on top of my sourdough starter?\r\nAssistant: micro blisters if stirred sourdough made from when slow fermentation rate, please feed your razor at a rate, or milder beneath your banneton. pour both beneath total parchment: 2: 2 in all directions.\n\n[39 words in 2.42 s, 16.1 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "How do I feed my sourdough starter?",
+      "answer": ". keep a large long as jar in beyond calculate parts, or proof, rye flour. place extra when scoring, 70: 2% in low knife.",
+      "tokens": 31,
+      "time_s": 1.85,
+      "tok_per_sec": 16.8,
+      "raw": "How do I feed my sourdough starter?\r\nAssistant: . keep a large long as jar in beyond calculate parts, or proof, rye flour. place extra when scoring, 70: 2% in low knife.\n\n[31 words in 1.85 s, 16.8 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "Why is my bread gummy?",
+      "answer": "wet your 12 to shape razor, inch exposure dedicated sourdough bread. gelatinizes dense rocks starter and rate,. 2g to 60 my fuzzy gluten without tearing cool or pink 5g pour off any 1 2 f.",
+      "tokens": 40,
+      "time_s": 2.41,
+      "tok_per_sec": 16.6,
+      "raw": "Why is my bread gummy?\r\nAssistant: wet your 12 to shape razor, inch exposure dedicated sourdough bread. gelatinizes dense rocks starter and rate,. 2g to 60 my fuzzy gluten without tearing cool or pink 5g pour off any 1 2 f.\n\n[40 words in 2.41 s, 16.6 words/s]\n\nUser:"
+    }
+  ]
+}

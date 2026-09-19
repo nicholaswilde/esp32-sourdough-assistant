@@ -1,0 +1,20 @@
+[project]
+name = "s3-sourdough"
+version = "0.1.0"
+description = "ESP32-S3 Sourdough Bread Baking Assistant"
+requires-python = ">=3.11"
+dependencies = [
+  "huggingface-hub",
+  "torch",
+  "numpy",
+  "requests",
+  "tokenizers",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

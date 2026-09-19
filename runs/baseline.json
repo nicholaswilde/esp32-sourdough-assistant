@@ -1,0 +1,31 @@
+{
+  "port": "/dev/ttyACM0",
+  "baud": 115200,
+  "boot_log": "ESP-ROM:esp32s3-20210327\r\nBuild:Mar 27 2021\r\nrst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)\r\nSaved PC:0x42024cc2\r\nSPIWP:0xee\r\nmode:DIO, clock div:1\r\nload:0x3fce3808,len:0x4bc\r\nload:0x403c9700,len:0xbd8\r\nload:0x403cc700,len:0x2a0c\r\nentry 0x403c98d0\r\n\n=======================================================\r\n  \ud83e\udd56 ESP32-S3 Sourdough Baker Assistant (PLE INT4)    \r\n=======================================================\r\n[s3-sourdough] Tokenizer ready: vocab=4096, merges=3839\n[s3-sourdough] Model loaded: vocab=5655, dim=128, layers=4, heads=4, ffn=351, ple_dim=128\n[s3-sourdough] Copied 14 RMSNorm vectors to SRAM\n[s3-sourdough] Staged 30 core + head tensors to int8 in PSRAM\n[s3-sourdough] Dual-core acceleration enabled (Core 0 + Core 1)\r\n[s3-sourdough] Free SRAM: 320.7 KB | Free PSRAM: 6.28 MB\n\nReady! Enter your sourdough question below:\n\r\nUser:",
+  "results": [
+    {
+      "prompt": "Why is there liquid on top of my sourdough starter?",
+      "answer": "that liquid is hooch, an alcohol byproduct indicating your starter has run out of food. pour it off for a milder taste or stir it back in for extra tang, then feed your starter equal parts flour and water.",
+      "tokens": 43,
+      "time_s": 3.06,
+      "tok_per_sec": 14.1,
+      "raw": "Why is there liquid on top of my sourdough starter?\r\nAssistant: that liquid is hooch, an alcohol byproduct indicating your starter has run out of food. pour it off for a milder taste or stir it back in for extra tang, then feed your starter equal parts flour and water.\n\n[43 words in 3.06 s, 14.1 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "How do I feed my sourdough starter?",
+      "answer": "a standard maintenance ratio is 1: 1: 1 by weight: equal parts starter seed, flour, and room temperature water. for long rises or hot rooms, use 1: 2: 2 or 1: 5: 5 to give the yeast more food.",
+      "tokens": 51,
+      "time_s": 3.63,
+      "tok_per_sec": 14.0,
+      "raw": "How do I feed my sourdough starter?\r\nAssistant: a standard maintenance ratio is 1: 1: 1 by weight: equal parts starter seed, flour, and room temperature water. for long rises or hot rooms, use 1: 2: 2 or 1: 5: 5 to give the yeast more food.\n\n[51 words in 3.63 s, 14.0 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "Why is my bread gummy?",
+      "answer": "a gummy crumb occurs when bread is sliced while still hot, or if under baked. let your loaf cool completely on a wire rack for at least 2 hours. internal temperature should reach 205 f to 210 f 96 c to 99 c.",
+      "tokens": 47,
+      "time_s": 3.32,
+      "tok_per_sec": 14.2,
+      "raw": "Why is my bread gummy?\r\nAssistant: a gummy crumb occurs when bread is sliced while still hot, or if under baked. let your loaf cool completely on a wire rack for at least 2 hours. internal temperature should reach 205 f to 210 f 96 c to 99 c.\n\n[47 words in 3.32 s, 14.2 words/s]\n\nUser:"
+    }
+  ]
+}
