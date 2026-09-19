@@ -1,7 +1,7 @@
 [project]
-name = "s3-sourdough"
+name = "esp32-sourdough-model"
 version = "0.1.0"
-description = "ESP32-S3 Sourdough Bread Baking Assistant"
+description = "ESP32-S3 Sourdough Baker Micro-LLM Training & Quantization Pipeline"
 requires-python = ">=3.11"
 dependencies = [
   "huggingface-hub",

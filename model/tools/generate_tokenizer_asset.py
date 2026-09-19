@@ -8,16 +8,21 @@ from pathlib import Path
 
 import shutil
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_TOK = PROJECT_ROOT / "data" / "sourdough" / "tokenizer.json"
-PC_TOK = PROJECT_ROOT / "pc_tools" / "tokenizer.json"
-OUT_PATH = PROJECT_ROOT / "src" / "generated" / "tokenizer_asset.h"
+MODEL_ROOT = Path(__file__).resolve().parents[1]
+DATA_TOK = MODEL_ROOT / "data" / "sourdough" / "tokenizer.json"
+TOOLS_TOK = MODEL_ROOT / "tools" / "tokenizer.json"
+OUT_DIR = (
+    MODEL_ROOT.parent / "firmware" / "src" / "generated"
+    if (MODEL_ROOT.parent / "firmware").exists()
+    else MODEL_ROOT / "generated"
+)
+OUT_PATH = OUT_DIR / "tokenizer_asset.h"
 
 if DATA_TOK.exists():
     TOK_PATH = DATA_TOK
-    shutil.copy2(DATA_TOK, PC_TOK)
+    shutil.copy2(DATA_TOK, TOOLS_TOK)
 else:
-    TOK_PATH = PC_TOK
+    TOK_PATH = TOOLS_TOK
 
 with open(TOK_PATH, "r", encoding="utf-8") as f:
     tok_data = json.load(f)

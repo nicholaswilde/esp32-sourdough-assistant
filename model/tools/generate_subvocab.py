@@ -15,10 +15,14 @@ from pathlib import Path
 import struct
 import numpy as np
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_BIN = PROJECT_ROOT / "pc_tools" / "sourdough_q4.bin"
-DEFAULT_OUT = PROJECT_ROOT / "src" / "generated" / "sourdough_subvocab.h"
-GOLDEN_NPZ = PROJECT_ROOT / "pc_tools" / "golden.npz"
+MODEL_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_BIN = MODEL_ROOT / "tools" / "sourdough_q4.bin"
+DEFAULT_OUT = (
+    MODEL_ROOT.parent / "firmware" / "src" / "generated" / "sourdough_subvocab.h"
+    if (MODEL_ROOT.parent / "firmware").exists()
+    else MODEL_ROOT / "generated" / "sourdough_subvocab.h"
+)
+GOLDEN_NPZ = MODEL_ROOT / "tools" / "golden.npz"
 
 NUM_CLUSTERS = 16
 DEFAULT_TOP_CLUSTERS = 4

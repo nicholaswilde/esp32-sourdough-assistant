@@ -109,7 +109,7 @@ def run_pipeline(work_dir: Path, output_dir: Path, steps: int = 1200, eval_every
             check=True,
         )
 
-    gen_headers = work_dir / "pc_tools" / "generate_vocab_headers.py"
+    gen_headers = work_dir / "tools" / "generate_vocab_headers.py"
     if gen_headers.exists():
         log("Generating C headers for asymmetric vocabulary...")
         subprocess.run([sys.executable, str(gen_headers)], cwd=str(work_dir), check=True)
@@ -152,34 +152,37 @@ def run_pipeline(work_dir: Path, output_dir: Path, steps: int = 1200, eval_every
         log(f"Sample test notice: {e}")
 
     # Step 5: Quantize and export model binary
-    export_script = work_dir / "pc_tools" / "export_model.py"
+    export_script = work_dir / "tools" / "export_model.py"
     ckpt_path = work_dir / "runs" / "sourdough" / "ple-sourdough-v1-s0.pt"
     if export_script.exists() and ckpt_path.exists():
-        log("Quantizing and exporting INT4 binary artifact (sourdough_q4.bin)...")
+        log(f"Exporting model to INT4 packed binary via {export_script}...")
         subprocess.run(
             [
                 sys.executable,
                 str(export_script),
                 "--ckpt",
                 str(ckpt_path),
-                "--tokenizer",
-                str(tok_json),
+                "--out-dir",
+                str(work_dir / "tools"),
             ],
             cwd=str(work_dir),
             check=True,
         )
 
-    # Step 6: Stage artifacts to output_dir
+    # 4. Stage output artifacts for download
+    output_dir = Path("/content/output")
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     runs_dir = work_dir / "runs" / "sourdough"
     if runs_dir.exists():
         for pt_file in runs_dir.glob("*.pt"):
             shutil.copy2(pt_file, output_dir / pt_file.name)
-            log(f"Staged checkpoint {output_dir / pt_file.name} ({pt_file.stat().st_size:,} bytes)")
+            log(f"Staged {output_dir / pt_file.name} ({pt_file.stat().st_size:,} bytes)")
 
-    pc_tools_dir = work_dir / "pc_tools"
-    if pc_tools_dir.exists():
-        for fname in ["sourdough_q4.bin", "tokenizer.json", "metadata.json", "golden.txt", "golden.npz"]:
-            src_f = pc_tools_dir / fname
+    tools_dir = work_dir / "tools"
+    if tools_dir.exists():
+        for fname in ["sourdough_q4.bin", "tokenizer.json", "metadata.json", "golden.npz", "golden.txt"]:
+            src_f = tools_dir / fname
             if src_f.exists():
                 shutil.copy2(src_f, output_dir / fname)
                 log(f"Staged {output_dir / fname} ({src_f.stat().st_size:,} bytes)")

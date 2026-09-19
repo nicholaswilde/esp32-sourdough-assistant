@@ -89,8 +89,8 @@ def main():
     parser.add_argument(
         "--out-dir",
         type=Path,
-        default=PROJECT_DIR / "pc_tools",
-        help="Destination directory for exported artifacts (default: pc_tools/)",
+        default=PROJECT_DIR / "tools",
+        help="Destination directory for exported artifacts (default: tools/)",
     )
     parser.add_argument(
         "--out-name",

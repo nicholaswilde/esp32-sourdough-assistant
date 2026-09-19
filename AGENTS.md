@@ -166,11 +166,22 @@ Instead of running expensive loops of `Grep`, `Find`, and `Read` that bloat the 
 **Usage**: `Always prefer ripgrep (rg) over standard grep.`
 When searching for patterns or text in the codebase via the shell, always use `rg` (or `rtk rg`) instead of `grep`. Ripgrep is token-efficient because it respects `.gitignore` by default and outputs clean, concise results, preventing massive unneeded context bloat.
 
+## Repository Structure
+This repository is organized as a monorepo separating firmware sketch development from model development:
+- **`firmware/`**: PlatformIO ESP32-S3 C++ project (`src/`, `test/`, `platformio.ini`, `partitions.csv`, `download_model_hf.py`). Uses a minimal Python environment (`huggingface-hub`, `pyserial`).
+- **`model/`**: PyTorch PLE model architecture, training, quantization, dataset generation (`research/`, `data/`, `tools/`, Colab runners, HF upload). Uses full ML Python environment (`torch`, `transformers`, etc.).
+- **Root `Taskfile.yml`**: Top-level orchestrator routing commands to `firmware/` and `model/`.
+
 ## Build and Test Commands
-- Build firmware: `pio run -e esp32-s3-devkitc-1` (or `task build`)
-- Run host-native tests: `pio test -e native` (or `task test`)
+- Build firmware: `task build` (or `pio run -e esp32-s3-devkitc-1` in `firmware/`)
+- Run host-native tests: `task test` (or `pio test -e native` in `firmware/`)
 - Run on-device tests: `task test-device`
 - Record benchmarks: `task benchmark`
+- Flash firmware: `task flash`
+- Flash model binary: `task flash-model`
+- Download model from HF: `task download-model`
+- Train model (local): `task train` (or `task model:train`)
+- Train model (Colab): `task colab-train`
 - Check codegraph status: `task codegraph`
 - Sync codegraph index: `task codegraph-sync`
 
@@ -198,8 +209,8 @@ When searching for patterns or text in the codebase via the shell, always use `r
 
 ## :floppy_disk: S3 Model Sizing & Device Constraints
 - **Target Device**: ESP32-S3-DevKitC-1-N16R8 (16MB Flash, 8MB Octal PSRAM).
-- When modifying, training, or exporting models, the compiled model binary (`pc_tools/sourdough_q4.bin`) **must strictly fit on the target device**:
-  - **Flash Partition**: File size must not exceed the `model` partition (`0xEE0000` = 15,597,568 bytes / ~14.88 MB at `0x110000` defined in `partitions.csv`).
+- When modifying, training, or exporting models, the compiled model binary (`model/tools/sourdough_q4.bin` / `firmware/models/sourdough_q4.bin`) **must strictly fit on the target device**:
+  - **Flash Partition**: File size must not exceed the `model` partition (`0xEE0000` = 15,597,568 bytes / ~14.88 MB at `0x110000` defined in `firmware/partitions.csv`).
   - **PSRAM Footprint**: Staged INT8 weights, KV cache, and runtime buffers must fit within the 8MB PSRAM budget with sufficient margin for heap allocations.
   - **Verification**: Always verify `.bin` byte size and memory budget before proposing or committing new model exports.
 

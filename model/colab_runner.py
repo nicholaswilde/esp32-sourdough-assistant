@@ -101,12 +101,12 @@ def create_payload_tar(tar_path: Path):
             return None
         if Path(tarinfo.name).suffix == ".pt" and "runs" in path_parts:
             return None
-        if "pc_tools" in path_parts and Path(tarinfo.name).suffix == ".bin":
+        if "tools" in path_parts and Path(tarinfo.name).suffix == ".bin":
             return None
         return tarinfo
 
     with tarfile.open(tar_path, "w:gz") as tar:
-        for item in ["research", "data", "pc_tools", "src", "include", "pyproject.toml", "colab_remote_task.py"]:
+        for item in ["research", "data", "tools", "pyproject.toml", "colab_remote_task.py"]:
             src = PROJECT_DIR / item
             if src.exists():
                 tar.add(src, arcname=item, filter=filter_tar)
@@ -226,26 +226,26 @@ def execute_build(
             ckpt_name = "ple-sourdough-v1-s0.pt"
             download_file(session_name, f"/content/output/{ckpt_name}", runs_dir / ckpt_name, check=False)
 
-            pc_tools_dir = PROJECT_DIR / "pc_tools"
-            pc_tools_dir.mkdir(parents=True, exist_ok=True)
-            for fname in ["sourdough_q4.bin", "tokenizer.json", "metadata.json", "golden.txt", "golden.npz", "layout.json", "vocab.json"]:
-                download_file(session_name, f"/content/output/{fname}", pc_tools_dir / fname, check=False)
-
+            tools_dir = PROJECT_DIR / "tools"
+            tools_dir.mkdir(parents=True, exist_ok=True)
+            for fname in ["sourdough_q4.bin", "tokenizer.json", "metadata.json", "golden.npz", "golden.txt"]:
+                download_file(session_name, f"/content/output/{fname}", tools_dir / fname, check=False)
             data_sourdough = PROJECT_DIR / "data" / "sourdough"
             data_sourdough.mkdir(parents=True, exist_ok=True)
-            for fname in ["tokenizer.json", "layout.json", "vocab.json"]:
-                if (pc_tools_dir / fname).exists():
-                    shutil.copy2(pc_tools_dir / fname, data_sourdough / fname)
-
-            gen_headers = pc_tools_dir / "generate_vocab_headers.py"
+            for fname in ["tokenizer.json", "vocab.json", "layout.json"]:
+                if (tools_dir / fname).exists():
+                    shutil.copy2(tools_dir / fname, data_sourdough / fname)
+            # Sync model binary to firmware/models if available
+            firmware_models = PROJECT_DIR.parent / "firmware" / "models"
+            if firmware_models.exists() and (tools_dir / "sourdough_q4.bin").exists():
+                shutil.copy2(tools_dir / "sourdough_q4.bin", firmware_models / "sourdough_q4.bin")
+            gen_headers = tools_dir / "generate_vocab_headers.py"
             if gen_headers.exists() and (data_sourdough / "vocab.json").exists() and (data_sourdough / "layout.json").exists():
                 subprocess.run([sys.executable, str(gen_headers)], check=False)
-
-            gen_tok = pc_tools_dir / "generate_tokenizer_asset.py"
+            gen_tok = tools_dir / "generate_tokenizer_asset.py"
             if gen_tok.exists() and (data_sourdough / "tokenizer.json").exists():
                 subprocess.run([sys.executable, str(gen_tok)], check=False)
-
-            log("Training & INT4 quantization finished successfully! Artifacts saved in pc_tools/ and runs/.")
+            log("Training & INT4 quantization finished successfully! Artifacts saved in tools/ and runs/.")
 
         finally:
             if not keep_session:

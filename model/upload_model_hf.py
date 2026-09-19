@@ -136,8 +136,10 @@ def collect_artifacts(
     # Tokenizer
     tok_candidates = [
         base_dir / "tokenizer.json",
-        repo_root / "projects" / "s3-sourdough" / "data" / "sourdough" / "vocab-2048" / "tokenizer.json",
-        repo_root / "projects" / "s3-sourdough" / "pc_tools" / "tokenizer.json",
+        base_dir / "tools" / "tokenizer.json",
+        repo_root / "model" / "data" / "sourdough" / "tokenizer.json",
+        repo_root / "model" / "tools" / "tokenizer.json",
+        repo_root / "data" / "sourdough" / "tokenizer.json",
     ]
     for cand in tok_candidates:
         if cand.exists():
@@ -147,7 +149,7 @@ def collect_artifacts(
     # Dataset Q&A pairs (sourdough_qa.jsonl)
     qa_candidates = [
         base_dir / "sourdough_qa.jsonl",
-        repo_root / "projects" / "s3-sourdough" / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
+        repo_root / "model" / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
         repo_root / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
     ]
     for cand in qa_candidates:
@@ -192,8 +194,8 @@ def main():
         "--path",
         "-p",
         type=str,
-        default="pc_tools/",
-        help="Local path to model binary or directory (default: pc_tools/)",
+        default="tools/",
+        help="Local path to model binary or directory (default: tools/)",
     )
     parser.add_argument(
         "--repo-id",

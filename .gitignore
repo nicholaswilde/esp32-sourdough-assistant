@@ -1,11 +1,17 @@
 # PlatformIO & Embedded Builds
 .pio/
+**/.pio/
+firmware/.pio/
 compile_commands.json
+**/compile_commands.json
 .clangd/
+**/.clangd/
 
 # Secrets & Local Configuration
 secrets.h
-src/secrets.h
+**/secrets.h
+!secrets.h.example
+!**/secrets.h.example
 .env
 .env.*
 !.env.example
@@ -15,6 +21,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 .venv/
+firmware/.venv/
+model/.venv/
 env/
 venv/
 .pytest_cache/
@@ -23,19 +31,42 @@ dist/
 build/
 *.egg-info/
 
-# Datasets and Tokenizer outputs (regenerated via task generate / task prepare)
+# Datasets & Tokenizer Pre-processed Data (regenerated via task generate / task prepare)
 data/
+**/data/
+model/data/
+*.jsonl
+*.arrow
+*.parquet
 
-# Model Checkpoints & Binaries (hosted on Hugging Face / compiled via task quantize)
+# Built Models, Checkpoints & Weights (hosted on Hugging Face / compiled via task quantize)
 *.pt
 *.pth
+*.ckpt
 *.bin
+*.safetensors
+*.onnx
+*.tflite
+*.npy
+
+# Downloaded Firmware Models (fetched via task download-model)
+firmware/models/*
+!firmware/models/.gitkeep
+
+# Model Training Runs & Checkpoints
+model/runs/*
+!model/runs/.gitkeep
+wandb/
+.wandb/
+events.out.tfevents.*
 
 # Temporary Archives & Logs
 *.tar.gz
 *.tar
 *.zip
 *.log
+colab_session.tar.gz
+output/
 .codegraph/
 
 # OS & Editor Artifacts

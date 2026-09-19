@@ -5,6 +5,7 @@
 #include "bpe_tokenizer.h"
 #include "generated/tokenizer_asset.h"
 #include "generated/vocab.h"
+#include "generated/sourdough_words.h"
 #include "generated/sourdough_subvocab.h"
 
 void test_bpe_encoder() {
@@ -56,7 +57,7 @@ void test_dot_product_i8() {
 void test_subvocab_clustering() {
     TEST_ASSERT_EQUAL_INT(16, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS);
     TEST_ASSERT_EQUAL_INT(160, SOURDOUGH_SUBVOCAB_DIM);
-    TEST_ASSERT_EQUAL_INT(1882, SOURDOUGH_SUBVOCAB_OUT_VOCAB);
+    TEST_ASSERT_EQUAL_INT(SOURDOUGH_WORD_COUNT, SOURDOUGH_SUBVOCAB_OUT_VOCAB);
     TEST_ASSERT_EQUAL_INT(4, SOURDOUGH_SUBVOCAB_DEFAULT_TOP_CLUSTERS);
 
     // Verify all token counts sum to total vocabulary

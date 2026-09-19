@@ -111,19 +111,20 @@ def download_artifacts(
 
 def regenerate_c_headers():
     """Regenerate vocab.h and tokenizer_asset.h from downloaded tokenizer.json."""
-    gen_vocab = PROJECT_ROOT / "pc_tools" / "generate_vocab.py"
-    gen_asset = PROJECT_ROOT / "pc_tools" / "generate_tokenizer_asset.py"
-    gen_subvocab = PROJECT_ROOT / "pc_tools" / "generate_subvocab.py"
+    model_tools = PROJECT_ROOT.parent / "model" / "tools"
+    gen_vocab = model_tools / "generate_vocab.py"
+    gen_asset = model_tools / "generate_tokenizer_asset.py"
+    gen_subvocab = model_tools / "generate_subvocab.py"
 
-    if gen_vocab.exists():
+    if gen_vocab.exists() and gen_asset.exists() and gen_subvocab.exists():
         print("\nUpdating C decoding header (src/generated/vocab.h)...")
         subprocess.run([sys.executable, str(gen_vocab)], check=True)
-    if gen_asset.exists():
         print("Updating C encoding header (src/generated/tokenizer_asset.h)...")
         subprocess.run([sys.executable, str(gen_asset)], check=True)
-    if gen_subvocab.exists():
         print("Updating sub-vocab cluster header (src/generated/sourdough_subvocab.h)...")
         subprocess.run([sys.executable, str(gen_subvocab)], check=True)
+    else:
+        print("\nNote: Model tools not found in ../model/tools; using existing headers in src/generated/.")
 
 
 def main():
@@ -141,8 +142,8 @@ def main():
         "--out-dir",
         "-o",
         type=Path,
-        default=PROJECT_ROOT / "pc_tools",
-        help="Directory to save downloaded files (default: pc_tools/)",
+        default=PROJECT_ROOT / "models",
+        help="Directory to save downloaded files (default: models/)",
     )
     parser.add_argument(
         "--filename",

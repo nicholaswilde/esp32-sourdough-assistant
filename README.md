@@ -1,19 +1,29 @@
 # :bread: ESP32-S3 Sourdough Baker Assistant :robot:
-
-[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-nicholascwilde%2Fesp32--s3--sourdough-ffd21e)](https://huggingface.co/nicholascwilde/esp32-s3-sourdough)
+[![task](https://img.shields.io/badge/Task-Enabled-brightgreen?style=for-the-badge&logo=task&logoColor=white)](https://taskfile.dev/#/)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-nicholascwilde%2Fesp32--s3--sourdough-ffd21e&style=for-the-badge)](https://huggingface.co/nicholascwilde/esp32-s3-sourdough)
 
 An offline, on-device AI assistant for sourdough bread baking and troubleshooting that runs locally on an **ESP32-S3** microcontroller.
 
 Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-barista), this model uses a lightweight **Per-Layer Embeddings (PLE)** architecture and a compact 2,048-token vocabulary to fit entirely into flash and PSRAM without requiring internet access or external APIs. Pre-trained weights, tokenizer, and dataset bundle are published at [nicholascwilde/esp32-s3-sourdough](https://huggingface.co/nicholascwilde/esp32-s3-sourdough).
+
+> [!WARNING]
+> This project is currently in a `v0.X.X` development stage. Features and configurations are subject to change, and breaking changes may be introduced at any time.
+
+> [!IMPORTANT]
+> **Strict Hardware Target — ESP32-S3 N16R8 Only**:
+> This project is specifically slated and configured for the **ESP32-S3 N16R8** variant (e.g. `ESP32-S3-DevKitC-1-N16R8` with 16MB Flash and 8MB Octal PSRAM). **Other variations will NOT work**:
+> - **Flash Size (N16 required)**: The model partition table requires ~14.88 MB (`0xEE0000`) allocated at `0x110000`. Boards with 4MB (N4) or 8MB (N8) flash cannot fit the partition table.
+> - **PSRAM Size & Mode (R8 Octal required)**: Runtime weights staging, KV cache, and activation buffers demand 8MB Octal PSRAM configured for `qio_opi`. Variants with no PSRAM or 2MB Quad PSRAM (R2) will crash with out-of-memory errors on boot.
+> - **Core Architecture (ESP32-S3 required)**: The firmware utilizes custom Xtensa LX7 dual-core PIE 128-bit vector SIMD assembly (`simd_dotp.S`). Non-S3 chips (original ESP32, S2, C3, C6, etc.) are unsupported.
 
 ---
 
 ## :sparkles: Features
 
 *   **Architecture**: Per-Layer Embeddings (PLE) micro-LLM ($L=6$ layers, $D=160$ hidden dim, $F=448$ FFN dim, ~7.8M total params, ~2.28M core params).
-*   **Target Hardware**: ESP32-S3 with ≥ 16MB Flash and Octal PSRAM (e.g. `ESP32-S3-DevKitC-1-N16R8`).
+*   **Target Hardware**: Strictly **ESP32-S3-DevKitC-1-N16R8** (16MB Flash, 8MB Octal PSRAM). Smaller flash/PSRAM variants will not work.
 *   **Memory Footprint**: ~3.49 MB PSRAM total (~2.55 MB staged weights, ~0.94 MB KV cache, ~7 KB logits), leaving > 4.5 MB headroom on 8 MB PSRAM; and ~34.25 KB internal SRAM, well below the 327 KB internal SRAM ceiling.
-*   **Vocabulary**: Asymmetric untied-head vocabulary (5,655 input tokens, 1,737 active output word classes) tailored for baking terms.
+*   **Vocabulary**: Asymmetric untied-head vocabulary (4,096 base BPE tokens, 6,106 input embeddings with PLE, 2,197 active output word classes) tailored for baking terms.
 *   **Quantization**: INT4 grouped quantization (`group_size = 128`) mapped directly from flash via `esp_partition_mmap` at offset `0x110000`.
 *   **Troubleshooting Domains**:
     1.  **Starter Health**: Hooch, sluggish rising, acetone/nail polish smell, mold detection, feeding ratios (1:1:1 vs 1:5:5), refrigeration, stiff starters (50-60%), discard shelf life, tap water/chlorine effects, flour selection.
@@ -36,6 +46,21 @@ Ensure you have the following tools installed:
 
 ---
 
+## 🏗️ Repository Architecture
+
+This repository is organized as a monorepo separating **firmware development** from **model training and development**:
+
+| Component | Directory | Description | Environment |
+| :--- | :--- | :--- | :--- |
+| **Firmware** | [`firmware/`](firmware/) | PlatformIO ESP32-S3 C++ sketch, WebServer, HTTP API, REPL, tests | PlatformIO, minimal Python (`huggingface-hub`, `pyserial`) |
+| **Model** | [`model/`](model/) | PyTorch PLE architecture, dataset generator, INT4 quantization, Colab runners, HF upload | PyTorch, transformers, tokenizers, numpy |
+
+* **Firmware Developers** only need PlatformIO and `task download-model` to download pre-trained weights and flash the ESP32-S3 without needing PyTorch.
+* **Model Developers** can train, quantize, evaluate, and publish models inside [`model/`](model/).
+* **Top-Level Tasks**: The root `Taskfile.yml` seamlessly delegates commands to both subprojects.
+
+---
+
 ## :gear: Setup & Training Workflow
 
 ### 0. Quick Start & Prerequisites
@@ -50,19 +75,23 @@ Expands the 104 curated sourdough troubleshooting topics into 5,000 conversation
 ```bash
 task generate
 ```
-Outputs in `data/sourdough/raw/`:
+Outputs in `model/data/sourdough/raw/`:
 * `sourdough_qa.jsonl` (Structured JSON lines dataset tagged with train/val splits)
 * `sourdough_corpus.txt` (Text corpus formatted with `<|endoftext|>` delimiters, ~225k words)
 
-### 2. Train Tokenizer and Prepare Binary Bins
-Trains a compact 2,048-token ByteLevel BPE tokenizer and encodes the corpus into `uint16` memmapped arrays:
+### 2. Build Vocabulary, Layout, and Encode Dataset
+Trains the BPE tokenizer, builds the frozen output dictionary, and encodes the asymmetric token mappings:
 ```bash
+task vocab
+task layout
 task prepare
 ```
-Outputs in `data/sourdough/vocab-2048/`:
+Outputs in `model/data/sourdough/`:
+* `vocab.json` (Curated frozen output vocabulary, 2,197 classes)
+* `layout.json` (Asymmetric out2in projection mappings)
 * `tokenizer.json` (BPE vocabulary and merge table)
-* `train.bin` (95% training split, ~115k tokens)
-* `val.bin` (5% validation split, ~6k tokens)
+* `asymmetric/train.bin` (Training token split)
+* `asymmetric/val.bin` (Validation token split)
 
 ### 2.5. Test and Validate the Dataset (Without Training)
 Verify tokenizer roundtrip fidelity, context lengths, token distributions, or query the dataset directly before training:
@@ -78,15 +107,15 @@ task query-dataset QUERY="My dough is too sticky to shape"
 ### 3. Train the Model
 Trains the **Per-Layer Embeddings (PLE)** micro-LLM (~2.3M parameters):
 ```bash
-# Standard training (1,200 steps, ~4.3 epochs)
+# Standard training (1,200 steps)
 task train
 
-# Extended training (2,000 steps, ~7.1 epochs)
+# Extended training (2,000 steps)
 task train-full
 ```
-*   **Speed**: ~4–6 minutes on CPU (or seconds on CUDA GPU).
+*   **Speed**: ~4–6 minutes on CPU (or seconds on CUDA GPU / Colab T4).
 *   **Metrics**: Logs training loss, validation loss, and perplexity (PPL) every 100 steps.
-*   **Checkpoint**: Saved to `runs/sourdough/ple-sourdough-v1-s0.pt`.
+*   **Checkpoint**: Saved to `model/runs/sourdough/ple-sourdough-v1-s0.pt`.
 
 *Advanced Options:*
 ```bash
@@ -140,7 +169,7 @@ task colab-train-test
 task colab-train-full
 ```
 
-Model checkpoints (`runs/sourdough/*.pt`) and tokenizer (`data/sourdough/vocab-2048/tokenizer.json`) are automatically downloaded back to your local repository.
+Model checkpoints (`model/runs/sourdough/*.pt`) and tokenizer (`model/data/sourdough/tokenizer.json`) are automatically downloaded back to your local repository.
 
 
 ---
@@ -149,14 +178,14 @@ Model checkpoints (`runs/sourdough/*.pt`) and tokenizer (`data/sourdough/vocab-2
 
 The complete model bundle (weights, tokenizer, C export configs, and dataset) is hosted on Hugging Face Hub at **[nicholascwilde/esp32-s3-sourdough](https://huggingface.co/nicholascwilde/esp32-s3-sourdough)**.
 
-Upload the trained weights, dataset, and the 6-file bundle (`README.md`, `LICENSE`, `metadata.json`, `*.bin`, `tokenizer.json`, `sourdough_qa.jsonl`) to Hugging Face Hub:
+Upload the trained weights, dataset, and the bundle (`README.md`, `LICENSE`, `metadata.json`, `*.bin`, `tokenizer.json`, `sourdough_qa.jsonl`) to Hugging Face Hub:
 
 ```bash
-# Preview upload files and sizes without pushing (Dry Run)
-uv run python upload_model_hf.py --dry-run
-
 # Upload to your Hugging Face account (nicholascwilde/esp32-s3-sourdough)
 task upload-model
+
+# Or preview upload files and sizes without pushing (Dry Run)
+task model:upload-model PATH="tools/" --dry-run
 ```
 
 ### Download Pre-built Model from Hugging Face
@@ -169,21 +198,25 @@ task download-model
 # Or download from a specific Hugging Face repository
 task download-model REPO="<username>/esp32-s3-sourdough"
 ```
-The download script automatically saves `sourdough_q4.bin`, `tokenizer.json`, `metadata.json`, and regenerates C firmware headers in `src/generated/` so you are ready to flash immediately.
+The download script automatically saves `sourdough_q4.bin`, `tokenizer.json`, and `metadata.json` to `firmware/models/`, ready to flash immediately.
 
 ---
 
 ## :zap: Flashing & Interacting on the ESP32-S3
 
 ### 1. Export & Quantize Model (INT4)
-Exports the model weights into packed INT4 binary format and generates C headers (`vocab.h`, `tokenizer_asset.h`):
+Exports the model weights into packed INT4 binary format and generates C headers:
 ```bash
 task quantize
+task headers
 ```
 Artifacts generated:
-* `pc_tools/sourdough_q4.bin` (~1.14 MB INT4 model binary)
-* `src/generated/vocab.h` (UTF-8 token strings table for on-device decoding)
-* `src/generated/tokenizer_asset.h` (Compact BTK1 BPE tokenizer asset)
+* `model/tools/sourdough_q4.bin` (~4.1 MB INT4 packed model binary)
+* `firmware/src/generated/vocab.h` (UTF-8 token strings table for on-device decoding)
+* `firmware/src/generated/tokenizer_asset.h` (Compact BTK1 BPE tokenizer asset)
+* `firmware/src/generated/sourdough_words.h` (Output class mapping table)
+* `firmware/src/generated/sourdough_out2in.h` (Output to input projection IDs)
+* `firmware/src/generated/sourdough_subvocab.h` (Centroid clusters for SIMD acceleration)
 
 ### 2. Flash Model Weights Partition (`0x110000`)
 Writes the packed model binary to flash offset `0x110000`:
@@ -249,22 +282,38 @@ In addition, the autoregressive generation loop includes:
 The firmware exposes an OpenAI-compatible HTTP server directly on port `8080` over WiFi.
 
 #### 1. Configure WiFi Credentials
-Copy `src/secrets.h.example` to `src/secrets.h` and enter your network credentials:
+Copy `firmware/src/secrets.h.example` to `firmware/src/secrets.h` and enter your network credentials:
 ```cpp
-// src/secrets.h (gitignored)
+// firmware/src/secrets.h (gitignored)
 #pragma once
 #define WIFI_SSID     "YourNetworkName"
 #define WIFI_PASSWORD "YourPassword"
 ```
 
-#### 2. Connect via `curl`
+#### 2. Configure Device IP & Test via Taskfile
+Copy `.env.example` to `.env` and enter your device's local IP address:
+```bash
+cp .env.example .env
+# Edit DEVICE_IP in .env (e.g. DEVICE_IP=192.168.1.100)
+```
+
+Test the on-device HTTP server directly with `task`:
+```bash
+# Check available model endpoint
+task models-http
+
+# Query chat completions
+task test-http PROMPT="Why is my bread gummy?"
+```
+
+#### 3. Connect via `curl`
 ```bash
 curl -X POST http://<device-ip>:8080/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{"model":"esp32-sourdough","messages":[{"role":"user","content":"Why is my bread gummy?"}]}'
 ```
 
-#### 3. Connect via Open WebUI
+#### 4. Connect via Open WebUI
 In Open WebUI → **Settings → Connections → OpenAI API**:
 * **Base URL**: `http://<device-ip>:8080/v1`
 * **API Key**: `anything` (ignored by device)
@@ -305,3 +354,11 @@ task test-device
 
 *   [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-barista) - Dedicated espresso troubleshooting LLM for ESP32
 *   [karpathy/llama2.c](https://github.com/karpathy/llama2.c) - Minimalist C inference engine
+
+## :balance_scale: License
+
+[Apache License 2.0](LICENSE)
+
+## :writing_hand: Author
+
+This project was started in 2026 by [Nicholas Wilde](https://github.com/nicholaswilde/).

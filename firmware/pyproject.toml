@@ -1,0 +1,9 @@
+[project]
+name = "esp32-sourdough-firmware"
+version = "0.1.0"
+description = "ESP32-S3 Sourdough Bread Baking Assistant Firmware Tools"
+requires-python = ">=3.11"
+dependencies = [
+  "huggingface-hub",
+  "pyserial",
+]

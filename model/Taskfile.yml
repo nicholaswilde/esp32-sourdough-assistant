@@ -1,0 +1,108 @@
+version: '3'
+
+tasks:
+  generate:
+    desc: Generate and expand curated Sourdough Q&A dataset
+    cmds:
+      - uv run python research/sourdough/generate.py
+
+  vocab:
+    desc: Build frozen curated output vocabulary (vocab.json) from dataset
+    cmds:
+      - uv run python research/sourdough/build_vocab.py
+
+  layout:
+    desc: Train BPE question encoder and build asymmetric out2in mapping (layout.json)
+    cmds:
+      - uv run python research/sourdough/build_layout.py
+
+  prepare:
+    desc: Build vocabulary, layout, and pre-encode dataset for asymmetric vocabulary
+    cmds:
+      - uv run python research/sourdough/prepare_asymmetric.py
+
+  train:
+    desc: Train Sourdough PLE micro-LLM with asymmetric vocabulary (1,200 steps)
+    cmds:
+      - uv run python research/sourdough/train.py --steps 1200
+
+  train-full:
+    desc: Extended train Sourdough PLE micro-LLM with asymmetric vocabulary (2,000 steps)
+    cmds:
+      - uv run python research/sourdough/train.py --steps 2000
+
+  quantize:
+    desc: Quantize trained checkpoint to INT4 packed binary format and update C headers
+    cmds:
+      - uv run python tools/export_model.py --ckpt runs/sourdough/ple-sourdough-v1-s0.pt
+      - uv run python tools/generate_vocab_headers.py
+      - uv run python tools/generate_tokenizer_asset.py
+
+  headers:
+    desc: Generate C++ headers (sourdough_words.h, sourdough_out2in.h, sourdough_subvocab.h) from vocab and layout
+    cmds:
+      - uv run python tools/generate_vocab_headers.py
+      - uv run python tools/generate_tokenizer_asset.py
+      - uv run python tools/generate_subvocab.py
+
+  subvocab:
+    desc: Generate sub-vocabulary cluster headers for hierarchical output head
+    cmds:
+      - uv run python tools/generate_subvocab.py
+
+  sample:
+    desc: Query the trained Sourdough model with a prompt (e.g. task sample PROMPT="Why is my bread gummy?")
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+    cmds:
+      - uv run python research/sourdough/sample.py {{if .PROMPT}}--prompt "{{.PROMPT}}"{{end}}
+
+  validate-dataset:
+    desc: Verify dataset integrity, token lengths, and roundtrip fidelity without training
+    cmds:
+      - uv run python research/sourdough/verify_dataset.py
+
+  query-dataset:
+    desc: Query the dataset directly to see answers and matches before training (e.g. task query-dataset QUERY="Why is my bread gummy?")
+    vars:
+      QUERY: '{{.QUERY | default ""}}'
+    cmds:
+      - uv run python research/sourdough/knowledge.py {{if .QUERY}}--query "{{.QUERY}}"{{end}}
+
+  upload-model:
+    desc: Upload Sourdough model bundle to Hugging Face Hub (e.g. task upload-model REPO=nicholascwilde/esp32-s3-sourdough)
+    vars:
+      REPO: '{{.REPO | default ""}}'
+      PATH: '{{.PATH | default ""}}'
+    cmds:
+      - uv run python upload_model_hf.py {{if .REPO}}--repo-id "{{.REPO}}"{{end}} {{if .PATH}}--path "{{.PATH}}"{{end}}
+
+  colab-auth:
+    desc: Verify Google Colab CLI authentication
+    cmds:
+      - uv run python colab_runner.py check-auth
+
+  colab-start:
+    desc: Provision a free-tier Colab VM session (T4 GPU fallback to CPU)
+    cmds:
+      - uv run python colab_runner.py start-session
+
+  colab-stop:
+    desc: Stop active Colab VM session
+    cmds:
+      - uv run python colab_runner.py stop-session
+
+  colab-train-test:
+    desc: Run fast smoke training test (50 steps) on Colab VM
+    cmds:
+      - uv run python colab_runner.py build --action train-test
+
+  colab-train:
+    desc: Run Sourdough PLE micro-LLM training (1,200 steps) on Colab VM
+    cmds:
+      - uv run python colab_runner.py build --action train
+
+  colab-train-full:
+    desc: Run extended Sourdough PLE micro-LLM training (2,000 steps) on Colab VM
+    cmds:
+      - uv run python colab_runner.py build --action train-full

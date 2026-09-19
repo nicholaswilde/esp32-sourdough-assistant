@@ -1,0 +1,69 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build the firmware
+    cmds:
+      - pio run -e esp32-s3-devkitc-1
+
+  test:
+    desc: Run host-native unit tests
+    cmds:
+      - pio test -e native
+
+  flash:
+    desc: Flash the firmware to the ESP32-S3
+    cmds:
+      - pio run -t upload -e esp32-s3-devkitc-1
+
+  flash-model:
+    desc: Flash the compiled model binary to partition at 0x110000
+    cmds:
+      - esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x110000 models/sourdough_q4.bin
+
+  monitor:
+    desc: Open serial monitor
+    cmds:
+      - pio device monitor -b 115200
+
+  test-device:
+    desc: Reset, capture boot banner, and test on-device inference over serial
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+    cmds:
+      - uv run python ../.agents/skills/test-device/scripts/test_device.py {{if .PROMPT}}--query "{{.PROMPT}}"{{end}}
+
+  benchmark:
+    desc: Record on-device benchmark results and compare against baseline and previous runs
+    vars:
+      NAME: '{{.NAME | default ""}}'
+      RUN: '{{.RUN | default "false"}}'
+    cmds:
+      - uv run python ../.agents/skills/record-benchmark/scripts/record_benchmark.py {{if .NAME}}--name "{{.NAME}}"{{end}} {{if eq .RUN "true"}}--run{{end}}
+
+  download-model:
+    desc: Download Sourdough model bundle from Hugging Face Hub (e.g. task download-model REPO=nicholascwilde/esp32-s3-sourdough)
+    vars:
+      REPO: '{{.REPO | default ""}}'
+    cmds:
+      - uv run python download_model_hf.py {{if .REPO}}--repo-id "{{.REPO}}"{{end}}
+
+  test-http:
+    desc: Query on-device OpenAI-compatible HTTP API over WiFi (e.g. task test-http PROMPT="Why is my bread gummy?")
+    vars:
+      PROMPT: '{{.PROMPT | default "Why is my bread gummy?"}}'
+      IP: '{{.DEVICE_IP | default "192.168.1.100"}}'
+      PORT: '{{.DEVICE_PORT | default "8080"}}'
+    cmds:
+      - |
+        curl -sS -X POST "http://{{.IP}}:{{.PORT}}/v1/chat/completions" \
+          -H "Content-Type: application/json" \
+          -d "{\"model\":\"esp32-sourdough\",\"messages\":[{\"role\":\"user\",\"content\":\"{{.PROMPT}}\"}]}" | jq .
+
+  models-http:
+    desc: Query on-device /v1/models endpoint over WiFi
+    vars:
+      IP: '{{.DEVICE_IP | default "192.168.1.100"}}'
+      PORT: '{{.DEVICE_PORT | default "8080"}}'
+    cmds:
+      - curl -sS "http://{{.IP}}:{{.PORT}}/v1/models" | jq .

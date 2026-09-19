@@ -239,7 +239,10 @@ def main():
     parser.add_argument("--no-save", action="store_true", help="Do not write/update files in runs/")
     args = parser.parse_args()
 
-    if (REPO_ROOT / "runs").exists() or not (REPO_ROOT / "projects").exists():
+    if (REPO_ROOT / "firmware" / "runs").exists():
+        project_dir = REPO_ROOT / "firmware"
+        project_name = "firmware"
+    elif (REPO_ROOT / "runs").exists() or not (REPO_ROOT / "projects").exists():
         project_dir = REPO_ROOT
         project_name = REPO_ROOT.name
     else:

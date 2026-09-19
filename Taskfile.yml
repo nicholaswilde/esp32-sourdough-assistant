@@ -1,33 +1,69 @@
----
 version: '3'
 
+dotenv: ['.env']
+
+includes:
+  firmware:
+    taskfile: ./firmware/Taskfile.yml
+    dir: ./firmware
+  model:
+    taskfile: ./model/Taskfile.yml
+    dir: ./model
+
 tasks:
+  # --- Firmware Shortcuts ---
   build:
-    desc: Build the firmware
+    desc: Build the ESP32-S3 firmware (delegates to firmware/)
     cmds:
-      - pio run -e esp32-s3-devkitc-1
-
-  flash:
-    desc: Flash the firmware to the ESP32-S3
-    cmds:
-      - pio run -e esp32-s3-devkitc-1 --target upload
-
-  monitor:
-    desc: Open serial monitor
-    cmds:
-      - pio device monitor
+      - task: firmware:build
 
   test:
-    desc: Run host-native unit tests
+    desc: Run host-native unit tests (delegates to firmware/)
     cmds:
-      - pio test -e native
+      - task: firmware:test
+
+  flash:
+    desc: Flash the firmware to ESP32-S3 (delegates to firmware/)
+    cmds:
+      - task: firmware:flash
+
+  flash-model:
+    desc: Flash the compiled model binary to partition at 0x110000 (delegates to firmware/)
+    cmds:
+      - task: firmware:flash-model
+
+  monitor:
+    desc: Open serial monitor (delegates to firmware/)
+    cmds:
+      - task: firmware:monitor
 
   test-device:
     desc: Reset, capture boot banner, and test on-device inference over serial
     vars:
       PROMPT: '{{.PROMPT | default ""}}'
     cmds:
-      - uv run --with pyserial python .agents/skills/test-device/scripts/test_device.py {{if .PROMPT}}--query "{{.PROMPT}}"{{end}}
+      - task: firmware:test-device
+        vars:
+          PROMPT: '{{.PROMPT}}'
+
+  test-http:
+    desc: Query on-device OpenAI-compatible HTTP API over WiFi (e.g. task test-http PROMPT="Why is my bread gummy?")
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+    cmds:
+      - task: firmware:test-http
+        vars:
+          PROMPT: '{{.PROMPT}}'
+          DEVICE_IP: '{{.DEVICE_IP}}'
+          DEVICE_PORT: '{{.DEVICE_PORT}}'
+
+  models-http:
+    desc: Query on-device /v1/models endpoint over WiFi
+    cmds:
+      - task: firmware:models-http
+        vars:
+          DEVICE_IP: '{{.DEVICE_IP}}'
+          DEVICE_PORT: '{{.DEVICE_PORT}}'
 
   benchmark:
     desc: Record on-device benchmark results and compare against baseline and previous runs
@@ -35,128 +71,77 @@ tasks:
       NAME: '{{.NAME | default ""}}'
       RUN: '{{.RUN | default "false"}}'
     cmds:
-      - uv run python .agents/skills/record-benchmark/scripts/record_benchmark.py {{if eq .RUN "true"}}--run{{end}} {{if .NAME}}--name "{{.NAME}}"{{end}}
+      - task: firmware:benchmark
+        vars:
+          NAME: '{{.NAME}}'
+          RUN: '{{.RUN}}'
 
+  download-model:
+    desc: Download Sourdough model bundle from Hugging Face Hub into firmware/models/
+    vars:
+      REPO: '{{.REPO | default ""}}'
+    cmds:
+      - task: firmware:download-model
+        vars:
+          REPO: '{{.REPO}}'
 
+  # --- Model Training Shortcuts ---
   generate:
-    desc: Generate and expand curated Sourdough Q&A dataset
+    desc: Generate and expand curated Sourdough Q&A dataset (delegates to model/)
     cmds:
-      - uv run python -m research.sourdough.generate --samples 5000
-
-  vocab:
-    desc: Build frozen curated output vocabulary (vocab.json) from dataset
-    cmds:
-      - uv run python -m research.sourdough.build_vocab
-
-  layout:
-    desc: Train BPE question encoder and build asymmetric out2in mapping (layout.json)
-    cmds:
-      - uv run python -m research.sourdough.build_layout
-
-  subvocab:
-    desc: Generate sub-vocabulary cluster headers for hierarchical output head
-    cmds:
-      - uv run python pc_tools/generate_subvocab.py
-
-  headers:
-    desc: Generate C++ headers (sourdough_words.h, sourdough_out2in.h, sourdough_subvocab.h) from vocab and layout
-    cmds:
-      - uv run python pc_tools/generate_vocab_headers.py
-      - uv run python pc_tools/generate_subvocab.py
-
+      - task: model:generate
 
   prepare:
-    desc: Build vocabulary, layout, and pre-encode dataset for asymmetric vocabulary
+    desc: Build vocabulary, layout, and pre-encode dataset (delegates to model/)
     cmds:
-      - task: vocab
-      - task: layout
-      - task: headers
-      - uv run python pc_tools/generate_tokenizer_asset.py
-      - uv run python -m research.sourdough.prepare_asymmetric
-
-  validate-dataset:
-    desc: Verify dataset integrity, token lengths, and roundtrip fidelity without training
-    cmds:
-      - uv run python -m research.sourdough.verify_dataset
-
-  query-dataset:
-    desc: Query the dataset directly to see answers and matches before training (e.g. task query-dataset QUERY="Why is my bread gummy?")
-    vars:
-      QUERY: '{{.QUERY | default "Why is there liquid on top of my sourdough starter?"}}'
-    cmds:
-      - uv run python -m research.sourdough.verify_dataset --query "{{.QUERY}}"
+      - task: model:prepare
 
   train:
-    desc: Train Sourdough PLE micro-LLM with asymmetric vocabulary (1,200 steps)
+    desc: Train Sourdough PLE micro-LLM (1,200 steps) (delegates to model/)
     cmds:
-      - uv run python -m research.sourdough.train --arm ple --asymmetric --steps 1200 --eval-every 100
+      - task: model:train
 
   train-full:
-    desc: Extended train Sourdough PLE micro-LLM with asymmetric vocabulary (2,000 steps)
+    desc: Extended train Sourdough PLE micro-LLM (2,000 steps) (delegates to model/)
     cmds:
-      - uv run python -m research.sourdough.train --arm ple --asymmetric --steps 2000 --eval-every 100
-
-  sample:
-    desc: Query the trained Sourdough model with a prompt (e.g. task sample PROMPT="Why is my bread gummy?")
-    vars:
-      PROMPT: '{{.PROMPT | default "Why is there liquid on top of my sourdough starter?"}}'
-    cmds:
-      - uv run python -m research.sourdough.sample "{{.PROMPT}}"
+      - task: model:train-full
 
   quantize:
     desc: Quantize trained checkpoint to INT4 packed binary format and update C headers
     cmds:
-      - uv run python pc_tools/export_model.py --ckpt runs/sourdough/ple-sourdough-v1-s0.pt
-      - uv run python pc_tools/generate_vocab_headers.py
-      - uv run python pc_tools/generate_tokenizer_asset.py
+      - task: model:quantize
 
-  flash-model:
-    desc: Flash the compiled model binary to partition at 0x110000
+  headers:
+    desc: Generate C++ headers from vocab and layout into firmware/src/generated/
     cmds:
-      - esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x110000 pc_tools/sourdough_q4.bin
+      - task: model:headers
+
+  sample:
+    desc: Query the trained Sourdough model with a prompt
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+    cmds:
+      - task: model:sample
+        vars:
+          PROMPT: '{{.PROMPT}}'
 
   upload-model:
-    desc: Upload Sourdough model bundle (README.md, LICENSE, metadata.json, *.bin, tokenizer.json, sourdough_qa.jsonl) to Hugging Face Hub
-    cmds:
-      - uv run python upload_model_hf.py --path pc_tools/
-
-  download-model:
-    desc: Download Sourdough model bundle from Hugging Face Hub (e.g. task download-model REPO=nicholascwilde/esp32-s3-sourdough)
+    desc: Upload Sourdough model bundle to Hugging Face Hub (delegates to model/)
     vars:
       REPO: '{{.REPO | default ""}}'
+      PATH: '{{.PATH | default ""}}'
     cmds:
-      - uv run python download_model_hf.py {{if .REPO}}--repo-id "{{.REPO}}"{{end}}
-
-  colab-auth:
-    desc: Verify Google Colab CLI authentication
-    cmds:
-      - uv run python colab_runner.py check-auth
-
-  colab-start:
-    desc: Provision a free-tier Colab VM session (T4 GPU fallback to CPU)
-    cmds:
-      - uv run python colab_runner.py start-session
-
-  colab-stop:
-    desc: Stop active Colab VM session
-    cmds:
-      - uv run python colab_runner.py stop-session
-
-  colab-train-test:
-    desc: Run fast smoke training test (50 steps) on Colab VM
-    cmds:
-      - uv run python colab_runner.py build --action train-test
+      - task: model:upload-model
+        vars:
+          REPO: '{{.REPO}}'
+          PATH: '{{.PATH}}'
 
   colab-train:
-    desc: Run Sourdough PLE micro-LLM training (1,200 steps) on Colab VM
+    desc: Run Sourdough PLE micro-LLM training on Colab VM (delegates to model/)
     cmds:
-      - uv run python colab_runner.py build --action train
+      - task: model:colab-train
 
-  colab-train-full:
-    desc: Run extended Sourdough PLE micro-LLM training (2,000 steps) on Colab VM
-    cmds:
-      - uv run python colab_runner.py build --action train-full
-
+  # --- Repository & Code Intelligence ---
   codegraph:
     desc: Show CodeGraph index status
     cmds:
@@ -166,5 +151,3 @@ tasks:
     desc: Synchronize CodeGraph index with codebase changes
     cmds:
       - codegraph sync
-
-
