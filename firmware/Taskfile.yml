@@ -60,6 +60,15 @@ tasks:
           -H "Content-Type: application/json" \
           -d "{\"model\":\"esp32-sourdough\",\"messages\":[{\"role\":\"user\",\"content\":\"{{.PROMPT}}\"}]}" | jq .
 
+  eval-http:
+    desc: Run automated HTTP health check, response evaluation, and diagnostics
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+      DIAGNOSE: '{{.DIAGNOSE | default "false"}}'
+    cmds:
+      - uv run python ../.agents/skills/test-http/scripts/test_http.py {{if .PROMPT}}--prompt "{{.PROMPT}}"{{end}} {{if eq .DIAGNOSE "true"}}--diagnose{{end}}
+
+
   models-http:
     desc: Query on-device /v1/models endpoint over WiFi
     vars:

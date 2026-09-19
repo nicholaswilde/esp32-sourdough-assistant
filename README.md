@@ -312,6 +312,10 @@ task models-http
 
 # Query chat completions
 task test-http PROMPT="Why is my bread gummy?"
+
+# Run automated evaluation & diagnostics across standard questions
+task eval-http
+task eval-http PROMPT="Why is my bread gummy?" DIAGNOSE=true
 ```
 
 #### 3. Connect via `curl`

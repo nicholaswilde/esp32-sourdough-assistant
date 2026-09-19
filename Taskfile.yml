@@ -65,6 +65,18 @@ tasks:
           DEVICE_IP: '{{.DEVICE_IP}}'
           DEVICE_PORT: '{{.DEVICE_PORT}}'
 
+  eval-http:
+    desc: Run automated HTTP health check, response evaluation, and diagnostics (delegates to firmware/)
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+      DIAGNOSE: '{{.DIAGNOSE | default "false"}}'
+    cmds:
+      - task: firmware:eval-http
+        vars:
+          PROMPT: '{{.PROMPT}}'
+          DIAGNOSE: '{{.DIAGNOSE}}'
+
+
   models-http:
     desc: Query on-device /v1/models endpoint over WiFi
     cmds:

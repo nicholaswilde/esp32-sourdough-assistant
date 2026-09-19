@@ -94,9 +94,15 @@ task benchmark
 task benchmark RUN=true NAME=my_new_run
 ```
 
-### WiFi HTTP API Testing
+### WiFi HTTP API Testing & Evaluation
 Configure device IP in `.env` (copied from `.env.example` in repo root):
 ```bash
 task models-http
 task test-http PROMPT="Why is my bread gummy?"
+```
+
+Run automated HTTP health check, response quality evaluation, and diagnostic checks:
+```bash
+task eval-http
+task eval-http PROMPT="Why is my bread gummy?" DIAGNOSE=true
 ```
