@@ -61,7 +61,7 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 - **PSRAM Required**: ≥ 8MB (Octal SPI recommended)
 - **Vocabulary**: 2,048 tokens (compact ByteLevel BPE)
 - **Quantization**: INT4 grouped quantization (`group_size = 128`)
-- **Partition Offset**: `0x110000` (mapped via `esp_partition_mmap`)
+- **Partition Offset**: `0x520000` (mapped via `esp_partition_mmap`)
 - **Training Dataset**: `sourdough_qa.jsonl` (5,000 conversational Q&A pairs covering 111 curated sourdough baking topics with leak-free validation split)
 - **Domain Scope**:
   - Starter health (hooch, mold, feeding ratios, acetone smells, sluggish rise, drying/reviving)
@@ -77,8 +77,8 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 # 1. Download model binary and tokenizer
 hf download {repo_id} {primary_bin} --local-dir .
 
-# 2. Flash to model partition (0x110000)
-esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x110000 {primary_bin}
+# 2. Flash to model partition (0x520000)
+esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x520000 {primary_bin}
 ```
 
 ## Running Inference
@@ -99,7 +99,7 @@ def generate_default_metadata(bin_name: str) -> dict:
             "recommended_module": "ESP32-S3-DevKitC-1-N16R8",
             "flash_required_mb": 16,
             "psram_required_mb": 8,
-            "flash_partition_offset": "0x110000",
+            "flash_partition_offset": "0x520000",
         },
         "vocab_size": 2048,
         "seq_len": 128,

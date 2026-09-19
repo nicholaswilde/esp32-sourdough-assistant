@@ -3,7 +3,7 @@
 This directory contains the PlatformIO C++ firmware project for the **ESP32-S3-DevKitC-1-N16R8** microcontroller.
 
 > [!IMPORTANT]
-> **Hardware Compatibility**: This firmware is strictly configured for the **ESP32-S3 N16R8** (16MB Flash, 8MB Octal PSRAM). Smaller variants (N4, N8, R2, or non-PSRAM boards) will fail due to flash partition size constraints (`0xEE0000` model partition) and runtime PSRAM memory requirements. Non-S3 chips lack the Xtensa LX7 SIMD instruction set.
+> **Hardware Compatibility**: This firmware is strictly configured for the **ESP32-S3 N16R8** (16MB Flash, 8MB Octal PSRAM). Smaller variants (N4, N8, R2, or non-PSRAM boards) will fail due to flash partition size constraints (`0xAE0000` model partition) and runtime PSRAM memory requirements. Non-S3 chips lack the Xtensa LX7 SIMD instruction set.
 
 ---
 
@@ -12,7 +12,7 @@ This directory contains the PlatformIO C++ firmware project for the **ESP32-S3-D
 ```
 firmware/
 ├── platformio.ini         # PlatformIO build configuration
-├── partitions.csv         # Flash partition table (model at 0x110000)
+├── partitions.csv         # Flash partition table (dual OTA app banks, model at 0x520000)
 ├── pyproject.toml         # Minimal Python dependencies (huggingface-hub, pyserial)
 ├── Taskfile.yml           # Firmware automation tasks
 ├── download_model_hf.py   # Download model weights from Hugging Face Hub
@@ -57,14 +57,19 @@ task build
 ```
 
 ### 4. Flash to ESP32-S3
-Flash the compiled model binary to the flash partition (`0x110000`):
+Flash the compiled model binary to the flash partition (`0x520000`):
 ```bash
 task flash-model
 ```
 
-Flash the firmware program:
+Flash the firmware program over USB:
 ```bash
 task flash
+```
+
+Or perform an Over-The-Air (OTA) firmware update over WiFi:
+```bash
+task ota
 ```
 
 Open the serial monitor:

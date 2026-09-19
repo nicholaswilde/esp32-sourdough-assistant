@@ -62,7 +62,7 @@ uv run hf upload <repo_id> ./pc_tools . --include "*.bin,*.json"
 ## Uploaded Artifact Bundle
 
 The tool automatically bundles and uploads 5 core artifacts:
-1. **`README.md`**: Model Card containing YAML metadata tags, hardware requirements (ESP32-S3, 16MB Flash, 8MB PSRAM, `0x110000` flash offset), and `esptool` flashing commands.
+1. **`README.md`**: Model Card containing YAML metadata tags, hardware requirements (ESP32-S3, 16MB Flash, 8MB PSRAM, `0x520000` flash offset), and `esptool` flashing commands.
 2. **`LICENSE`**: The repository's Apache 2.0 license file.
 3. **`metadata.json`**: Hardware, quantization, and model architecture metadata (e.g., layers, heads, dimensions, partition offset).
 4. **`*.bin`**: The quantized or exported binary model weights (`stories15M_q4.bin`, `model.bin`).

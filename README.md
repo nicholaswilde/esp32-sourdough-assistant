@@ -12,7 +12,7 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 > [!IMPORTANT]
 > **Strict Hardware Target — ESP32-S3 N16R8 Only**:
 > This project is specifically slated and configured for the **ESP32-S3 N16R8** variant (e.g. `ESP32-S3-DevKitC-1-N16R8` with 16MB Flash and 8MB Octal PSRAM). **Other variations will NOT work**:
-> - **Flash Size (N16 required)**: The model partition table requires ~14.88 MB (`0xEE0000`) allocated at `0x110000`. Boards with 4MB (N4) or 8MB (N8) flash cannot fit the partition table.
+> - **Flash Size (N16 required)**: The model partition table requires ~10.88 MB (`0xAE0000`) allocated at `0x520000` alongside dual 2.5MB OTA app partitions (`ota_0` and `ota_1`). Boards with 4MB (N4) or 8MB (N8) flash cannot fit the partition table.
 > - **PSRAM Size & Mode (R8 Octal required)**: Runtime weights staging, KV cache, and activation buffers demand 8MB Octal PSRAM configured for `qio_opi`. Variants with no PSRAM or 2MB Quad PSRAM (R2) will crash with out-of-memory errors on boot.
 > - **Core Architecture (ESP32-S3 required)**: The firmware utilizes custom Xtensa LX7 dual-core PIE 128-bit vector SIMD assembly (`simd_dotp.S`). Non-S3 chips (original ESP32, S2, C3, C6, etc.) are unsupported.
 
@@ -24,7 +24,7 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 *   **Target Hardware**: Strictly **ESP32-S3-DevKitC-1-N16R8** (16MB Flash, 8MB Octal PSRAM). Smaller flash/PSRAM variants will not work.
 *   **Memory Footprint**: ~3.49 MB PSRAM total (~2.55 MB staged weights, ~0.94 MB KV cache, ~7 KB logits), leaving > 4.5 MB headroom on 8 MB PSRAM; and ~34.25 KB internal SRAM, well below the 327 KB internal SRAM ceiling.
 *   **Vocabulary**: Asymmetric untied-head vocabulary (4,096 base BPE tokens, 6,106 input embeddings with PLE, 2,197 active output word classes) tailored for baking terms.
-*   **Quantization**: INT4 grouped quantization (`group_size = 128`) mapped directly from flash via `esp_partition_mmap` at offset `0x110000`.
+*   **Quantization**: INT4 grouped quantization (`group_size = 128`) mapped directly from flash via `esp_partition_mmap` at offset `0x520000`.
 *   **Troubleshooting Domains**:
     1.  **Starter Health**: Hooch, sluggish rising, acetone/nail polish smell, mold detection, feeding ratios (1:1:1 vs 1:5:5), refrigeration, stiff starters (50-60%), discard shelf life, tap water/chlorine effects, flour selection.
     2.  **Bulk Fermentation**: Volume rise indicators, under-fermentation (fool's crumb), over-fermentation, poke test, stretch & folds, coil folds, dough temperature, aliquot jars, dough acidity & gluten breakdown.
@@ -218,18 +218,26 @@ Artifacts generated:
 * `firmware/src/generated/sourdough_out2in.h` (Output to input projection IDs)
 * `firmware/src/generated/sourdough_subvocab.h` (Centroid clusters for SIMD acceleration)
 
-### 2. Flash Model Weights Partition (`0x110000`)
-Writes the packed model binary to flash offset `0x110000`:
+### 2. Flash Model Weights Partition (`0x520000`)
+Writes the packed model binary to flash offset `0x520000`:
 ```bash
 task flash-model
 ```
 
 ### 3. Compile and Upload Firmware
-Builds the C++ inference engine and uploads it to the ESP32-S3:
+Builds the C++ inference engine and uploads it to the ESP32-S3 over USB:
 ```bash
 task build
 task flash
 ```
+
+#### Over-The-Air (OTA) Firmware Updates
+Once the dual-bank partition table and initial firmware are flashed over USB, future firmware updates can be installed wirelessly over WiFi without connecting a USB cable:
+```bash
+task build
+task ota
+```
+*(Requires `DEVICE_IP` to be set in your `.env` file)*
 
 ### 4. Interactive USB-Serial REPL
 Open the serial monitor at 115200 baud to converse directly with the assistant:

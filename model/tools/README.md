@@ -29,7 +29,7 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 - **PSRAM Required**: ≥ 8MB (Octal SPI recommended)
 - **Vocabulary**: Asymmetric architecture (4,096 BPE input encoder, 1,737 curated whole-word output classes)
 - **Quantization**: INT4 grouped quantization (`group_size = 128`) with untied output head
-- **Partition Offset**: `0x110000` (mapped via `esp_partition_mmap`)
+- **Partition Offset**: `0x520000` (mapped via `esp_partition_mmap`)
 - **Training Dataset**: `sourdough_qa.jsonl` (5,000 conversational Q&A pairs covering 111 curated sourdough baking topics with leak-free validation split)
 - **Domain Scope**:
   - Starter health (hooch, mold, feeding ratios, acetone smells, sluggish rise, drying/reviving)
@@ -45,8 +45,8 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 # 1. Download model binary and tokenizer
 hf download nicholascwilde/esp32-s3-sourdough sourdough_q4.bin --local-dir .
 
-# 2. Flash to model partition (0x110000)
-esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x110000 sourdough_q4.bin
+# 2. Flash to model partition (0x520000)
+esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x520000 sourdough_q4.bin
 ```
 
 ## Running Inference

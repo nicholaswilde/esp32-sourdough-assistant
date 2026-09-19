@@ -1,5 +1,5 @@
 // ESP32-S3 Sourdough Baker Assistant - On-Device PLE INT4 Inference REPL
-// Runs offline on ESP32-S3 (N16R8) with model memory-mapped at partition 0x110000.
+// Runs offline on ESP32-S3 (N16R8) with model memory-mapped at partition 0x520000.
 // Exposes OpenAI-compatible HTTP API on port 8080 for Open WebUI / curl access.
 
 #include <Arduino.h>
@@ -19,9 +19,11 @@
 #include "generated/sourdough_out2in.h"
 #include "generated/sourdough_subvocab.h"
 
-// ---- WiFi / HTTP Server -----------------------------------------------------
+// ---- WiFi / HTTP Server & OTA ----------------------------------------------
 #include <WiFi.h>
 #include <WebServer.h>
+#include <ArduinoOTA.h>
+#include <Update.h>
 #include <ArduinoJson.h>
 #if __has_include("secrets.h")
 #  include "secrets.h"
@@ -337,11 +339,11 @@ void setup() {
   Serial.printf("[s3-sourdough] Tokenizer ready: vocab=%u, merges=%u\n",
                 tokenizer.active_vocab, tokenizer.merge_count);
 
-  // 2. Memory-map model partition from Flash (0x110000, subtype 0x40)
+  // 2. Memory-map model partition from Flash (0x520000, subtype 0x40)
   const esp_partition_t *part = esp_partition_find_first(
       ESP_PARTITION_TYPE_DATA, (esp_partition_subtype_t)0x40, "model");
   if (!part) {
-    Serial.println("FATAL: 'model' partition not found at 0x110000!");
+    Serial.println("FATAL: 'model' partition not found at 0x520000!");
     while (1) delay(1000);
   }
 
@@ -434,6 +436,9 @@ void setup() {
                   WiFi.localIP().toString().c_str());
     setup_http_routes();
     http_server.begin();
+    ArduinoOTA.setHostname("esp32-sourdough");
+    ArduinoOTA.begin();
+    Serial.printf("[s3-sourdough] OTA: ArduinoOTA ready, HTTP firmware update at /v1/update\n");
   } else {
     Serial.println("\n[s3-sourdough] WiFi: offline – HTTP server disabled, Serial REPL only.");
   }
@@ -581,11 +586,43 @@ static void handle_not_found() {
 static void setup_http_routes() {
   http_server.on("/v1/models", HTTP_GET, handle_models);
   http_server.on("/v1/chat/completions", HTTP_POST, handle_chat_completions);
+  http_server.on(
+      "/v1/update", HTTP_POST,
+      []() {
+        http_server.sendHeader("Connection", "close");
+        http_server.send(200, "application/json",
+                         Update.hasError() ? "{\"status\":\"error\",\"message\":\"Flash update failed\"}"
+                                           : "{\"status\":\"success\",\"message\":\"Update applied. Rebooting...\"}");
+        delay(200);
+        ESP.restart();
+      },
+      []() {
+        HTTPUpload &upload = http_server.upload();
+        if (upload.status == UPLOAD_FILE_START) {
+          Serial.printf("\n[OTA] HTTP Firmware Upload started: %s\n", upload.filename.c_str());
+          if (!Update.begin(UPDATE_SIZE_UNKNOWN)) {
+            Update.printError(Serial);
+          }
+        } else if (upload.status == UPLOAD_FILE_WRITE) {
+          if (Update.write(upload.buf, upload.currentSize) != upload.currentSize) {
+            Update.printError(Serial);
+          }
+        } else if (upload.status == UPLOAD_FILE_END) {
+          if (Update.end(true)) {
+            Serial.printf("[OTA] HTTP Firmware Upload Successful: %u bytes\n", upload.totalSize);
+          } else {
+            Update.printError(Serial);
+          }
+        }
+      });
   http_server.onNotFound(handle_not_found);
 }
 
 void loop() {
-  if (wifi_connected) http_server.handleClient();
+  if (wifi_connected) {
+    http_server.handleClient();
+    ArduinoOTA.handle();
+  }
 
   if (!Serial.available()) {
     delay(20);

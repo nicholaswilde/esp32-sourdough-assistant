@@ -13,8 +13,8 @@ from pathlib import Path
 
 # ESP32-S3-DevKitC-1-N16R8 Hardware Limits
 FLASH_TOTAL_BYTES = 16 * 1024 * 1024       # 16 MB
-MODEL_PARTITION_OFFSET = 0x110000          # 1,114,112 bytes
-MODEL_PARTITION_LIMIT = 0xEE0000           # 15,597,568 bytes (~14.88 MB)
+MODEL_PARTITION_OFFSET = 0x520000          # 5,373,952 bytes
+MODEL_PARTITION_LIMIT = 0xAE0000           # 11,403,264 bytes (~10.88 MB)
 PSRAM_TOTAL_BYTES = 8 * 1024 * 1024        # 8 MB (8,388,608 bytes)
 PSRAM_SAFE_LIMIT = 7 * 1024 * 1024         # 7 MB (leaving 1 MB headroom for OS/heap)
 SRAM_SAFE_LIMIT = 327 * 1024               # ~327 KB available user SRAM
@@ -239,7 +239,7 @@ def main():
 
     # Flash Check
     status_flash = f"✓ FITS (+{flash_margin / 1024:.0f} KB)" if flash_fits else f"✗ OVERFLOW ({flash_margin / 1024:.0f} KB)"
-    print(f"{'Flash (model part)':<22} | {bin_size / (1024*1024):.2f} MB     | {MODEL_PARTITION_LIMIT / (1024*1024):.2f} MB (0xEE0000) | {status_flash}")
+    print(f"{'Flash (model part)':<22} | {bin_size / (1024*1024):.2f} MB     | {MODEL_PARTITION_LIMIT / (1024*1024):.2f} MB (0xAE0000) | {status_flash}")
 
     # PSRAM Check
     status_psram = f"✓ FITS (+{psram_margin / (1024*1024):.2f} MB)" if psram_fits else f"✗ OVERFLOW ({psram_margin / (1024*1024):.2f} MB)"
@@ -257,7 +257,7 @@ def main():
     print(f"  - Logits Scratch (Vout*4):  {res['psram_logits'] / 1024:.1f} KB")
 
     if not flash_fits:
-        print("\n[FATAL ERROR] Model binary exceeds the 0xEE0000 (14.88 MB) flash partition limit!", file=sys.stderr)
+        print("\n[FATAL ERROR] Model binary exceeds the 0xAE0000 (10.88 MB) flash partition limit!", file=sys.stderr)
         print("Remedies before training:", file=sys.stderr)
         print("  1. Reduce vocabulary size (--vocab) or PLE dimension (--ple-dim).", file=sys.stderr)
         print("  2. Reduce core budget (--target-core) or model layers (--n-layers).", file=sys.stderr)

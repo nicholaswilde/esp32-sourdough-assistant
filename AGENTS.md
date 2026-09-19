@@ -210,7 +210,7 @@ This repository is organized as a monorepo separating firmware sketch developmen
 ## :floppy_disk: S3 Model Sizing & Device Constraints
 - **Target Device**: ESP32-S3-DevKitC-1-N16R8 (16MB Flash, 8MB Octal PSRAM).
 - When modifying, training, or exporting models, the compiled model binary (`model/tools/sourdough_q4.bin` / `firmware/models/sourdough_q4.bin`) **must strictly fit on the target device**:
-  - **Flash Partition**: File size must not exceed the `model` partition (`0xEE0000` = 15,597,568 bytes / ~14.88 MB at `0x110000` defined in `firmware/partitions.csv`).
+  - **Flash Partition**: File size must not exceed the `model` partition (`0xAE0000` = 11,403,264 bytes / ~10.88 MB at `0x520000` defined in `firmware/partitions.csv`).
   - **PSRAM Footprint**: Staged INT8 weights, KV cache, and runtime buffers must fit within the 8MB PSRAM budget with sufficient margin for heap allocations.
   - **Verification**: Always verify `.bin` byte size and memory budget before proposing or committing new model exports.
 

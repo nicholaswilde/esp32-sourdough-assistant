@@ -17,9 +17,9 @@ tasks:
       - pio run -t upload -e esp32-s3-devkitc-1
 
   flash-model:
-    desc: Flash the compiled model binary to partition at 0x110000
+    desc: Flash the compiled model binary to partition at 0x520000
     cmds:
-      - esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x110000 models/sourdough_q4.bin
+      - esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x520000 models/sourdough_q4.bin
 
   monitor:
     desc: Open serial monitor
@@ -67,3 +67,12 @@ tasks:
       PORT: '{{.DEVICE_PORT | default "8080"}}'
     cmds:
       - curl -sS "http://{{.IP}}:{{.PORT}}/v1/models" | jq .
+
+  ota:
+    desc: Flash firmware binary over WiFi via HTTP OTA update (requires DEVICE_IP in .env)
+    vars:
+      IP: '{{.DEVICE_IP | default "192.168.1.100"}}'
+      PORT: '{{.DEVICE_PORT | default "8080"}}'
+    cmds:
+      - curl -sS -X POST "http://{{.IP}}:{{.PORT}}/v1/update" -F "firmware=@.pio/build/esp32-s3-devkitc-1/firmware.bin" | jq .
+

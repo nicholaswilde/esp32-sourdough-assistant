@@ -226,7 +226,7 @@ def main():
             "recommended_module": "ESP32-S3-DevKitC-1-N16R8",
             "flash_required_mb": 16,
             "psram_required_mb": 8,
-            "flash_partition_offset": "0x110000",
+            "flash_partition_offset": "0x520000",
         },
     }
     meta_path = args.out_dir / "metadata.json"

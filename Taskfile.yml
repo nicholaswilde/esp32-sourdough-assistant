@@ -27,8 +27,16 @@ tasks:
     cmds:
       - task: firmware:flash
 
+  ota:
+    desc: Flash firmware binary over WiFi via HTTP OTA update (delegates to firmware/)
+    cmds:
+      - task: firmware:ota
+        vars:
+          DEVICE_IP: '{{.DEVICE_IP}}'
+          DEVICE_PORT: '{{.DEVICE_PORT}}'
+
   flash-model:
-    desc: Flash the compiled model binary to partition at 0x110000 (delegates to firmware/)
+    desc: Flash the compiled model binary to partition at 0x520000 (delegates to firmware/)
     cmds:
       - task: firmware:flash-model
 

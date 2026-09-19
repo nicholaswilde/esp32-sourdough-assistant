@@ -11,7 +11,7 @@ This skill verifies that model architecture parameters or compiled model binarie
 
 | Resource | Boundary / Budget | Hardware Specs |
 | :--- | :--- | :--- |
-| **Model Flash Partition** | `0xEE0000` (**15,597,568 bytes** / ~14.88 MB) | At offset `0x110000` defined in `partitions.csv` |
+| **Model Flash Partition** | `0xAE0000` (**11,403,264 bytes** / ~10.88 MB) | At offset `0x520000` defined in `partitions.csv` |
 | **Total Flash Size** | 16 MB (`board_upload.flash_size = 16MB`) | ESP32-S3 QIO Flash |
 | **PSRAM Budget** | 8 MB (**8,388,608 bytes**) | Octal SPI PSRAM (staged weights + KV cache + logits) |
 | **Internal SRAM** | ~327 KB available user SRAM | Scratch activation buffers + norm vectors |
@@ -21,7 +21,7 @@ This skill verifies that model architecture parameters or compiled model binarie
 ## When to Use This Skill
 
 1. **Before Training**: Prior to starting local or Google Colab training runs (e.g., `task train-full`, `task train-test`, `task colab-train-full`), verify that the proposed `--vocab`, `--d-model`, `--n-layers`, `--ple-dim`, or `--target-core` will produce a `.bin` file that fits on flash.
-2. **Before Exporting / Flashing**: Verify an existing `.bin` or checkpoint against the `0xEE0000` partition limit.
+2. **Before Exporting / Flashing**: Verify an existing `.bin` or checkpoint against the `0xAE0000` partition limit.
 3. **During Architecture Changes**: Check sizing impact when adjusting vocabularies or hidden dimensions.
 
 ---
