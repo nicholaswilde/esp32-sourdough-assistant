@@ -174,33 +174,50 @@ def main():
     parser.add_argument("--bin", type=str, default=None, help="Path to existing model.bin to inspect")
     
     # Architecture parameter mode (pre-training)
-    parser.add_argument("--vocab", type=int, default=32768, help="Vocabulary size (default: 32768)")
-    parser.add_argument("--out-vocab", type=int, default=25353, help="Output vocabulary size (default: 25353)")
-    parser.add_argument("--d-model", type=int, default=96, help="Model hidden dimension (default: 96)")
+    parser.add_argument("--vocab", type=int, default=6106, help="Vocabulary size (default: 6106)")
+    parser.add_argument("--out-vocab", type=int, default=2197, help="Output vocabulary size (default: 2197)")
+    parser.add_argument("--d-model", type=int, default=160, help="Model hidden dimension (default: 160)")
     parser.add_argument("--n-layers", type=int, default=6, help="Number of transformer layers (default: 6)")
     parser.add_argument("--n-heads", type=int, default=4, help="Number of attention heads (default: 4)")
-    parser.add_argument("--ffn-hidden", type=int, default=None, help="FFN hidden dimension (auto-solved if target-core provided)")
-    parser.add_argument("--target-core", type=int, default=560000, help="Target core parameter budget (default: 560000)")
+    parser.add_argument("--ffn-hidden", type=int, default=448, help="FFN hidden dimension (default: 448)")
+    parser.add_argument("--target-core", type=int, default=None, help="Target core parameter budget (optional, solves ffn-hidden)")
     parser.add_argument("--ple-dim", type=int, default=128, help="PLE adapter dimension (default: 128)")
-    parser.add_argument("--seq-len", type=int, default=256, help="Context sequence length (default: 256)")
+    parser.add_argument("--seq-len", type=int, default=128, help="Context sequence length (default: 128)")
     parser.add_argument("--group", type=int, default=128, help="Quantization group size (default: 128)")
+    parser.add_argument("--tied-head", dest="tied_head", action="store_true", default=None, help="Force tied output head")
+    parser.add_argument("--no-tied-head", dest="tied_head", action="store_false", help="Force untied output head")
 
     args = parser.parse_args()
 
     actual_file_size = None
+    default_bins = [
+        Path("firmware/models/sourdough_q4.bin"),
+        Path("model/tools/sourdough_q4.bin"),
+    ]
+
+    bin_to_inspect = None
     if args.bin:
-        bin_path = Path(args.bin).resolve()
-        if not bin_path.exists():
-            print(f"Error: Specified bin file not found: {bin_path}", file=sys.stderr)
+        bin_to_inspect = Path(args.bin).resolve()
+    elif len(sys.argv) == 1:
+        # No CLI arguments provided, check default candidate binaries
+        for candidate in default_bins:
+            if candidate.exists():
+                bin_to_inspect = candidate.resolve()
+                break
+
+    if bin_to_inspect:
+        if not bin_to_inspect.exists():
+            print(f"Error: Specified bin file not found: {bin_to_inspect}", file=sys.stderr)
             sys.exit(1)
-        actual_file_size = bin_path.stat().st_size
-        cfg = parse_bin_file(str(bin_path))
-        print(f"Loaded config from {bin_path.name}:")
+        actual_file_size = bin_to_inspect.stat().st_size
+        cfg = parse_bin_file(str(bin_to_inspect))
+        print(f"Loaded config from {bin_to_inspect.name}:")
     else:
         # Pre-training estimation from parameters
         ffn = args.ffn_hidden
-        if ffn is None:
+        if args.target_core is not None:
             ffn = solve_ffn_hidden(args.target_core, args.d_model, args.n_layers, args.ple_dim)
+        tied = args.tied_head if args.tied_head is not None else (args.vocab == args.out_vocab)
         cfg = {
             "vocab_size": args.vocab,
             "out_vocab_size": args.out_vocab,
@@ -211,7 +228,7 @@ def main():
             "ple_dim": args.ple_dim,
             "seq_len": args.seq_len,
             "group": args.group,
-            "tied_head": True,
+            "tied_head": tied,
         }
 
     res = calculate_sizing(**cfg)

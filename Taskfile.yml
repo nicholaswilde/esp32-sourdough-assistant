@@ -123,6 +123,13 @@ tasks:
         vars:
           REPO: '{{.REPO}}'
 
+  verify-model-size:
+    desc: Verify model binary size and memory budget for ESP32-S3-DevKitC-1-N16R8
+    vars:
+      BIN: '{{.BIN | default ""}}'
+    cmds:
+      - uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py {{if .BIN}}--bin "{{.BIN}}"{{end}}
+
   # --- Model Training Shortcuts ---
   generate:
     desc: Generate and expand curated Sourdough Q&A dataset (delegates to model/)
@@ -135,12 +142,12 @@ tasks:
       - task: model:prepare
 
   train:
-    desc: Train Sourdough PLE micro-LLM (1,200 steps) (delegates to model/)
+    desc: Train Sourdough PLE micro-LLM (3,000 steps) (delegates to model/)
     cmds:
       - task: model:train
 
   train-full:
-    desc: Extended train Sourdough PLE micro-LLM (2,000 steps) (delegates to model/)
+    desc: Extended train Sourdough PLE micro-LLM (5,000 steps) (delegates to model/)
     cmds:
       - task: model:train-full
 
@@ -167,12 +174,15 @@ tasks:
     desc: Upload Sourdough model bundle to Hugging Face Hub (delegates to model/)
     vars:
       REPO: '{{.REPO | default ""}}'
-      PATH: '{{.PATH | default ""}}'
+      MODEL_PATH: '{{.MODEL_PATH | default ""}}'
+      DRY_RUN: '{{.DRY_RUN | default ""}}'
     cmds:
       - task: model:upload-model
         vars:
           REPO: '{{.REPO}}'
-          PATH: '{{.PATH}}'
+          MODEL_PATH: '{{.MODEL_PATH}}'
+          DRY_RUN: '{{.DRY_RUN}}'
+        cli_args: '{{.CLI_ARGS}}'
 
   colab-train:
     desc: Run Sourdough PLE micro-LLM training on Colab VM (delegates to model/)

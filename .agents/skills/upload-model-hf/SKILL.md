@@ -14,31 +14,34 @@ When the user asks to upload, publish, or share trained or quantized model binar
 
 ## Execution Methods
 
-### Method 1: Using Taskfile (Recommended for `s3-tiny-stories`)
+### Method 1: Using Taskfile (Recommended)
 
-Inside `projects/s3-tiny-stories/`:
+From the repository root:
 
 ```bash
-# Upload pre-quantized 15M INT4 model (stories15M_q4.bin) and tokenizer.json
+# Upload sourdough model bundle (dry-run)
+task upload-model DRY_RUN=true
+
+# Upload sourdough model bundle to default repo (<user>/esp32-s3-sourdough)
 task upload-model
 
-# Upload custom PLE trained model directory from artifacts/
-task upload-custom DIR=artifacts/tinystories/ple-v32768_c1500000-s0
+# Upload to custom Hugging Face repo
+task upload-model REPO=nicholascwilde/esp32-s3-sourdough
 ```
 
 ### Method 2: Using the Project Python Uploader
 
-Inside `projects/s3-tiny-stories/`:
+From `model/` directory:
 
 ```bash
-# Upload to default repo (<user>/esp32-s3-tinystories)
-uv run python upload_model_hf.py --path pc_tools/stories15M_q4.bin
+# Upload default bundle (model/tools/sourdough_q4.bin, tokenizer, metadata, model card)
+uv run python upload_model_hf.py
 
-# Upload to custom repository with dry-run test
-uv run python upload_model_hf.py --path pc_tools/stories15M_q4.bin --repo-id <username>/<custom-repo> --dry-run
+# Upload with dry-run test
+uv run python upload_model_hf.py --dry-run
 
-# Upload full directory with custom commit message
-uv run python upload_model_hf.py --path artifacts/tinystories/my-run --repo-id <username>/<repo> -m "Add v1.0 trained checkpoint"
+# Upload custom model binary
+uv run python upload_model_hf.py --path tools/sourdough_q4.bin --repo-id <username>/<custom-repo>
 ```
 
 ### Method 3: Using the Skill Script Runner
@@ -46,17 +49,17 @@ uv run python upload_model_hf.py --path artifacts/tinystories/my-run --repo-id <
 From the workspace root:
 
 ```bash
-python3 .agents/skills/upload-model-hf/scripts/upload_to_hf.py [--path <path>] [--repo-id <repo>] [--dry-run]
+uv run python .agents/skills/upload-model-hf/scripts/upload_to_hf.py [--path <path>] [--repo-id <repo>] [--dry-run]
 ```
 
 ### Method 4: Using the Native `hf` CLI
 
 ```bash
-# Upload single model binary
-uv run hf upload <repo_id> pc_tools/stories15M_q4.bin stories15M_q4.bin
+# Upload model binary
+uv run hf upload <repo_id> model/tools/sourdough_q4.bin sourdough_q4.bin
 
 # Upload full folder
-uv run hf upload <repo_id> ./pc_tools . --include "*.bin,*.json"
+uv run hf upload <repo_id> ./model/tools . --include "*.bin,*.json,*.md"
 ```
 
 ## Uploaded Artifact Bundle

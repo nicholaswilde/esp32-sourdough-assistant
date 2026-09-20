@@ -10,11 +10,48 @@ WifiManager::WifiManager(const char* defaultSSID, const char* defaultPassword)
       _connectionStartTime(0) {}
 
 
+#ifndef NATIVE_TEST
+static WifiManager* s_instance = nullptr;
+#endif
+
 void WifiManager::begin() {
     Serial.println("[WiFi] Starting Wi-Fi Manager...");
     loadCredentials();
 
 #ifndef NATIVE_TEST
+    s_instance = this;
+    WiFi.setAutoReconnect(true);
+
+    _improv = new ImprovWiFi(&Serial);
+    _improv->setDeviceInfo(ImprovTypes::ChipFamily::CF_ESP32_S3, "esp32-sourdough-assistant", "0.1.0", "ESP32 Sourdough Assistant", "http://{LOCAL_IPV4}");
+
+    _improv->setCustomConnectWiFi([](const char *ssid, const char *password) {
+        Serial.printf("\n[WiFi] Improv connecting to %s...\n", ssid);
+        // Turn off AP mode to speed up STA connection and avoid channel conflicts
+        WiFi.softAPdisconnect(true);
+        WiFi.mode(WIFI_STA);
+        WiFi.disconnect();
+        delay(100);
+
+        WiFi.setHostname("esp32-sourdough");
+        WiFi.begin(ssid, password);
+        int attempts = 0;
+        // Wait up to 8 seconds (16 * 500ms) to prevent browser RPC timeout (usually 10s)
+        while (WiFi.status() != WL_CONNECTED && attempts < 16) {
+            delay(500);
+            attempts++;
+        }
+        return WiFi.status() == WL_CONNECTED;
+    });
+
+    _improv->onImprovConnected([](const char *ssid, const char *password) {
+        Serial.printf("\n[WiFi] Improv provisioned successfully!\n");
+        if (s_instance) {
+            s_instance->saveCredentials(String(ssid), String(password));
+        }
+        // No need to restart; WifiManager::update() handles the state transition to WIFI_STATE_CONNECTED
+    });
+
     WiFi.mode(WIFI_STA);
 
     if (_ssid.length() == 0 || _ssid == "your_wifi_network") {
@@ -32,10 +69,20 @@ void WifiManager::begin() {
 
 void WifiManager::update() {
 #ifndef NATIVE_TEST
+    if (_improv) {
+        _improv->handleSerial();
+    }
+
     wl_status_t status = WiFi.status();
 
     switch (_state) {
         case WIFI_STATE_DISCONNECTED:
+            if (status == WL_CONNECTED) {
+                _state = WIFI_STATE_CONNECTED;
+                Serial.print("[WiFi] Connected! IP address: ");
+                Serial.println(WiFi.localIP());
+                break;
+            }
             if (millis() - _lastReconnectAttempt > _reconnectInterval) {
                 _lastReconnectAttempt = millis();
                 Serial.println("[WiFi] Reconnecting...");

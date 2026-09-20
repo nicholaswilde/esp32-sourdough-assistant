@@ -19,7 +19,7 @@ def main():
         "-p",
         type=str,
         default=None,
-        help="Local path to model binary or directory (defaults to projects/s3-tiny-stories/pc_tools/stories15M_q4.bin if found)",
+        help="Local path to model binary or directory (defaults to model/tools/sourdough_q4.bin or firmware/models/sourdough_q4.bin)",
     )
     parser.add_argument(
         "--repo-id",
@@ -42,8 +42,8 @@ def main():
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[4]
-    s3_project = repo_root / "projects" / "s3-tiny-stories"
-    uploader = s3_project / "upload_model_hf.py"
+    model_project = repo_root / "model"
+    uploader = model_project / "upload_model_hf.py"
 
     if not uploader.exists():
         print(f"Error: Upload script not found at {uploader}", file=sys.stderr)
@@ -52,14 +52,18 @@ def main():
     # Determine default path if not provided
     target_path = Path(args.path).resolve() if args.path else None
     if not target_path:
-        default_candidate = s3_project / "pc_tools" / "stories15M_q4.bin"
-        if default_candidate.exists():
-            target_path = default_candidate
-        else:
-            print("Error: No --path provided and default model not found.", file=sys.stderr)
-            sys.exit(1)
+        for candidate in [
+            model_project / "tools" / "sourdough_q4.bin",
+            repo_root / "firmware" / "models" / "sourdough_q4.bin",
+            model_project / "tools",
+        ]:
+            if candidate.exists():
+                target_path = candidate
+                break
 
-    cmd = ["uv", "run", "python", str(uploader), "--path", str(target_path)]
+    cmd = ["uv", "run", "python", str(uploader)]
+    if target_path:
+        cmd.extend(["--path", str(target_path)])
     if args.repo_id:
         cmd.extend(["--repo-id", args.repo_id])
     if args.private:
@@ -68,7 +72,7 @@ def main():
         cmd.append("--dry-run")
 
     print(f"Running: {' '.join(cmd)}")
-    result = subprocess.run(cmd, cwd=str(s3_project))
+    result = subprocess.run(cmd, cwd=str(model_project))
     sys.exit(result.returncode)
 
 

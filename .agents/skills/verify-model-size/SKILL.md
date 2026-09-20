@@ -33,22 +33,25 @@ This skill verifies that model architecture parameters or compiled model binarie
 Run the verification tool with your proposed training hyperparameters:
 
 ```bash
-# Verify standard PLE training config (e.g. 28.9M parameters)
+# Verify standard Sourdough PLE training config (7.84M parameters)
 uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
-  --vocab 32768 \
-  --out-vocab 25353 \
-  --d-model 96 \
+  --vocab 6106 \
+  --out-vocab 2197 \
+  --d-model 160 \
   --n-layers 6 \
+  --ffn-hidden 448 \
   --ple-dim 128 \
-  --target-core 560000
+  --seq-len 128
 
-# Verify custom run with specific FFN hidden dimension
+# Verify custom run with larger hidden dimension
 uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
-  --vocab 32768 \
-  --d-model 128 \
-  --n-layers 6 \
-  --ffn-hidden 256 \
-  --ple-dim 64
+  --vocab 6106 \
+  --out-vocab 2197 \
+  --d-model 192 \
+  --n-layers 8 \
+  --ffn-hidden 512 \
+  --ple-dim 128 \
+  --seq-len 128
 ```
 
 ### 2. Post-Training / Existing Binary Verification
@@ -56,20 +59,25 @@ uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
 Inspect an already exported binary file:
 
 ```bash
-# Verify local model.bin
-uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
-  --bin projects/s3-tiny-stories/pc_tools/model.bin
+# Auto-detect and verify repository model binary (firmware/models/sourdough_q4.bin)
+uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py
 
-# Verify an exported checkpoint artifact
+# Verify explicit model binary path
 uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
-  --bin projects/s3-tiny-stories/artifacts/tinystories/model.bin
+  --bin firmware/models/sourdough_q4.bin
+
+# Verify model binary in model/tools
+uv run python .agents/skills/verify-model-size/scripts/verify_model_size.py \
+  --bin model/tools/sourdough_q4.bin
 ```
 
 ### 3. Using Taskfile
 
 From workspace root:
 ```bash
-task verify:s3-tiny-stories
+task verify-model-size
+# Or specify a custom binary:
+task verify-model-size BIN=firmware/models/sourdough_q4.bin
 ```
 
 ---

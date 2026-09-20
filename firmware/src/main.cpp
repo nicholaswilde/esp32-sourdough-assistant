@@ -110,68 +110,8 @@ static void matvec_par(const QT *t, const float *x, float *y) {
 static int g_subvocab_clusters = 0;
 
 static void matvec_subvocab(const QT *t, const float *x, float *y) {
-  if (g_subvocab_clusters <= 0 || g_subvocab_clusters >= SOURDOUGH_SUBVOCAB_NUM_CLUSTERS || !t->w8) {
-    matvec_par(t, x, y);
-    return;
-  }
-
-  alignas(16) static int8_t xq[LLM_Q8_MAX_INPUT];
-  float xs;
-  quantize_act(x, t->cols, xq, &xs);
-
-  // 1. Score all K cluster centroids (SIMD vector dot products)
-  float c_scores[SOURDOUGH_SUBVOCAB_NUM_CLUSTERS];
-  for (int k = 0; k < SOURDOUGH_SUBVOCAB_NUM_CLUSTERS; k++) {
-    int32_t dot = llm_dot_i8(SOURDOUGH_SUBVOCAB_CENTROIDS[k], xq, t->cols);
-    c_scores[k] = (float)dot * xs * SOURDOUGH_SUBVOCAB_SCALES[k];
-  }
-
-  // 2. Select top M clusters
-  int top_clusters[SOURDOUGH_SUBVOCAB_NUM_CLUSTERS];
-  bool cluster_selected[SOURDOUGH_SUBVOCAB_NUM_CLUSTERS] = {false};
-  int m_count = g_subvocab_clusters;
-  if (m_count > SOURDOUGH_SUBVOCAB_NUM_CLUSTERS) m_count = SOURDOUGH_SUBVOCAB_NUM_CLUSTERS;
-
-  for (int m = 0; m < m_count; m++) {
-    int best_k = -1;
-    float best_score = -1e30f;
-    for (int k = 0; k < SOURDOUGH_SUBVOCAB_NUM_CLUSTERS; k++) {
-      if (!cluster_selected[k] && c_scores[k] > best_score) {
-        best_score = c_scores[k];
-        best_k = k;
-      }
-    }
-    if (best_k >= 0) {
-      cluster_selected[best_k] = true;
-      top_clusters[m] = best_k;
-    }
-  }
-
-  // 3. Initialize all logits to -1e30f
-  for (int i = 0; i < t->rows; i++) {
-    y[i] = -1e30f;
-  }
-
-  // 4. Compute dot products for candidate tokens in predicted clusters
-  for (int m = 0; m < m_count; m++) {
-    int k = top_clusters[m];
-    uint16_t offset = SOURDOUGH_SUBVOCAB_OFFSETS[k];
-    uint16_t count = SOURDOUGH_SUBVOCAB_COUNTS[k];
-    for (uint16_t i = 0; i < count; i++) {
-      int r = SOURDOUGH_SUBVOCAB_TOKENS[offset + i];
-      if (r < t->rows) {
-        y[r] = matvec_dot_row_i8(t, r, xq, xs);
-      }
-    }
-  }
-
-  // 5. Always compute guaranteed special tokens (BOS, EOS, PAD, UNK, punctuation)
-  for (int i = 0; i < SOURDOUGH_SUBVOCAB_ALWAYS_COUNT; i++) {
-    int r = SOURDOUGH_SUBVOCAB_ALWAYS_INCLUDE[i];
-    if (r < t->rows && y[r] <= -1e20f) {
-      y[r] = matvec_dot_row_i8(t, r, xq, xs);
-    }
-  }
+  // Sub-vocab clustering disabled in firmware: always evaluate full vocabulary
+  matvec_par(t, x, y);
 }
 
 // Copy RMSNorm weights from mapped flash to internal SRAM for speed
@@ -404,7 +344,7 @@ void setup() {
   main_h = xTaskGetCurrentTaskHandle();
   if (xTaskCreatePinnedToCore(worker_main, "matvec_worker", 4096, NULL, 2, &worker_h, 0) == pdPASS) {
     model.layer_matvec = matvec_par;
-    if (model.out_head.w8) model.head_matvec = matvec_subvocab;
+    model.head_matvec = matvec_par;
     Serial.println("[s3-sourdough] Dual-core acceleration enabled (Core 0 + Core 1)");
   }
 
@@ -416,22 +356,17 @@ void setup() {
                 heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024.0,
                 heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1048576.0);
   Preferences user_prefs;
-  if (user_prefs.begin("settings", true)) {
+  if (user_prefs.begin("settings", false)) {
     g_temperature = user_prefs.getFloat("temp", DEFAULT_TEMPERATURE);
     g_topp = user_prefs.getFloat("topp", DEFAULT_TOP_P);
-    g_subvocab_clusters = user_prefs.getInt("subvocab", 0);
+    g_subvocab_clusters = 0;
+    user_prefs.putInt("subvocab", 0);
     user_prefs.end();
   }
 
   Serial.printf("[s3-sourdough] Sampling: temp=%.2f, top_p=%.2f, rep_window=%d\n",
                 g_temperature, g_topp, RECENT_WINDOW);
-
-  if (g_subvocab_clusters > 0) {
-    Serial.printf("[s3-sourdough] Sub-vocab: top %d/%d clusters active\n",
-                  g_subvocab_clusters, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS);
-  } else {
-    Serial.println("[s3-sourdough] Sub-vocab: disabled (full vocabulary evaluation for maximum accuracy)");
-  }
+  Serial.println("[s3-sourdough] Sub-vocab: disabled (full vocabulary evaluation for maximum accuracy)");
 #if defined(__XTENSA__) && defined(CONFIG_IDF_TARGET_ESP32S3)
   Serial.println("[s3-sourdough] SIMD: ESP32-S3 PIE 128-bit vector instructions active");
 #else
@@ -467,10 +402,14 @@ void setup() {
   Serial.print("User: ");
 }
 
+#define LLM_MAX_PROMPT_TOKENS 256
+
 // ---- Shared inference: fills 'out' with the assistant's answer ---------------
 static void run_inference_to_buf(const String &prompt, String &out, int &n_tokens, float &tok_per_sec) {
-  uint16_t prompt_tokens[128];
-  int n_prompt = bpe_encode_ascii(&tokenizer, prompt.c_str(), prompt_tokens, 120);
+  uint16_t prompt_tokens[LLM_MAX_PROMPT_TOKENS];
+  int max_input_tokens = (model.c.seq_len > 32) ? (model.c.seq_len - 16) : 240;
+  if (max_input_tokens > LLM_MAX_PROMPT_TOKENS) max_input_tokens = LLM_MAX_PROMPT_TOKENS;
+  int n_prompt = bpe_encode_ascii(&tokenizer, prompt.c_str(), prompt_tokens, max_input_tokens);
   if (n_prompt < 0) {
     out = "Error: prompt contains unsupported characters or is too long.";
     n_tokens = 0; tok_per_sec = 0.0f;
@@ -484,7 +423,7 @@ static void run_inference_to_buf(const String &prompt, String &out, int &n_token
 
   int64_t t0 = esp_timer_get_time();
   int pieces_out = 0;
-  int max_pieces = 60;
+  int max_pieces = (model.c.seq_len >= 256) ? 120 : 60;
   int recent[RECENT_WINDOW];
   for (int i = 0; i < RECENT_WINDOW; i++) recent[i] = -1;
 
@@ -652,17 +591,15 @@ static void handle_web_settings_save() {
     float p = http_server.arg("topp").toFloat();
     if (p > 0.0f && p <= 1.0f) g_topp = p;
   }
-  if (http_server.hasArg("subvocab")) {
-    int c = http_server.arg("subvocab").toInt();
-    if (c >= 0 && c <= SOURDOUGH_SUBVOCAB_NUM_CLUSTERS) g_subvocab_clusters = c;
-  }
+  // Sub-vocab clustering is permanently disabled
+  g_subvocab_clusters = 0;
 
   // Persist to Preferences
   Preferences prefs;
   if (prefs.begin("settings", false)) {
     prefs.putFloat("temp", g_temperature);
     prefs.putFloat("topp", g_topp);
-    prefs.putInt("subvocab", g_subvocab_clusters);
+    prefs.putInt("subvocab", 0);
     prefs.end();
   }
 
@@ -672,9 +609,7 @@ static void handle_web_settings_save() {
   snprintf(topp_buf, sizeof(topp_buf), "%.2f", g_topp);
   html.replace("%TEMPERATURE%", temp_buf);
   html.replace("%TOP_P%", topp_buf);
-  String subvocab_str = (g_subvocab_clusters == 0) ? "Disabled (Full Vocab)"
-                                                   : ("Top " + String(g_subvocab_clusters) + " Clusters");
-  html.replace("%SUBVOCAB%", subvocab_str);
+  html.replace("%SUBVOCAB%", "Disabled (Full Vocab)");
 
   http_server.send(200, "text/html", html);
 }
@@ -826,29 +761,7 @@ void loop() {
     return;
   }
   if (prompt.startsWith("/subvocab")) {
-    String arg = prompt.substring(prompt.indexOf(' ') + 1);
-    arg.trim();
-    if (prompt == "/subvocab" || arg.length() == 0) {
-      Serial.printf("Assistant: Sub-vocab -> clusters=%d/%d (status: %s)\n\nUser: ",
-                    g_subvocab_clusters, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS,
-                    g_subvocab_clusters > 0 ? "ENABLED" : "DISABLED");
-    } else if (arg.equalsIgnoreCase("off") || arg == "0") {
-      g_subvocab_clusters = 0;
-      Serial.println("Assistant: Sub-vocabulary prediction disabled (full vocabulary evaluation).\n\nUser: ");
-    } else if (arg.equalsIgnoreCase("on")) {
-      g_subvocab_clusters = SOURDOUGH_SUBVOCAB_DEFAULT_TOP_CLUSTERS;
-      Serial.printf("Assistant: Sub-vocabulary prediction enabled (top %d clusters).\n\nUser: ", g_subvocab_clusters);
-    } else {
-      int c = arg.toInt();
-      if (c >= 0 && c <= SOURDOUGH_SUBVOCAB_NUM_CLUSTERS) {
-        g_subvocab_clusters = c;
-        Serial.printf("Assistant: Sub-vocabulary clusters set to %d / %d.\n\nUser: ",
-                      g_subvocab_clusters, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS);
-      } else {
-        Serial.printf("Assistant: Invalid clusters (0-%d). Current: %d\n\nUser: ",
-                      SOURDOUGH_SUBVOCAB_NUM_CLUSTERS, g_subvocab_clusters);
-      }
-    }
+    Serial.println("Assistant: Sub-vocabulary clustering is permanently disabled in firmware (full vocabulary evaluation active for maximum quality).\n\nUser: ");
     return;
   }
   if (prompt == "/simd") {
@@ -860,9 +773,8 @@ void loop() {
     return;
   }
   if (prompt == "/config") {
-    Serial.printf("Assistant: Config -> temp=%.2f | top_p=%.2f | rep_window=%d | subvocab=%d/%d clusters (%s) | SIMD=%s\n\nUser: ",
-                  g_temperature, g_topp, RECENT_WINDOW, g_subvocab_clusters, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS,
-                  g_subvocab_clusters > 0 ? "ON" : "OFF",
+    Serial.printf("Assistant: Config -> temp=%.2f | top_p=%.2f | rep_window=%d | subvocab=disabled (full 2197-vocab SIMD) | SIMD=%s\n\nUser: ",
+                  g_temperature, g_topp, RECENT_WINDOW,
 #if defined(__XTENSA__) && defined(CONFIG_IDF_TARGET_ESP32S3)
                   "ESP32-S3 PIE"
 #else
@@ -873,8 +785,10 @@ void loop() {
   }
 
   // 1. Encode prompt with on-device BPE tokenizer
-  uint16_t prompt_tokens[128];
-  int n_prompt = bpe_encode_ascii(&tokenizer, prompt.c_str(), prompt_tokens, 120);
+  uint16_t prompt_tokens[LLM_MAX_PROMPT_TOKENS];
+  int max_input_tokens = (model.c.seq_len > 32) ? (model.c.seq_len - 16) : 240;
+  if (max_input_tokens > LLM_MAX_PROMPT_TOKENS) max_input_tokens = LLM_MAX_PROMPT_TOKENS;
+  int n_prompt = bpe_encode_ascii(&tokenizer, prompt.c_str(), prompt_tokens, max_input_tokens);
   if (n_prompt < 0) {
     Serial.println("Assistant: Error: Prompt contains unsupported characters or is too long.\n");
     Serial.print("User: ");
@@ -889,16 +803,16 @@ void loop() {
   for (int i = 0; i < n_prompt; i++) {
     llm_forward(&model, prompt_tokens[i], pos++, &s);
   }
-  // 3. Feed BOS token
+  // Prime BOS token into KV cache
   llm_forward(&model, SOURDOUGH_OUT2IN[SOURDOUGH_BOS], pos++, &s);
 
-  // 4. Autoregressive whole-word generation
   int64_t t0 = esp_timer_get_time();
   int pieces_out = 0;
-  int max_pieces = 60;
+  int max_pieces = (model.c.seq_len >= 256) ? 120 : 60;
   int recent[RECENT_WINDOW];
   for (int i = 0; i < RECENT_WINDOW; i++) recent[i] = -1;
 
+  // 3. Autoregressive generation loop
   for (int step = 0; step < max_pieces && pos < model.c.seq_len; step++) {
     // Suppress non-word special tokens (<pad>, <bos>, and strongly suppress <unk>)
     s.logits[SOURDOUGH_PAD] = -1e30f;

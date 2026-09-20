@@ -53,8 +53,8 @@ task validate-dataset
 ### 2. Local Training
 Train the Sourdough PLE micro-LLM locally:
 ```bash
-task train          # 1,200 steps
-task train-full     # 2,000 steps
+task train          # 3,000 steps
+task train-full     # 5,000 steps
 ```
 
 Sample predictions from a trained checkpoint:

@@ -4,7 +4,7 @@
 Features:
 1. Validation Checks:
    - Tokenizer round-trip fidelity (Encode -> Decode == original)
-   - Sequence length distribution vs context window (128 tokens)
+   - Sequence length distribution vs context window (256 tokens)
    - Vocabulary ID boundaries (< vocab size)
    - Binary bin integrity (train.bin, val.bin)
    - Category distribution balance
@@ -28,7 +28,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = PROJECT_ROOT / "data" / "sourdough"
 
 
-def run_checks(vocab_size: int = 2048, seq_len: int = 128):
+def run_checks(vocab_size: int = 2048, seq_len: int = 256):
     qa_file = DATA_ROOT / "raw" / "sourdough_qa.jsonl"
     asym_train = DATA_ROOT / "asymmetric" / "train.pt"
     asym_val = DATA_ROOT / "asymmetric" / "val.pt"
@@ -206,7 +206,7 @@ def main():
     parser = argparse.ArgumentParser(description="Test and validate Sourdough dataset without training.")
     parser.add_argument("--query", "-q", type=str, default=None, help="Test query against the dataset")
     parser.add_argument("--vocab", type=int, default=2048, help="Vocabulary size (default: 2048)")
-    parser.add_argument("--seq-len", type=int, default=128, help="Context length (default: 128)")
+    parser.add_argument("--seq-len", type=int, default=256, help="Context length (default: 256)")
     args = parser.parse_args()
 
     if args.query:

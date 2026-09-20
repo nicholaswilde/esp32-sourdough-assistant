@@ -6,8 +6,8 @@ Automates provisioning, uploading, remote execution, and downloading
 of trained model checkpoints and tokenizer artifacts.
 
 Usage:
-  task colab-train        # Train PLE micro-LLM (1,200 steps)
-  task colab-train-full   # Extended training (2,000 steps)
+  task colab-train        # Train PLE micro-LLM (3,000 steps)
+  task colab-train-full   # Extended training (5,000 steps)
   task colab-train-test   # Fast smoke test (50 steps)
   task colab-stop         # Release Colab session
 """

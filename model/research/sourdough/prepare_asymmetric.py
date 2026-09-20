@@ -50,7 +50,7 @@ def main():
     parser.add_argument("--layout", type=Path, default=LAYOUT_PATH, help="Path to layout.json")
     parser.add_argument("--tokenizer", type=Path, default=TOKENIZER_PATH, help="Path to tokenizer.json")
     parser.add_argument("--out-dir", type=Path, default=OUT_DIR, help="Output directory")
-    parser.add_argument("--seq-len", type=int, default=128, help="Max sequence length")
+    parser.add_argument("--seq-len", type=int, default=256, help="Max sequence length (default: 256)")
     args = parser.parse_args()
 
     args.out_dir.mkdir(parents=True, exist_ok=True)

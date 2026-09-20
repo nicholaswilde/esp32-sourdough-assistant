@@ -26,6 +26,10 @@ except ImportError:
     sys.exit(1)
 
 
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent if (SCRIPT_DIR.parent / ".git").exists() or (SCRIPT_DIR.parent / "Taskfile.yml").exists() else SCRIPT_DIR
+
+
 def generate_model_card(repo_id: str, bin_filenames: List[str]) -> str:
     """Generate a clean model card README.md with YAML metadata for Hugging Face."""
     primary_bin = bin_filenames[0] if bin_filenames else "sourdough_q4.bin"
@@ -51,7 +55,7 @@ pipeline_tag: text-generation
 
 An offline, edge AI language model trained specifically to answer sourdough baking and troubleshooting questions directly on an **ESP32-S3** microcontroller.
 
-Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-barista) and built inside the **[esp32-sandbox](https://github.com/nicholaswilde/esp32-sandbox)** project (`projects/s3-sourdough`).
+Built for the **[esp32-sourdough-assistant](https://github.com/nicholaswilde/esp32-sourdough-assistant)** project. Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-barista).
 
 ## Model Details
 
@@ -59,8 +63,9 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
 - **Architecture**: Per-Layer Embeddings (PLE) micro-LLM
 - **Flash Memory Required**: ≥ 16MB
 - **PSRAM Required**: ≥ 8MB (Octal SPI recommended)
-- **Vocabulary**: 2,048 tokens (compact ByteLevel BPE)
-- **Quantization**: INT4 grouped quantization (`group_size = 128`)
+- **Vocabulary**: Asymmetric architecture (6,106 BPE input encoder, 2,197 curated whole-word output classes)
+- **Context Length**: 256 tokens
+- **Quantization**: INT4 grouped quantization (`group_size = 128`) with untied output head
 - **Partition Offset**: `0x520000` (mapped via `esp_partition_mmap`)
 - **Training Dataset**: `sourdough_qa.jsonl` (5,000 conversational Q&A pairs covering 111 curated sourdough baking topics with leak-free validation split)
 - **Domain Scope**:
@@ -83,7 +88,7 @@ esptool --baud 921600 --port /dev/ttyACM0 write-flash 0x520000 {primary_bin}
 
 ## Running Inference
 
-Refer to the [esp32-sandbox repository](https://github.com/nicholaswilde/esp32-sandbox/tree/main/projects/s3-sourdough) for firmware building, flashing, and interactive USB serial querying.
+Refer to the [esp32-sourdough-assistant repository](https://github.com/nicholaswilde/esp32-sourdough-assistant) for firmware building, flashing, and interactive USB serial or WiFi querying.
 """
     return card
 
@@ -101,9 +106,10 @@ def generate_default_metadata(bin_name: str) -> dict:
             "psram_required_mb": 8,
             "flash_partition_offset": "0x520000",
         },
-        "vocab_size": 2048,
-        "seq_len": 128,
-        "inference_engine": "llama2.c / ple compatible (esp_partition_mmap)",
+        "vocab_size": 6106,
+        "active_vocab_size": 2197,
+        "seq_len": 256,
+        "inference_engine": "ple compatible (esp_partition_mmap)",
     }
 
 
@@ -123,12 +129,36 @@ def collect_artifacts(
 ) -> Dict[str, Tuple[Optional[Path], Optional[str]]]:
     artifacts: Dict[str, Tuple[Optional[Path], Optional[str]]] = {}
 
-    if target_path.is_dir():
+    if target_path.is_file() and target_path.suffix == ".bin":
+        bin_files = [target_path]
+        base_dir = target_path.parent
+    elif target_path.is_dir():
         base_dir = target_path
         bin_files = sorted(list(base_dir.glob("*.bin")))
     else:
-        base_dir = target_path.parent
-        bin_files = [target_path] if target_path.suffix == ".bin" else sorted(list(base_dir.glob("*.bin")))
+        base_dir = target_path.parent if target_path.parent.exists() else SCRIPT_DIR / "tools"
+        bin_files = sorted(list(base_dir.glob("*.bin"))) if base_dir.exists() else []
+
+    # If no .bin found in base_dir, search standard repository locations
+    if not bin_files:
+        fallback_bins = [
+            SCRIPT_DIR / "tools" / "sourdough_q4.bin",
+            repo_root / "firmware" / "models" / "sourdough_q4.bin",
+            repo_root / "model" / "tools" / "sourdough_q4.bin",
+        ]
+        for fb in fallback_bins:
+            if fb.exists() and fb not in bin_files:
+                bin_files.append(fb.resolve())
+
+    # Strict check: Never upload empty bundle without the actual model binary!
+    if not bin_files:
+        print(
+            f"Error: No model binary (*.bin) found in '{target_path}' or standard model directories!\n"
+            f"Refusing to upload incomplete bundle to Hugging Face without model weights.\n"
+            f"Run 'task quantize' to generate sourdough_q4.bin first.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
 
     for b in bin_files:
         artifacts[b.name] = (b, None)
@@ -136,50 +166,65 @@ def collect_artifacts(
     # Tokenizer
     tok_candidates = [
         base_dir / "tokenizer.json",
-        base_dir / "tools" / "tokenizer.json",
-        repo_root / "model" / "data" / "sourdough" / "tokenizer.json",
+        SCRIPT_DIR / "tools" / "tokenizer.json",
+        SCRIPT_DIR / "data" / "sourdough" / "tokenizer.json",
         repo_root / "model" / "tools" / "tokenizer.json",
-        repo_root / "data" / "sourdough" / "tokenizer.json",
+        repo_root / "model" / "data" / "sourdough" / "tokenizer.json",
+        repo_root / "firmware" / "models" / "tokenizer.json",
     ]
     for cand in tok_candidates:
         if cand.exists():
-            artifacts["tokenizer.json"] = (cand, None)
+            artifacts["tokenizer.json"] = (cand.resolve(), None)
             break
 
     # Dataset Q&A pairs (sourdough_qa.jsonl)
     qa_candidates = [
         base_dir / "sourdough_qa.jsonl",
+        SCRIPT_DIR / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
         repo_root / "model" / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
-        repo_root / "data" / "sourdough" / "raw" / "sourdough_qa.jsonl",
     ]
     for cand in qa_candidates:
         if cand.exists():
-            artifacts["sourdough_qa.jsonl"] = (cand, None)
+            artifacts["sourdough_qa.jsonl"] = (cand.resolve(), None)
             break
 
     # Metadata
     meta_candidate = base_dir / "metadata.json"
+    if not meta_candidate.exists():
+        meta_candidate = SCRIPT_DIR / "tools" / "metadata.json"
+
     if meta_candidate.exists():
-        artifacts["metadata.json"] = (meta_candidate, None)
+        artifacts["metadata.json"] = (meta_candidate.resolve(), None)
     else:
-        primary_name = bin_files[0].name if bin_files else "sourdough_q4.bin"
+        primary_name = bin_files[0].name
         meta_data = generate_default_metadata(primary_name)
         artifacts["metadata.json"] = (None, json.dumps(meta_data, indent=2))
 
     # License
-    license_candidate = base_dir / "LICENSE"
-    if not license_candidate.exists():
-        license_candidate = repo_root / "LICENSE"
-
-    if license_candidate.exists():
-        artifacts["LICENSE"] = (license_candidate, None)
+    license_candidates = [
+        repo_root / "LICENSE",
+        base_dir / "LICENSE",
+    ]
+    for cand in license_candidates:
+        if cand.exists():
+            artifacts["LICENSE"] = (cand.resolve(), None)
+            break
 
     # README.md
-    readme_candidate = base_dir / "README.md"
-    if readme_candidate.exists() and readme_candidate != (repo_root / "projects" / "s3-sourdough" / "README.md"):
-        artifacts["README.md"] = (readme_candidate, None)
+    readme_candidates = [
+        base_dir / "README.md",
+        SCRIPT_DIR / "tools" / "README.md",
+    ]
+    chosen_readme = None
+    for cand in readme_candidates:
+        if cand.exists() and cand != (repo_root / "README.md") and cand != (repo_root / "model" / "README.md"):
+            chosen_readme = cand.resolve()
+            break
+
+    if chosen_readme:
+        artifacts["README.md"] = (chosen_readme, None)
     else:
-        bin_names = [b.name for b in bin_files] if bin_files else ["sourdough_q4.bin"]
+        bin_names = [b.name for b in bin_files]
         card_content = generate_model_card("REPO_ID_PLACEHOLDER", bin_names)
         artifacts["README.md"] = (None, card_content)
 
@@ -194,8 +239,8 @@ def main():
         "--path",
         "-p",
         type=str,
-        default="tools/",
-        help="Local path to model binary or directory (default: tools/)",
+        default=None,
+        help="Local path to model binary or directory (defaults to model/tools/ or firmware/models/)",
     )
     parser.add_argument(
         "--repo-id",
@@ -237,15 +282,38 @@ def main():
     repo_id = args.repo_id or get_default_repo(api)
     print(f"Target repository: https://huggingface.co/{repo_id}")
 
-    upload_path = Path(args.path).resolve()
-    curr = upload_path
-    repo_root = curr
-    for parent in [curr] + list(curr.parents):
-        if (parent / ".git").exists() or (parent / "LICENSE").exists():
-            repo_root = parent
-            break
+    # Sanitize and resolve upload_path
+    raw_path = args.path
+    env_path = os.environ.get("PATH", "")
+    if raw_path and (raw_path == env_path or (":" in raw_path and not Path(raw_path).exists())):
+        # Accidental system PATH passed in by Taskfile variable expansion
+        raw_path = None
 
-    artifacts = collect_artifacts(upload_path, repo_root)
+    if raw_path:
+        p = Path(raw_path)
+        if p.is_absolute():
+            upload_path = p.resolve()
+        else:
+            for base in [Path.cwd(), SCRIPT_DIR, REPO_ROOT]:
+                if (base / p).exists():
+                    upload_path = (base / p).resolve()
+                    break
+            else:
+                upload_path = (SCRIPT_DIR / p).resolve()
+    else:
+        candidate_paths = [
+            SCRIPT_DIR / "tools" / "sourdough_q4.bin",
+            SCRIPT_DIR / "tools",
+            REPO_ROOT / "firmware" / "models" / "sourdough_q4.bin",
+            REPO_ROOT / "firmware" / "models",
+        ]
+        upload_path = SCRIPT_DIR / "tools"
+        for c in candidate_paths:
+            if c.exists():
+                upload_path = c.resolve()
+                break
+
+    artifacts = collect_artifacts(upload_path, REPO_ROOT)
 
     if "README.md" in artifacts:
         local_path, content = artifacts["README.md"]

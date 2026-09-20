@@ -11,7 +11,7 @@
   "ple_dim": 128,
   "vocab_size": 6106,
   "active_vocab_size": 2197,
-  "seq_len": 128,
+  "seq_len": 256,
   "rope_theta": 10000.0,
   "tied_head": false,
   "total_parameters": 8294816,

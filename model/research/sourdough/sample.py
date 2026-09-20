@@ -28,7 +28,7 @@ def generate_response(
     model,
     tokenizer,
     prompt: str,
-    max_new_tokens: int = 60,
+    max_new_tokens: int = 120,
     temperature: float = 0.7,
     top_p: float = 0.9,
     out2in: list[int] | None = None,
@@ -98,6 +98,7 @@ def main():
     parser.add_argument("prompt", type=str, nargs="?", default="Why is my bread gummy inside?", help="User baking question")
     parser.add_argument("--ckpt", type=str, default=None, help="Path to checkpoint .pt file")
     parser.add_argument("--temp", type=float, default=0.7, help="Sampling temperature")
+    parser.add_argument("--max-tokens", type=int, default=120, help="Maximum generated tokens (default: 120)")
     args = parser.parse_args()
 
     ckpt_path = Path(args.ckpt) if args.ckpt else sorted(list(RUNS_DIR.glob("*.pt")))[-1] if list(RUNS_DIR.glob("*.pt")) else None
@@ -115,11 +116,9 @@ def main():
     words = None
     if is_asym:
         tok_path = DATA_ROOT / "tokenizer.json"
-        layout_path = DATA_ROOT / "layout.json"
-        vocab_path = DATA_ROOT / "vocab.json"
-        with open(layout_path, "r", encoding="utf-8") as f:
+        with open(DATA_ROOT / "layout.json") as f:
             out2in = json.load(f)["out2in"]
-        with open(vocab_path, "r", encoding="utf-8") as f:
+        with open(DATA_ROOT / "vocab.json") as f:
             words = [t["token"] for t in json.load(f)["tokens"]]
     else:
         tok_path = DATA_ROOT / f"vocab-{vocab}" / "tokenizer.json"
@@ -133,7 +132,7 @@ def main():
 
     print(f"\nUser: {args.prompt}")
     answer = generate_response(
-        model, tokenizer, args.prompt, temperature=args.temp, out2in=out2in, words=words
+        model, tokenizer, args.prompt, max_new_tokens=args.max_tokens, temperature=args.temp, out2in=out2in, words=words
     )
     print(f"Assistant: {answer}\n")
 

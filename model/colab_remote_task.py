@@ -72,7 +72,7 @@ def setup_workspace(base_dir: Path) -> Path:
     return repo_dir
 
 
-def run_pipeline(work_dir: Path, output_dir: Path, steps: int = 1200, eval_every: int = 100):
+def run_pipeline(work_dir: Path, output_dir: Path, steps: int = 3000, eval_every: int = 100):
     log(f"=== Action: Sourdough Training ({steps} steps) ===")
 
     # Step 1: Generate raw dataset if not already present
@@ -216,9 +216,9 @@ def main():
     if args.action == "train-test":
         run_pipeline(work_dir, output_dir, steps=50, eval_every=10)
     elif args.action == "train":
-        run_pipeline(work_dir, output_dir, steps=1200, eval_every=100)
+        run_pipeline(work_dir, output_dir, steps=3000, eval_every=100)
     elif args.action == "train-full":
-        run_pipeline(work_dir, output_dir, steps=2000, eval_every=100)
+        run_pipeline(work_dir, output_dir, steps=5000, eval_every=100)
 
     log("=== Task Complete ===")
     log("Artifacts available in /content/output/:")
