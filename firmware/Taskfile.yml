@@ -16,6 +16,12 @@ tasks:
     cmds:
       - pio run -t upload -e esp32-s3-devkitc-1
 
+  eau:
+    desc: Erase flash and upload the firmware to the ESP32-S3
+    cmds:
+      - pio run -e esp32-s3-devkitc-1 -t erase -t upload
+
+
   flash-model:
     desc: Flash the compiled model binary to partition at 0x520000
     cmds:
@@ -59,6 +65,16 @@ tasks:
         curl -sS -X POST "http://{{.IP}}:{{.PORT}}/v1/chat/completions" \
           -H "Content-Type: application/json" \
           -d "{\"model\":\"esp32-sourdough\",\"messages\":[{\"role\":\"user\",\"content\":\"{{.PROMPT}}\"}]}" | jq .
+
+  test-web:
+    desc: Test and inspect device web UI, settings, and live inference over WiFi
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+      IP: '{{.DEVICE_IP | default ""}}'
+      PORT: '{{.DEVICE_PORT | default ""}}'
+    cmds:
+      - uv run python ../.agents/skills/test-web/scripts/test_web.py {{if .IP}}--ip {{.IP}}{{end}} {{if .PORT}}--port {{.PORT}}{{end}} {{if .PROMPT}}--prompt "{{.PROMPT}}"{{end}}
+
 
   eval-http:
     desc: Run automated HTTP health check, response evaluation, and diagnostics

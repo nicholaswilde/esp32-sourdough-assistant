@@ -32,6 +32,12 @@ Inspired by [slvDev/esp32-ai-barista](https://huggingface.co/slvDev/esp32-ai-bar
     4.  **Scoring & Baking**: Blade angle (30–45° for ears), steam importance, Dutch oven temps & times, gummy crumb prevention, burnt bottom deflection, open bakes with lava rocks/baking steel, ice cubes in Dutch oven, micro-blisters, bread storage.
     5.  **Baker's Math**: Baker's percentages, standard 100/70/20/2 sourdough formula, salt functions, recipe scaling for 2 loaves, total hydration calculations including starter.
     6.  **Guardrails**: Polite rejection for out-of-domain / non-baking queries.
+*   **Catppuccin Mocha Web Interface & Captive Portal**:
+    *   **Captive Portal (Port 80)**: Automatic SoftAP mode (`sourdough-assistant-XXXX` at `192.168.4.1`) with async SSID scanning, signal strengths (dBm), and password eye toggle. Credentials persist in NVS flash.
+    *   **Web Chat REPL (Port 8080)**: Standalone in-browser chat connected directly to on-device PLE INT4 inference with real-time token throughput metrics (`tok/s`) and live memory telemetry.
+    *   **Inference Settings (`/settings`)**: Synced sliders for temperature, top-p, and sub-vocabulary prediction persisted in NVS across reboots.
+    *   **In-Browser OTA Flasher (`/update`)**: Drag-and-drop firmware `.bin` updater with real-time percentage progress bar.
+
 
 ---
 
@@ -231,6 +237,14 @@ task build
 task flash
 ```
 
+#### Erase and Upload (`task eau`)
+To perform a full chip erase before flashing firmware:
+```bash
+task eau
+```
+> [!WARNING]
+> A full flash erase clears the entire flash chip, including the model weights partition at `0x520000`. You must run `task flash-model` after `task eau` to restore the model binary.
+
 #### Over-The-Air (OTA) Firmware Updates
 Once the dual-bank partition table and initial firmware are flashed over USB, future firmware updates can be installed wirelessly over WiFi without connecting a USB cable:
 ```bash
@@ -278,6 +292,9 @@ The on-device firmware supports dynamic adjustment of decoding and acceleration 
 * `/subvocab [on|off|<n>]`: Enable, disable, or adjust active sub-vocabulary clusters (`1`-`16`, default: `off`). Full-head SIMD is active by default for 100% domain accuracy at ~14.5 tok/s. Set to `on` or `4` for experimental maximum throughput (~16.5 tok/s).
 * `/simd`: Query status of ESP32-S3 PIE (Processor Instruction Extensions) 128-bit SIMD vector engine.
 * `/config`: Inspect active temperature, top-p, repetition window, sub-vocab clustering, and SIMD status.
+* `/wifi`: Query Wi-Fi connection status, IP address, and RSSI.
+* `/wifi reset`: Clear saved Wi-Fi credentials from NVS flash and restart device.
+* `/wifi portal`: Manually launch the SoftAP captive portal for Wi-Fi provisioning.
 
 In addition, the autoregressive generation loop includes:
 * **ESP32-S3 PIE 128-bit SIMD Acceleration**: Computes INT8 dot products at 16 parallel multiply-accumulations per cycle using custom Xtensa LX7 PIE vector instructions (`ee.zero.accx`, `ee.vld.128.ip`, `ee.vmulas.s8.accx.ld.ip`, `rur.accx_0`).
@@ -285,7 +302,43 @@ In addition, the autoregressive generation loop includes:
 * **Distance-Weighted Repetition Penalty**: Evaluates a rolling 32-token window, applying stronger suppression to recently emitted tokens (`factor = 0.80 + 0.15 * d / 32`).
 * **Adaptive Sentence Wrap-up**: Smoothly boosts `<eos>` and punctuation (`.`, `?`) logits as generation nears the token budget to avoid abruptly truncated sentences.
 
-### 5. OpenAI-Compatible WiFi HTTP API & Open WebUI
+### 5. Catppuccin Mocha Web Interface & Captive Portal
+
+The ESP32-S3 hosts a rich, responsive web interface styled with the [Catppuccin Mocha](https://github.com/catppuccin/catppuccin) palette.
+
+#### Captive Portal (Port 80)
+If the device cannot connect to saved Wi-Fi credentials (or if no credentials are configured), it automatically starts an Access Point:
+* **SSID**: `sourdough-assistant-XXXX` (where `XXXX` are the last 4 characters of MAC)
+* **IP Address**: `192.168.4.1`
+* **Captive DNS**: All DNS queries redirect to the configuration portal automatically on mobile devices and laptops.
+* **Features**: Live asynchronous Wi-Fi scanning with signal strength bars (dBm), network SSID selection, and password reveal toggle. Credentials persist in NVS flash.
+
+#### Web Chat REPL (Port 8080 - `GET /`)
+Access `http://<device-ip>:8080/` in your browser for a standalone sourdough baking assistant chat:
+* Direct browser-to-ESP32 conversation with no external cloud dependencies.
+* Real-time generation metrics with token throughput badge (`tok/s`).
+* Live system telemetry showing free SRAM and PSRAM memory.
+
+#### Inference Settings (`GET /settings`)
+Access `http://<device-ip>:8080/settings` to dynamically tune model inference:
+* **Temperature**: Slider from `0.0` to `2.0` (default: `0.75`).
+* **Top-P**: Nucleus sampling cutoff slider from `0.0` to `1.0` (default: `0.90`).
+* **Sub-Vocabulary Acceleration**: Toggle cluster-based hierarchical softmax or set cluster limits (`1`-`16`).
+* **NVS Persistence**: Saving settings (`POST /settings/save`) writes configurations directly to ESP32 non-volatile storage, restoring values upon reboot.
+
+#### In-Browser OTA Flasher (`GET /update`)
+Access `http://<device-ip>:8080/update` to update firmware wirelessly:
+* Drag-and-drop or select a PlatformIO compiled `firmware.bin`.
+* Real-time percentage progress bar during flashing.
+* Device automatically reboots into the updated partition upon completion.
+
+#### Automated Web & Settings Testing
+Run automated end-to-end HTTP tests validating all web routes, settings updates, and inference responses:
+```bash
+task test-web
+```
+
+### 6. OpenAI-Compatible WiFi HTTP API & Open WebUI
 
 The firmware exposes an OpenAI-compatible HTTP server directly on port `8080` over WiFi.
 

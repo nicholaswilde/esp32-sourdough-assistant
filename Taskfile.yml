@@ -27,6 +27,12 @@ tasks:
     cmds:
       - task: firmware:flash
 
+  eau:
+    desc: Erase flash and upload firmware to ESP32-S3 (delegates to firmware/)
+    cmds:
+      - task: firmware:eau
+
+
   ota:
     desc: Flash firmware binary over WiFi via HTTP OTA update (delegates to firmware/)
     cmds:
@@ -64,6 +70,18 @@ tasks:
           PROMPT: '{{.PROMPT}}'
           DEVICE_IP: '{{.DEVICE_IP}}'
           DEVICE_PORT: '{{.DEVICE_PORT}}'
+
+  test-web:
+    desc: Test and inspect device web UI, settings, and live inference over WiFi (delegates to firmware/)
+    vars:
+      PROMPT: '{{.PROMPT | default ""}}'
+    cmds:
+      - task: firmware:test-web
+        vars:
+          PROMPT: '{{.PROMPT}}'
+          DEVICE_IP: '{{.DEVICE_IP}}'
+          DEVICE_PORT: '{{.DEVICE_PORT}}'
+
 
   eval-http:
     desc: Run automated HTTP health check, response evaluation, and diagnostics (delegates to firmware/)

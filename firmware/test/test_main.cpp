@@ -92,11 +92,138 @@ void test_subvocab_clustering() {
     TEST_ASSERT_EQUAL_UINT16(3, SOURDOUGH_SUBVOCAB_ALWAYS_INCLUDE[3]); // UNK
 }
 
+#include "wifi_manager.cpp"
+
+void test_wifi_manager_initial_state() {
+    WifiManager wifi("InitialSSID", "InitialPass");
+    TEST_ASSERT_EQUAL(WIFI_STATE_DISCONNECTED, wifi.getState());
+    TEST_ASSERT_EQUAL_STRING("0.0.0.0", wifi.getIPAddress().c_str());
+    TEST_ASSERT_EQUAL(-100, wifi.getRSSI());
+    TEST_ASSERT_EQUAL_STRING("InitialSSID", wifi.getSSID().c_str());
+
+    String apSSID = wifi.getAPSSID();
+    TEST_ASSERT_TRUE(apSSID.startsWith("sourdough-assistant-"));
+
+    wifi.setCredentials("NewSSID", "NewPass");
+    TEST_ASSERT_EQUAL_STRING("NewSSID", wifi.getSSID().c_str());
+}
+
+void test_wifi_portal_catppuccin_mocha_styling() {
+    String html = WifiManager::generatePortalHTML(0, "<div class='net-item'>Test</div>", "CurrentSSID");
+
+    // Catppuccin Mocha Color Palette tokens
+    TEST_ASSERT_TRUE(html.indexOf("#1e1e2e") != -1); // Mocha Base
+    TEST_ASSERT_TRUE(html.indexOf("#181825") != -1); // Mocha Mantle
+    TEST_ASSERT_TRUE(html.indexOf("#11111b") != -1); // Mocha Crust
+    TEST_ASSERT_TRUE(html.indexOf("#313244") != -1); // Mocha Surface0
+    TEST_ASSERT_TRUE(html.indexOf("#45475a") != -1); // Mocha Surface1
+    TEST_ASSERT_TRUE(html.indexOf("#cdd6f4") != -1); // Mocha Text
+    TEST_ASSERT_TRUE(html.indexOf("#a6adc8") != -1); // Mocha Subtext0
+    TEST_ASSERT_TRUE(html.indexOf("#cba6f7") != -1); // Mocha Mauve
+    TEST_ASSERT_TRUE(html.indexOf("#f5c2e7") != -1); // Mocha Pink
+    TEST_ASSERT_TRUE(html.indexOf("#89b4fa") != -1); // Mocha Blue
+}
+
+void test_wifi_portal_network_listing_and_form() {
+    String netList = "<div class='net-item' onclick='selectSSID(\"BakerNet\")'>"
+                     "<span>BakerNet</span>"
+                     "<span style='color: #a6adc8; font-size: 12px;'>-45 dBm</span>"
+                     "</div>";
+    String html = WifiManager::generatePortalHTML(1, netList, "");
+
+    // Network list rendered
+    TEST_ASSERT_TRUE(html.indexOf("BakerNet") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("-45 dBm") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("class='net-list'") != -1);
+
+    // Form inputs and actions
+    TEST_ASSERT_TRUE(html.indexOf("action='/save'") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("id='ssid'") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("id='pass'") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("Save & Connect") != -1);
+
+    // Client-side JavaScript helpers
+    TEST_ASSERT_TRUE(html.indexOf("function selectSSID(ssid)") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("function togglePwd(id, el)") != -1);
+}
+
+void test_wifi_portal_saved_and_scanning_pages() {
+    String savedHtml = WifiManager::generateSavedHTML("SourdoughBakery");
+    TEST_ASSERT_TRUE(savedHtml.indexOf("Configuration Saved") != -1);
+    TEST_ASSERT_TRUE(savedHtml.indexOf("SourdoughBakery") != -1);
+    TEST_ASSERT_TRUE(savedHtml.indexOf("#a6e3a1") != -1); // Mocha Green
+
+    String scanningHtml = WifiManager::generateScanningHTML();
+    TEST_ASSERT_TRUE(scanningHtml.indexOf("Scanning for Wi-Fi...") != -1);
+    TEST_ASSERT_TRUE(scanningHtml.indexOf("content='3;url=/'") != -1);
+}
+
+#include "landing_html.h"
+#include "settings_html.h"
+#include "ota_html.h"
+
+void test_landing_html_catppuccin_mocha() {
+    String html = landing_html;
+    TEST_ASSERT_TRUE(html.indexOf("#1e1e2e") != -1); // Mocha Base
+    TEST_ASSERT_TRUE(html.indexOf("#181825") != -1); // Mocha Mantle
+    TEST_ASSERT_TRUE(html.indexOf("#313244") != -1); // Mocha Surface0
+    TEST_ASSERT_TRUE(html.indexOf("#cdd6f4") != -1); // Mocha Text
+    TEST_ASSERT_TRUE(html.indexOf("#cba6f7") != -1); // Mocha Mauve
+    TEST_ASSERT_TRUE(html.indexOf("#f5c2e7") != -1); // Mocha Pink
+    TEST_ASSERT_TRUE(html.indexOf("#89b4fa") != -1); // Mocha Blue
+    TEST_ASSERT_TRUE(html.indexOf("#a6e3a1") != -1); // Mocha Green
+    TEST_ASSERT_TRUE(html.indexOf("#f38ba8") != -1); // Mocha Red
+
+    // Navigation and Chat hooks
+    TEST_ASSERT_TRUE(html.indexOf("/settings") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("/update") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("/reset") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("/v1/chat/completions") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("chat-container") != -1);
+}
+
+void test_settings_html_catppuccin_mocha() {
+    String html = settings_html;
+    TEST_ASSERT_TRUE(html.indexOf("#1e1e2e") != -1); // Mocha Base
+    TEST_ASSERT_TRUE(html.indexOf("#181825") != -1); // Mocha Mantle
+    TEST_ASSERT_TRUE(html.indexOf("#313244") != -1); // Mocha Surface0
+    TEST_ASSERT_TRUE(html.indexOf("#cdd6f4") != -1); // Mocha Text
+    TEST_ASSERT_TRUE(html.indexOf("#cba6f7") != -1); // Mocha Mauve
+    TEST_ASSERT_TRUE(html.indexOf("#f5c2e7") != -1); // Mocha Pink
+    TEST_ASSERT_TRUE(html.indexOf("#89b4fa") != -1); // Mocha Blue
+
+    // Sliders & inputs
+    TEST_ASSERT_TRUE(html.indexOf("action=\"/settings/save\"") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("id=\"temp_slider\"") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("id=\"topp_slider\"") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("id=\"subvocab\"") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("info-table") != -1);
+}
+
+void test_ota_html_catppuccin_mocha() {
+    String html = ota_html;
+    TEST_ASSERT_TRUE(html.indexOf("#1e1e2e") != -1); // Mocha Base
+    TEST_ASSERT_TRUE(html.indexOf("#181825") != -1); // Mocha Mantle
+    TEST_ASSERT_TRUE(html.indexOf("#313244") != -1); // Mocha Surface0
+    TEST_ASSERT_TRUE(html.indexOf("#a6e3a1") != -1); // Mocha Green (progress)
+    TEST_ASSERT_TRUE(html.indexOf("/v1/update") != -1);
+    TEST_ASSERT_TRUE(html.indexOf("dropZone") != -1);
+}
+
 int main(int argc, char **argv) {
     UNITY_BEGIN();
     RUN_TEST(test_bpe_encoder);
     RUN_TEST(test_dot_product_i8);
     RUN_TEST(test_subvocab_clustering);
+    RUN_TEST(test_wifi_manager_initial_state);
+    RUN_TEST(test_wifi_portal_catppuccin_mocha_styling);
+    RUN_TEST(test_wifi_portal_network_listing_and_form);
+    RUN_TEST(test_wifi_portal_saved_and_scanning_pages);
+    RUN_TEST(test_landing_html_catppuccin_mocha);
+    RUN_TEST(test_settings_html_catppuccin_mocha);
+    RUN_TEST(test_ota_html_catppuccin_mocha);
     UNITY_END();
     return 0;
 }
+
+

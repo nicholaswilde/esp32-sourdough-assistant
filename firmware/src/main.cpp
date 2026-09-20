@@ -25,6 +25,11 @@
 #include <ArduinoOTA.h>
 #include <Update.h>
 #include <ArduinoJson.h>
+#include <Preferences.h>
+#include "wifi_manager.h"
+#include "landing_html.h"
+#include "settings_html.h"
+#include "ota_html.h"
 #if __has_include("secrets.h")
 #  include "secrets.h"
 #else
@@ -32,9 +37,12 @@
 #  define WIFI_PASSWORD "your_wifi_password"
 #endif
 
+
+static WifiManager wifi_manager(WIFI_SSID, WIFI_PASSWORD);
 static WebServer http_server(8080);
-static bool wifi_connected = false;
+static bool http_services_started = false;
 static void setup_http_routes();  // forward declaration
+
 
 // ---- Globals & Buffers -----------------------------------------------------
 static Model model;
@@ -407,8 +415,17 @@ void setup() {
   Serial.printf("[s3-sourdough] Free SRAM: %.1f KB | Free PSRAM: %.2f MB\n",
                 heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024.0,
                 heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1048576.0);
+  Preferences user_prefs;
+  if (user_prefs.begin("settings", true)) {
+    g_temperature = user_prefs.getFloat("temp", DEFAULT_TEMPERATURE);
+    g_topp = user_prefs.getFloat("topp", DEFAULT_TOP_P);
+    g_subvocab_clusters = user_prefs.getInt("subvocab", 0);
+    user_prefs.end();
+  }
+
   Serial.printf("[s3-sourdough] Sampling: temp=%.2f, top_p=%.2f, rep_window=%d\n",
                 g_temperature, g_topp, RECENT_WINDOW);
+
   if (g_subvocab_clusters > 0) {
     Serial.printf("[s3-sourdough] Sub-vocab: top %d/%d clusters active\n",
                   g_subvocab_clusters, SOURDOUGH_SUBVOCAB_NUM_CLUSTERS);
@@ -420,28 +437,31 @@ void setup() {
 #else
   Serial.println("[s3-sourdough] SIMD: Scalar fallback");
 #endif
-  // 7. Start WiFi + HTTP server
-  Serial.printf("[s3-sourdough] WiFi: connecting to \"%s\"...\n", WIFI_SSID);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  int tries = 0;
-  while (WiFi.status() != WL_CONNECTED && tries < 20) {
-    delay(500);
+  // 7. Start WiFi Manager & Captive Portal
+  wifi_manager.begin();
+  unsigned long wifi_check_start = millis();
+  while (wifi_manager.getState() == WIFI_STATE_CONNECTING && (millis() - wifi_check_start < 10000)) {
+    wifi_manager.update();
+    delay(200);
     Serial.print('.');
-    tries++;
   }
-  if (WiFi.status() == WL_CONNECTED) {
-    wifi_connected = true;
-    Serial.printf("\n[s3-sourdough] WiFi: connected, IP=%s\n", WiFi.localIP().toString().c_str());
+  if (wifi_manager.getState() == WIFI_STATE_CONNECTED) {
+    http_services_started = true;
+    Serial.printf("\n[s3-sourdough] WiFi: connected, IP=%s\n", wifi_manager.getIPAddress().c_str());
     Serial.printf("[s3-sourdough] HTTP: OpenAI API at http://%s:8080/v1/chat/completions\n",
-                  WiFi.localIP().toString().c_str());
+                  wifi_manager.getIPAddress().c_str());
     setup_http_routes();
     http_server.begin();
     ArduinoOTA.setHostname("esp32-sourdough");
     ArduinoOTA.begin();
     Serial.printf("[s3-sourdough] OTA: ArduinoOTA ready, HTTP firmware update at /v1/update\n");
+  } else if (wifi_manager.getState() == WIFI_STATE_AP_MODE) {
+    Serial.printf("\n[s3-sourdough] WiFi: Captive portal active at SSID '%s' (IP %s)\n",
+                  wifi_manager.getAPSSID().c_str(), wifi_manager.getIPAddress().c_str());
   } else {
-    Serial.println("\n[s3-sourdough] WiFi: offline – HTTP server disabled, Serial REPL only.");
+    Serial.println("\n[s3-sourdough] WiFi: offline / connecting in background.");
   }
+
 
   Serial.println("\nReady! Enter your sourdough question below:\n");
   Serial.print("User: ");
@@ -578,12 +598,117 @@ static void handle_chat_completions() {
   http_server.send(200, "application/json", body);
 }
 
+static void handle_web_landing() {
+  String html = landing_html;
+  size_t free_psram_kb = heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024;
+  size_t free_sram_kb = heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT) / 1024;
+
+  html.replace("%SSID%", wifi_manager.getSSID());
+  html.replace("%IP%", wifi_manager.getIPAddress());
+  html.replace("%RSSI%", String(wifi_manager.getRSSI()));
+  html.replace("%FREE_PSRAM%", String(free_psram_kb));
+  html.replace("%FREE_SRAM%", String(free_sram_kb));
+
+  http_server.send(200, "text/html", html);
+}
+
+static void handle_web_settings() {
+  String html = settings_html;
+  size_t free_psram_kb = heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024;
+  size_t total_psram_kb = heap_caps_get_total_size(MALLOC_CAP_SPIRAM) / 1024;
+  size_t free_sram_kb = heap_caps_get_free_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT) / 1024;
+  size_t total_sram_kb = heap_caps_get_total_size(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT) / 1024;
+
+  char temp_buf[16], topp_buf[16];
+  snprintf(temp_buf, sizeof(temp_buf), "%.2f", g_temperature);
+  snprintf(topp_buf, sizeof(topp_buf), "%.2f", g_topp);
+
+  html.replace("%TEMPERATURE%", temp_buf);
+  html.replace("%TOP_P%", topp_buf);
+
+  html.replace("%SUBVOCAB_0%", g_subvocab_clusters == 0 ? "selected" : "");
+  html.replace("%SUBVOCAB_2%", g_subvocab_clusters == 2 ? "selected" : "");
+  html.replace("%SUBVOCAB_4%", g_subvocab_clusters == 4 ? "selected" : "");
+  html.replace("%SUBVOCAB_8%", g_subvocab_clusters == 8 ? "selected" : "");
+  html.replace("%SUBVOCAB_16%", g_subvocab_clusters == 16 ? "selected" : "");
+
+  html.replace("%FREE_SRAM%", String(free_sram_kb));
+  html.replace("%TOTAL_SRAM%", String(total_sram_kb));
+  html.replace("%FREE_PSRAM%", String(free_psram_kb));
+  html.replace("%TOTAL_PSRAM%", String(total_psram_kb));
+  html.replace("%SSID%", wifi_manager.getSSID());
+  html.replace("%IP%", wifi_manager.getIPAddress());
+  html.replace("%RSSI%", String(wifi_manager.getRSSI()));
+
+  http_server.send(200, "text/html", html);
+}
+
+static void handle_web_settings_save() {
+  if (http_server.hasArg("temperature")) {
+    float t = http_server.arg("temperature").toFloat();
+    if (t >= 0.0f && t <= 2.0f) g_temperature = t;
+  }
+  if (http_server.hasArg("topp")) {
+    float p = http_server.arg("topp").toFloat();
+    if (p > 0.0f && p <= 1.0f) g_topp = p;
+  }
+  if (http_server.hasArg("subvocab")) {
+    int c = http_server.arg("subvocab").toInt();
+    if (c >= 0 && c <= SOURDOUGH_SUBVOCAB_NUM_CLUSTERS) g_subvocab_clusters = c;
+  }
+
+  // Persist to Preferences
+  Preferences prefs;
+  if (prefs.begin("settings", false)) {
+    prefs.putFloat("temp", g_temperature);
+    prefs.putFloat("topp", g_topp);
+    prefs.putInt("subvocab", g_subvocab_clusters);
+    prefs.end();
+  }
+
+  String html = settings_saved_html;
+  char temp_buf[16], topp_buf[16];
+  snprintf(temp_buf, sizeof(temp_buf), "%.2f", g_temperature);
+  snprintf(topp_buf, sizeof(topp_buf), "%.2f", g_topp);
+  html.replace("%TEMPERATURE%", temp_buf);
+  html.replace("%TOP_P%", topp_buf);
+  String subvocab_str = (g_subvocab_clusters == 0) ? "Disabled (Full Vocab)"
+                                                   : ("Top " + String(g_subvocab_clusters) + " Clusters");
+  html.replace("%SUBVOCAB%", subvocab_str);
+
+  http_server.send(200, "text/html", html);
+}
+
+static void handle_web_update() {
+  http_server.send(200, "text/html", ota_html);
+}
+
+static void handle_web_reset() {
+  String html = "<!DOCTYPE html><html><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Rebooting</title>";
+  html += "<style>body { font-family: 'Inter', system-ui, sans-serif; background: #1e1e2e; color: #cdd6f4; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }";
+  html += ".card { background: #181825; border-radius: 12px; padding: 30px; text-align: center; border: 1px solid #313244; max-width: 400px; } h2 { color: #f38ba8; margin-top: 0; } p { color: #a6adc8; }</style></head>";
+  html += "<body><div class='card'><h2>Rebooting into AP Mode</h2><p>Wi-Fi settings have been cleared. Connect to <strong>" + wifi_manager.getAPSSID() + "</strong> to reconfigure.</p></div></body></html>";
+  http_server.send(200, "text/html", html);
+  delay(1000);
+  wifi_manager.resetSettings();
+  ESP.restart();
+}
+
 static void handle_not_found() {
   http_server.send(404, "application/json", "{\"error\":\"not found\"}");
 }
 
 // ---- Register HTTP routes (called once WiFi is up, at end of setup) ---------
 static void setup_http_routes() {
+  // Web UI Routes (Catppuccin Mocha themed)
+  http_server.on("/", HTTP_GET, handle_web_landing);
+  http_server.on("/settings", HTTP_GET, handle_web_settings);
+  http_server.on("/settings/save", HTTP_POST, handle_web_settings_save);
+  http_server.on("/update", HTTP_GET, handle_web_update);
+  http_server.on("/v1/update", HTTP_GET, handle_web_update);
+  http_server.on("/reset", HTTP_GET, handle_web_reset);
+
+  // OpenAI-Compatible REST API
   http_server.on("/v1/models", HTTP_GET, handle_models);
   http_server.on("/v1/chat/completions", HTTP_POST, handle_chat_completions);
   http_server.on(
@@ -618,10 +743,24 @@ static void setup_http_routes() {
   http_server.onNotFound(handle_not_found);
 }
 
+
 void loop() {
-  if (wifi_connected) {
+  wifi_manager.update();
+
+  if (wifi_manager.getState() == WIFI_STATE_CONNECTED) {
+    if (!http_services_started) {
+      http_services_started = true;
+      setup_http_routes();
+      http_server.begin();
+      ArduinoOTA.setHostname("esp32-sourdough");
+      ArduinoOTA.begin();
+      Serial.printf("\n[s3-sourdough] WiFi connected! HTTP API at http://%s:8080/v1/chat/completions\n",
+                    wifi_manager.getIPAddress().c_str());
+    }
     http_server.handleClient();
     ArduinoOTA.handle();
+  } else {
+    http_services_started = false;
   }
 
   if (!Serial.available()) {
@@ -635,6 +774,35 @@ void loop() {
 
   // Echo user question
   Serial.println(prompt);
+
+  // WiFi management commands
+  if (prompt.startsWith("/wifi")) {
+    String subcmd = prompt.substring(prompt.indexOf(' ') + 1);
+    subcmd.trim();
+    if (subcmd == "status" || prompt == "/wifi") {
+      const char* stateStr = "UNKNOWN";
+      switch (wifi_manager.getState()) {
+        case WIFI_STATE_DISCONNECTED: stateStr = "DISCONNECTED"; break;
+        case WIFI_STATE_CONNECTING:   stateStr = "CONNECTING"; break;
+        case WIFI_STATE_CONNECTED:    stateStr = "CONNECTED"; break;
+        case WIFI_STATE_AP_MODE:      stateStr = "AP_MODE (Captive Portal)"; break;
+      }
+      Serial.printf("Assistant: WiFi Status: %s | SSID: %s | IP: %s | RSSI: %d dBm\n\nUser: ",
+                    stateStr, wifi_manager.getSSID().c_str(), wifi_manager.getIPAddress().c_str(), wifi_manager.getRSSI());
+    } else if (subcmd == "reset") {
+      wifi_manager.resetSettings();
+      Serial.println("Assistant: WiFi credentials cleared from NVS. Rebooting into captive portal...\n\nUser: ");
+      delay(500);
+      ESP.restart();
+    } else if (subcmd == "portal") {
+      wifi_manager.startAPMode();
+      Serial.printf("Assistant: Started captive portal: SSID '%s', http://192.168.4.1\n\nUser: ",
+                    wifi_manager.getAPSSID().c_str());
+    } else {
+      Serial.println("Assistant: Usage: /wifi [status|reset|portal]\n\nUser: ");
+    }
+    return;
+  }
 
   // Interactive parameter commands
   if (prompt.startsWith("/temp")) {

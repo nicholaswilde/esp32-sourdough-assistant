@@ -176,8 +176,11 @@ This repository is organized as a monorepo separating firmware sketch developmen
 - Build firmware: `task build` (or `pio run -e esp32-s3-devkitc-1` in `firmware/`)
 - Run host-native tests: `task test` (or `pio test -e native` in `firmware/`)
 - Run on-device tests: `task test-device`
+- Test web UI & settings over WiFi: `task test-web`
 - Record benchmarks: `task benchmark`
+
 - Flash firmware: `task flash`
+- Erase and upload firmware: `task eau`
 - Flash model binary: `task flash-model`
 - Download model from HF: `task download-model`
 - Train model (local): `task train` (or `task model:train`)
