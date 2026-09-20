@@ -18,9 +18,12 @@ from pathlib import Path
 import numpy as np
 import torch
 
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from research.model import Config, make_model
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_ROOT = PROJECT_ROOT / "data" / "sourdough"
 RUNS_DIR = PROJECT_ROOT / "runs" / "sourdough"
 
@@ -156,10 +159,10 @@ def main():
     parser.add_argument("--arm", choices=["dense", "ple", "tiered"], default="ple", help="Model architecture")
     parser.add_argument("--vocab", type=int, default=2048, help="Vocabulary size (default: 2048)")
     parser.add_argument("--seq-len", type=int, default=256, help="Context sequence length (default: 256)")
-    parser.add_argument("--d-model", type=int, default=160, help="Model embedding dimension (default: 160)")
-    parser.add_argument("--n-layers", type=int, default=6, help="Number of transformer layers (default: 6)")
+    parser.add_argument("--d-model", type=int, default=192, help="Model embedding dimension (default: 192)")
+    parser.add_argument("--n-layers", type=int, default=8, help="Number of transformer layers (default: 8)")
     parser.add_argument("--n-heads", type=int, default=4, help="Number of attention heads (default: 4)")
-    parser.add_argument("--ffn-hidden", type=int, default=448, help="FFN hidden dimension (default: 448)")
+    parser.add_argument("--ffn-hidden", type=int, default=512, help="FFN hidden dimension (default: 512)")
     parser.add_argument("--ple-dim", type=int, default=128, help="PLE dimension per layer (default: 128)")
     parser.add_argument("--target-core", type=int, default=None, help="Target core param count (default: None, uses --ffn-hidden)")
     parser.add_argument("--batch-size", type=int, default=16, help="Batch size (default: 16)")

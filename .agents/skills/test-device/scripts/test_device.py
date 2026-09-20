@@ -150,7 +150,7 @@ def main():
     parser.add_argument("--baud", "-b", type=int, default=115200, help="Baud rate (default: 115200)")
     parser.add_argument("--no-reset", action="store_true", help="Do not trigger hardware reset on start")
     parser.add_argument("--boot-timeout", type=float, default=2.5, help="Seconds to capture boot log (default: 2.5)")
-    parser.add_argument("--timeout", type=float, default=15.0, help="Timeout per query in seconds (default: 15.0)")
+    parser.add_argument("--timeout", type=float, default=30.0, help="Timeout per query in seconds (default: 30.0)")
     parser.add_argument("--query", "-q", action="append", help="Prompt question to send (can repeat)")
     parser.add_argument("--interactive", "-i", action="store_true", help="Launch interactive terminal REPL")
     parser.add_argument("--json", action="store_true", help="Output results as JSON")

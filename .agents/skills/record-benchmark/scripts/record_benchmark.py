@@ -111,8 +111,8 @@ def compute_metrics(run_data: Dict[str, Any]) -> Dict[str, Any]:
             "query_count": 0,
         }
 
-    total_tokens = sum(r.get("tokens", 0) for r in results)
-    total_time_s = sum(r.get("time_s", 0.0) for r in results)
+    total_tokens = sum((r.get("tokens") or 0) for r in results)
+    total_time_s = sum((r.get("time_s") or 0.0) for r in results)
     query_count = len(results)
 
     avg_tok_per_sec = (

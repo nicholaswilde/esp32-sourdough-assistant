@@ -1,0 +1,31 @@
+{
+  "port": "/dev/ttyACM0",
+  "baud": 115200,
+  "boot_log": "ESP-ROM:esp32s3-20210327\r\nBuild:Mar 27 2021\r\nrst:0x15 (USB_UART_CHIP_RESET),boot:0x8 (SPI_FAST_FLASH_BOOT)\r\nSaved PC:0x42026e4e\r\nSPIWP:0xee\r\nmode:DIO, clock div:1\r\nload:0x3fce3808,len:0x4bc\r\nload:0x403c9700,len:0xbd8\r\nload:0x403cc700,len:0x2a0c\r\nentry 0x403c98d0\r\n\n=======================================================\r\n  \ud83e\udd56 ESP32-S3 Sourdough Baker Assistant (PLE INT4)    \r\n=======================================================\r\n[s3-sourdough] Tokenizer ready: vocab=4096, merges=3839\n[s3-sourdough] Model loaded: vocab=6106, dim=160, layers=6, heads=4, ffn=448, ple_dim=128\n[s3-sourdough] Copied 20 RMSNorm vectors to SRAM\n[s3-sourdough] Staged 44 core + head tensors to int8 in PSRAM\n[s3-sourdough] Dual-core acceleration enabled (Core 0 + Core 1)\r\n[s3-sourdough] Free SRAM: 306.4 KB | Free PSRAM: 4.41 MB\n[s3-sourdough] Sampling: temp=0.75, top_p=0.90, rep_window=32\n[s3-sourdough] Sub-vocab: disabled (full vocabulary evaluation for maximum accuracy)\r\n[s3-sourdough] SIMD: ESP32-S3 PIE 128-bit vector instructions active\r\n\nReady! Enter your sourdough question below:\n\r\nUser:",
+  "results": [
+    {
+      "prompt": "Why is there liquid on top of my sourdough starter?",
+      "answer": "that liquid is hooch, an alcohol byproduct indicating your starter has run out of food. pour it off for a milder taste or stir it back in for extra tang, then feed your starter equal parts flour and water.",
+      "tokens": 43,
+      "time_s": 3.12,
+      "tok_per_sec": 13.8,
+      "raw": "Why is there liquid on top of my sourdough starter?\r\nAssistant: that liquid is hooch, an alcohol byproduct indicating your starter has run out of food. pour it off for a milder taste or stir it back in for extra tang, then feed your starter equal parts flour and water.\n\n[43 words in 3.12 s, 13.8 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "How do I feed my sourdough starter?",
+      "answer": "feed your starter equal parts flour and water, let it rise for one hour to start fermenting, then seal loosely and refrigerate. feed it once a week to keep the colony active and healthy.",
+      "tokens": 38,
+      "time_s": 2.69,
+      "tok_per_sec": 14.1,
+      "raw": "How do I feed my sourdough starter?\r\nAssistant: feed your starter equal parts flour and water, let it rise for one hour to start fermenting, then seal loosely and refrigerate. feed it once a week to keep the colony active and healthy.\n\n[38 words in 2.69 s, 14.1 words/s]\n\nUser:"
+    },
+    {
+      "prompt": "Why is my bread gummy?",
+      "answer": "at the bench scraper at a 45 degree angle against the counter. slide it quickly under the dough with one hand rounding the top, tucking the bottom edges under to build high surface tension.",
+      "tokens": 37,
+      "time_s": 2.62,
+      "tok_per_sec": 14.1,
+      "raw": "Why is my bread gummy?\r\nAssistant: at the bench scraper at a 45 degree angle against the counter. slide it quickly under the dough with one hand rounding the top, tucking the bottom edges under to build high surface tension.\n\n[37 words in 2.62 s, 14.1 words/s]\n\nUser:"
+    }
+  ]
+}
