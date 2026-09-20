@@ -141,6 +141,11 @@ tasks:
     cmds:
       - task: model:prepare
 
+  validate-dataset:
+    desc: Verify dataset integrity, token lengths, and roundtrip fidelity (delegates to model/)
+    cmds:
+      - task: model:validate-dataset
+
   train:
     desc: Train Sourdough PLE micro-LLM (3,000 steps) (delegates to model/)
     cmds:
@@ -169,6 +174,15 @@ tasks:
       - task: model:sample
         vars:
           PROMPT: '{{.PROMPT}}'
+
+  query-dataset:
+    desc: Query the sourdough dataset for matching Q&A pairs (e.g. task query-dataset QUERY="tangzhong")
+    vars:
+      QUERY: '{{.QUERY | default ""}}'
+    cmds:
+      - task: model:query-dataset
+        vars:
+          QUERY: '{{.QUERY}}'
 
   upload-model:
     desc: Upload Sourdough model bundle to Hugging Face Hub (delegates to model/)

@@ -74,7 +74,7 @@ tasks:
     vars:
       QUERY: '{{.QUERY | default ""}}'
     cmds:
-      - uv run python research/sourdough/knowledge.py {{if .QUERY}}--query "{{.QUERY}}"{{end}}
+      - uv run python research/sourdough/verify_dataset.py {{if .QUERY}}--query "{{.QUERY}}"{{end}}
 
   upload-model:
     desc: Upload Sourdough model bundle to Hugging Face Hub (e.g. task upload-model REPO=nicholascwilde/esp32-s3-sourdough)

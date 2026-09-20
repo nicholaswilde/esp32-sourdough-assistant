@@ -16,12 +16,15 @@ Outputs:
 import argparse
 import json
 import random
+import sys
 from pathlib import Path
 from typing import List, Dict, Tuple
 
-from research.sourdough.knowledge import QA_ENTRIES, CATEGORIES
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from research.sourdough.knowledge import QA_ENTRIES, CATEGORIES
 OUTPUT_DIR = PROJECT_ROOT / "data" / "sourdough" / "raw"
 
 # Category-aware contextual openers and conversational framing
@@ -57,6 +60,8 @@ CATEGORY_PREFIXES: Dict[str, List[str]] = {
         "My sourdough culture smells strange: ",
         "Checked my starter this morning: ",
         "Feeding 1:5:5 with unbleached flour: ",
+        "Maintaining a stiff 60% levain, ",
+        "Weekend baker keeping starter in fridge, ",
     ],
     "bulk_fermentation": [
         "My kitchen is at 70F, ",
@@ -73,6 +78,9 @@ CATEGORY_PREFIXES: Dict[str, List[str]] = {
         "Checking dough during bulk: ",
         "Winter baking in cold kitchen: ",
         "Summer BF at 85F: ",
+        "Winter room at 62F, ",
+        "Summer heat wave at 85F, ",
+        "Retarding in fridge overnight, ",
     ],
     "hydration_shaping": [
         "Using 75% hydration dough, ",
@@ -87,6 +95,10 @@ CATEGORY_PREFIXES: Dict[str, List[str]] = {
         "Doing coil folds every 45 min, ",
         "Working with rye and spelt blend, ",
         "Handling sticky rye dough: ",
+        "Making tangzhong water roux, ",
+        "Baking with pure 100% rye, ",
+        "Using whole grain spelt flour, ",
+        "Handling ancient einkorn wheat, ",
     ],
     "scoring_baking": [
         "Baking in a cast iron Dutch oven, ",
@@ -101,6 +113,8 @@ CATEGORY_PREFIXES: Dict[str, List[str]] = {
         "Pulled the DO lid off after 20 mins, ",
         "Using a Pullman pan for sandwich bread, ",
         "Baking without a Dutch oven, ",
+        "Open baking on a baking steel, ",
+        "Trying to get blistered crust, ",
     ],
     "bakers_math": [
         "Formulating a recipe: ",
@@ -111,6 +125,8 @@ CATEGORY_PREFIXES: Dict[str, List[str]] = {
         "Calculating baker's percentages for 2 loaves: ",
         "Doing baker's math with 15% levain: ",
         "Adjusting hydration formula: ",
+        "Calculating desired dough temperature DDT, ",
+        "Adjusting hydration for humid weather, ",
     ],
     "guardrails": [
         "",

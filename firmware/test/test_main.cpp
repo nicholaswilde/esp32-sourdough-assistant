@@ -18,7 +18,7 @@ void test_bpe_encoder() {
     uint16_t out[128];
     int n = bpe_encode_ascii(&tok, "Why is my bread gummy?", out, 128);
     TEST_ASSERT_EQUAL_INT(8, n);
-    uint16_t expected[8] = {55, 72, 89, 343, 434, 394, 944, 31};
+    uint16_t expected[8] = {55, 72, 89, 346, 453, 394, 940, 31};
     for (int i = 0; i < 8; i++) {
         TEST_ASSERT_EQUAL_UINT16(expected[i], out[i]);
     }

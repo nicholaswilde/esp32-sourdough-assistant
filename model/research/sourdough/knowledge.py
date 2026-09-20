@@ -2169,6 +2169,206 @@ QA_ENTRIES: List[Dict] = [
         ],
     },
 
+    # -------------------------------------------------------------------------
+    # Advanced Baking Techniques, Flour Blends, and Seasonal Edge Cases
+    # -------------------------------------------------------------------------
+    {
+        "category": "hydration_shaping",
+        "questions": [
+            "How do I make a tangzhong for sourdough bread?",
+            "What is the water roux or yukone method in sourdough baking?",
+            "Can I use tangzhong to make softer sourdough sandwich bread?",
+            "How much flour should I use for a sourdough tangzhong?",
+            "How does scalded flour or water roux benefit sourdough loaves?",
+        ],
+        "answers": [
+            "Cook 5% to 10% of recipe flour with five times its weight in water or milk to 65°C (149°F) until it forms a glossy paste. Let cool to room temperature before mixing into dough to retain moisture and create a pillowy crumb.",
+            "The tangzhong water roux pre-gelatinizes starches so they lock in extra moisture without making dough sticky. Cook 1 part flour to 5 parts liquid to 65°C, cool completely, and mix in during autolyse.",
+        ],
+    },
+    {
+        "category": "hydration_shaping",
+        "questions": [
+            "How do I bake 100% rye sourdough bread?",
+            "Why is 100% rye dough so sticky and clay-like?",
+            "How to handle and shape pure rye sourdough without gluten?",
+            "Can I do stretch and folds on 100% rye dough?",
+            "What is the technique for shaping and baking Vollkornbrot?",
+        ],
+        "answers": [
+            "Rye contains pentosans instead of gluten-forming glutenin, producing a sticky paste rather than an elastic dough. Do not knead or stretch; mix gently, pack into a greased pullman or loaf tin with wet spatulas, and dock the top.",
+            "Pure rye sourdough requires high acidity from starter to prevent starch attack from amylase enzymes. Shape gently with wet hands directly into a tin pan, proof until pinhole bubbles appear, and bake thoroughly.",
+        ],
+    },
+    {
+        "category": "hydration_shaping",
+        "questions": [
+            "How do I bake sourdough bread with spelt flour?",
+            "Why does spelt sourdough dough get slack and puddle during bulk fermentation?",
+            "How does spelt flour behave differently from standard bread flour?",
+            "Tips for shaping high percentage spelt sourdough?",
+            "How to prevent spelt sourdough from spreading flat?",
+        ],
+        "answers": [
+            "Spelt has highly extensible but fragile gluten that breaks down quickly if over-mixed or over-fermented. Reduce recipe hydration by 3% to 5%, use gentle coil folds, and shorten bulk fermentation.",
+            "Spelt gluten weakens easily under enzymatic action. Autolyse briefly for only 20 to 30 minutes, handle gently during pre-shaping, and proof in a banneton with rice flour before a cold retard.",
+        ],
+    },
+    {
+        "category": "hydration_shaping",
+        "questions": [
+            "How do I work with einkorn flour in sourdough?",
+            "Why is einkorn sourdough dough so weak and difficult to shape?",
+            "What hydration should I use for 100% einkorn sourdough bread?",
+            "Can I bake a free-form batard with einkorn flour?",
+            "What are best practices for baking with ancient einkorn wheat?",
+        ],
+        "answers": [
+            "Einkorn is a diploid ancient wheat with weak, non-elastic gluten that cannot support tall freestanding boules. Keep hydration low around 60% to 65%, mix minimally, and bake in a loaf tin for best rise.",
+            "Einkorn absorbs water slowly and lacks the glutenin structure for strong tension. Avoid vigorous stretching; fold gently and support the dough in a loaf pan or pullman tin.",
+        ],
+    },
+    {
+        "category": "hydration_shaping",
+        "questions": [
+            "Why does whole wheat flour need higher hydration in sourdough?",
+            "How much extra water should I add when using 50% or 100% whole wheat flour?",
+            "Why does whole wheat dough feel stiffer even at high hydration?",
+            "How to soften coarse bran particles in whole wheat sourdough?",
+            "How does whole grain flour affect dough hydration absorption?",
+        ],
+        "answers": [
+            "Whole grain flour contains fibrous bran and germ that absorb significantly more water than endosperm starch. Increase recipe hydration by 5% to 8% and autolyse for 1 to 2 hours to soften coarse bran edges.",
+            "Coarse bran flakes act like micro-blades cutting developing gluten strands. Soak whole wheat flour in water for an extended autolyse before adding levain and salt to maximize extensibility.",
+        ],
+    },
+    {
+        "category": "bulk_fermentation",
+        "questions": [
+            "How to manage sourdough bulk fermentation in a cold winter kitchen?",
+            "My room temperature is 62°F and dough takes all day to rise. What can I do?",
+            "How to speed up sourdough fermentation during winter months?",
+            "Sourdough bulk fermentation in cold weather tips?",
+            "How do I ferment sourdough bread in cold ambient temperatures?",
+        ],
+        "answers": [
+            "In cold kitchens below 68°F (20°C), use warm mixing water (85°F to 90°F / 29°C to 32°C) to reach a final dough temperature of 78°F (26°C), increase levain inoculate to 20% to 25%, or proof in an unheated oven with the light turned on.",
+            "Cold temperatures dramatically slow wild yeast metabolic activity. Expect bulk fermentation to take 8 to 12 hours unless you maintain dough warmth in a proofing box or microwave with a steaming mug of water.",
+        ],
+    },
+    {
+        "category": "bulk_fermentation",
+        "questions": [
+            "How to prevent over-fermenting sourdough in a hot summer kitchen?",
+            "My kitchen is 85°F and bulk fermentation is happening too fast. What should I do?",
+            "How to slow down sourdough dough during hot summer days?",
+            "Summer sourdough baking adjustments for high heat?",
+            "How do I control sourdough fermentation when ambient temperature is above 80°F?",
+        ],
+        "answers": [
+            "In hot ambient conditions above 80°F (27°C), reduce levain to 10% or 12%, mix with chilled water straight from the fridge, and shorten fold intervals. End bulk fermentation earlier at a 30% to 40% volume rise.",
+            "High temperatures cause rapid acid accumulation and gluten degradation. Monitor dough closely after 2.5 to 3 hours, perform gentle coil folds, and transfer early to the refrigerator for cold retard.",
+        ],
+    },
+    {
+        "category": "bulk_fermentation",
+        "questions": [
+            "What is the difference between cold retard and same-day ambient proofing?",
+            "Should I proof sourdough in the fridge overnight or bake the same day?",
+            "Why do bakers refrigerate sourdough dough overnight before baking?",
+            "Does overnight cold retard make sourdough bread more sour?",
+            "Comparing overnight cold proofing versus warm room temperature proofing?",
+        ],
+        "answers": [
+            "Cold retarding (38°F to 41°F / 3°C to 5°C for 12 to 18 hours) slows yeast while lactobacilli continue acid production, increasing sour complexity. Cold dough also stiffens butter-fat and starches, making scoring crisp and easy.",
+            "Same-day ambient proofing produces a milder, sweeter loaf with lighter crumb in 4 to 6 hours. Cold overnight retard yields blistered crusts, deeper caramelization, and tangier lactic and acetic acid balance.",
+        ],
+    },
+    {
+        "category": "starter_health",
+        "questions": [
+            "What is the difference between stiff levain and 100% hydration liquid starter?",
+            "Why would I use a stiff 50% or 60% hydration sourdough starter?",
+            "How does starter hydration affect bread sourness?",
+            "Stiff levain versus liquid levain advantages and characteristics?",
+            "Why use a stiff starter for sweet breads or panettone?",
+        ],
+        "answers": [
+            "Stiff levains (50% to 60% hydration) favor wild yeast activity and promote lactic acid over acetic acid, resulting in a milder, sweeter, and more aromatic crumb ideal for enriched breads and panettone.",
+            "Liquid starters (100% hydration) encourage acetic acid bacteria and enzymatic activity for a tangier bite. Stiff starters ferment more slowly, tolerate warm rooms longer, and maintain strength between feeds.",
+        ],
+    },
+    {
+        "category": "starter_health",
+        "questions": [
+            "How do I maintain my sourdough starter if I only bake once a week on weekends?",
+            "What is the best feeding routine for a refrigerated weekly starter?",
+            "How many days can sourdough starter sleep in the fridge before baking?",
+            "Weekend sourdough baking starter schedule and timeline?",
+            "How to keep starter alive in the refrigerator with weekly feedings?",
+        ],
+        "answers": [
+            "Feed your starter 1:2:2, let it rise for 2 hours at room temperature to initiate yeast activity, then seal and store in the fridge for up to 7 days. Take it out Friday morning, feed 1:1:1 to peak, and mix your levain Friday night.",
+            "For once-a-week baking, keep just 50g of starter in the refrigerator. Two days before baking, give it one room-temperature maintenance feed, followed by a peak levain build on bake day.",
+        ],
+    },
+    {
+        "category": "scoring_baking",
+        "questions": [
+            "How to create steam in a home oven without a Dutch oven?",
+            "What is the best way to open bake sourdough on a baking steel or stone?",
+            "How to use lava rocks and cast iron pans for oven steam?",
+            "Open baking sourdough setup tips and techniques?",
+            "How do I get professional oven spring when baking without a Dutch oven?",
+        ],
+        "answers": [
+            "Place a cast iron skillet filled with unglazed lava rocks on the bottom oven rack during preheat. Load your scored loaf on a baking steel above, pour 1 cup of boiling water over the rocks, and bake for 20 minutes before venting.",
+            "Trap steam by inverting a deep stainless steel roasting pan or large metal bowl over your loaf on the baking stone for the first 20 minutes, then remove to let the crust brown.",
+        ],
+    },
+    {
+        "category": "scoring_baking",
+        "questions": [
+            "How do I get micro blisters on my sourdough bread crust?",
+            "Why does some sourdough bread have tiny bubbles all over the crust?",
+            "Secrets to achieving a blistered sourdough crust?",
+            "What causes crust blistering in sourdough baking?",
+            "How does overnight cold proofing create blistered artisan crust?",
+        ],
+        "answers": [
+            "Crust micro-blisters result from overnight cold retardation, which allows carbon dioxide to diffuse toward the moist skin. Bake cold dough directly into a blazing preheated Dutch oven with heavy trapped steam.",
+            "Spritzing the cold dough surface with a fine water mist immediately before closing the Dutch oven lid enhances starch gelatinization, creating thousands of tiny golden blistered bubbles.",
+        ],
+    },
+    {
+        "category": "bakers_math",
+        "questions": [
+            "How do I calculate water temperature for desired dough temperature (DDT)?",
+            "What is the formula for desired dough temperature in sourdough baking?",
+            "How do room temp, flour temp, and friction factor affect water temperature?",
+            "How to get dough to exactly 78°F after mixing?",
+            "What is the desired dough temperature calculation for artisan bread?",
+        ],
+        "answers": [
+            "Water Temperature = (3 × Desired Dough Temperature) - (Room Temp + Flour Temp + Friction Factor). For hand kneading, friction factor is typically 2°F to 5°F; for stand mixers, use 10°F to 15°F.",
+            "To hit a target 78°F (26°C) dough temp, multiply 78 by 3 (= 234). Subtract your room temperature, flour temperature, and a 2°F to 4°F hand-mixing friction allowance to find required water temperature.",
+        ],
+    },
+    {
+        "category": "bakers_math",
+        "questions": [
+            "How does weather and humidity affect sourdough recipe hydration?",
+            "Should I reduce water in my sourdough recipe during humid rainy days?",
+            "Flour hydration adjustment for high humidity versus dry winter air?",
+            "Why does the same flour feel wetter in summer than in winter?",
+            "How to adjust sourdough hydration based on seasonal room humidity?",
+        ],
+        "answers": [
+            "Flour naturally absorbs ambient moisture from humid air, effectively lowering its liquid capacity. In humid summer weather (> 70% RH), hold back 2% to 4% recipe water; in dry winter climates (< 30% RH), add 2% to 3% water.",
+            "Always hold back 25g to 50g of recipe water (bassinage technique) during initial mixing to assess how the flour is absorbing liquid under current seasonal humidity.",
+        ],
+    },
+
 # =========================================================================
     # 6. Guardrails & Out-of-Domain Refusals (12 topics)
     # =========================================================================
